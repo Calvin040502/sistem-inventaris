@@ -32,6 +32,7 @@
                         <form method="POST" action="{{ route('manage-users.update', $user->id) }}">
                             @csrf
                             @method('PUT')
+                            <a class="btn btn-back mb-3" href="/manage-users">Kembali</a>
                         
                             <div class="form-group">
                                 <label for="name">Nama:</label>
