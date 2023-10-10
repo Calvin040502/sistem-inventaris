@@ -14,8 +14,8 @@
                 </li>
             @endcan
             <li>
-                <a href="{{ route('kwitansi') }}" class="nav-link text-truncate">
-                    <i class="fs-5"></i><span class="ms-1 d-none d-sm-inline">List Kwitansi</span></a>
+                <a href="{{ route('kendaraan') }}" class="nav-link text-truncate">
+                    <i class="fs-5"></i><span class="ms-1 d-none d-sm-inline">List Aset Kendaraan</span></a>
             </li>
             @can('super admin')
                 <li>

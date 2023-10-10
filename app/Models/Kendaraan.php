@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
-class Kwitansi extends Model
+class Kendaraan extends Model
 {
     protected $fillable = [
         'user_id',
-        'nomor_kwitansi',
-        'nama_lengkap',
-        'alamat',
-        'no_hp',
-        'terbilang',
-        'pembayaran',
-        'keterangan',
+        'kode',
+        'jenis_kendaraan',
+        'merek',
+        'tahun_perolehan',
+        'harga_perolehan',
+        'masa_guna',
+        'lama_pakai',
+        'kondisi',
         'lokasi',
-        'no_kavling',
-        'type',
-        'jumlah',
+        'pengguna',
+        'masa_pajak',
     ];
 
     public function author()

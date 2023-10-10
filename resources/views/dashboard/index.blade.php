@@ -99,21 +99,29 @@
                                     id="sortNo">No.</th>
                                 <th style="width: 5rem">Nama Admin</th>
                                 <th style="width: 3rem">Tanggal</th>
-                                <th style="width: 4rem">No. Kwitansi</th>
-                                <th style="width: 4rem">Pembayaran</th>
-                                <th style="border-top-right-radius: 6px; width: 7rem">Keterangan</th>
+                                <th style="width: 4rem">Kode</th>
+                                <th style="width: 4rem">Jenis Kendaraan</th>
+                                <th style="width: 4rem">Kondisi</th>
+                                <th style="width: 4rem">Masa Guna</th>
+                                <th style="width: 4rem">Lama Pakai</th>
+                                <th style="width: 4rem">Lokasi</th>
+                                <th style="width: 4rem">Masa Pajak</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($kwitansis as $kwitansi)
-                                <tr onclick="window.location.href='{{ route('kwitansi.detail', $kwitansi->id) }}';"
+                            @foreach ($kendaraans as $kendaraan)
+                                <tr onclick="window.location.href='{{ route('kendaraan.detail', $kendaraan->id) }}';"
                                     style="cursor: pointer;">
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ optional($kwitansi->user)->name }}</td>
-                                    <td>{{ date('j F Y', strtotime($kwitansi->created_at)) }}</td>
-                                    <td>{{ $kwitansi->nomor_kwitansi }}</td>
-                                    <td>{{ $kwitansi->pembayaran }}</td>
-                                    <td>{{ $kwitansi->keterangan }}</td>
+                                    <td>{{ optional($kendaraan->user)->name }}</td>
+                                    <td>{{ date('j F Y', strtotime($kendaraan->created_at)) }}</td>
+                                    <td>{{ $kendaraan->kode }}</td>
+                                    <td>{{ $kendaraan->jenis_kendaraan }}</td>
+                                    <td>{{ $kendaraan->kondisi }}</td>
+                                    <td>{{ $kendaraan->masa_guna }}</td>
+                                    <td>{{ $kendaraan->lama_pakai }}</td>
+                                    <td>{{ $kendaraan->lokasi }}</td>
+                                    <td>{{ $kendaraan->masa_pajak }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

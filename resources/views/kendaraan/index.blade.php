@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Kwitansi</title>
+    <title>Kendaraan</title>
     <link rel="icon" href="{{ asset('img/logoremove.png') }}">
 </head>
 
@@ -16,19 +16,19 @@
             {{ date('l, j F Y') }}
         </label>
     </div>
-    <section class="kwitansi" style="padding: 1.5rem 24px 1.5rem 24px">
-        <h1 class="text-center"> <a href="{{ route('kwitansi') }}" class="text-decoration-none"
-                style="color: black">List Kwitansi</a>
+    <section class="kendaraan" style="padding: 1.5rem 24px 1.5rem 24px">
+        <h1 class="text-center"> <a href="{{ route('kendaraan') }}" class="text-decoration-none"
+                style="color: black">List Aset Kendaraan</a>
         </h1>
         <div class="input mb-2" style="padding-top: 2rem">
             <div class="row">
                 <div class="col">
-                    <a href="{{ route('kwitansi.create') }}" class="btn btn-add mb-1"
+                    <a href="{{ route('kendaraan.create') }}" class="btn btn-add mb-1"
                         style="margin-right: 24px">Tambah</a>
-                    <a href="{{ url('kwitansi/export/excel') }}" class="btn btn-print mb-1 ">Export To Excel</a>
+                    <a href="{{ url('kendaraan/export/excel') }}" class="btn btn-print mb-1 ">Export To Excel</a>
                 </div>
                 <div class="col" style="padding-left:50%">
-                    <form action="/kwitansi" method="GET" class="float-right">
+                    <form action="/kendaraan" method="GET" class="float-right">
                         <div class="input-group" style="padding-left: ;">
                             <input type="search" style="border-top-right-radius: 0; border-bottom-right-radius: 0"
                                 class="form-control shadow-sm bg-body-tertiary" placeholder="Search..." name="search"
@@ -51,26 +51,26 @@
             </div>
         @endif
         <div class="content" style="margin: 2rem 0 2rem 0">
-            <table class="table table-hover table-striped text-center" id="kwitansi-table" style="margin-bottom: 2rem">
+            <table class="table table-hover table-striped text-center" id="kendaraan-table" style="margin-bottom: 2rem">
                 <thead>
                     <tr class="bg-info">
                         <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 6px"
                             id="sortNo">No.</th>
-                        <th style="width: 4.5rem; cursor: pointer;" id="sortKwitansi">No. Kwitansi</th>
-                        <th style="width: 6rem; cursor: pointer;" id="sortNama">Nama Lengkap</th>
-                        <th style="width: 10rem;">Alamat</th>
-                        <th style="width: 4.5rem;">No. HP</th>
-                        <th style="width: 8.5rem;">Terbilang</th>
-                        <th style="width: 4rem;">Pembayaran</th>
-                        <th style="width: 4rem;">Keterangan</th>
-                        <th style="width: 4rem;">Nama Perumahan</th>
-                        <th style="width: 1rem;">No. Kavling</th>
-                        <th style="width: 1rem;">Type</th>
+                        <th style="width: 4.5rem; cursor: pointer;" id="sortKode">Kode</th>
+                        <th style="width: 6rem; cursor: pointer;" id="sortJenisKendaraan">Jenis Kendaraan</th>
+                        <th style="width: 10rem;">Merk</th>
+                        <th style="width: 4.5rem;">Tahun Perolehan</th>
+                        <th style="width: 8.5rem;">Harga Perolehan</th>
+                        <th style="width: 4rem;">Masa Guna</th>
+                        <th style="width: 4rem;">Lama Pakai</th>
+                        <th style="width: 4rem;">Kondisi</th>
+                        <th style="width: 1rem;">Lokasi</th>
+                        <th style="width: 1rem;">Pengguna</th>
                         <th
                             style="width: 5rem; @cannot('super admin')
                         border-top-right-radius: 6px                            
                         @endcannot">
-                            Jumlah</th>
+                            Masa Pajak</th>
                         @can('super admin')
                             <th style="width: 6.7rem; border-top-right-radius: 6px"> Action</th>
                         @endcan
@@ -78,29 +78,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($kwitansis as $kwitansi)
-                        <tr onclick="window.location.href='{{ route('kwitansi.detail', $kwitansi->id) }}';"
+                    @foreach ($kendaraans as $kendaraan)
+                        <tr onclick="window.location.href='{{ route('kendaraan.detail', $kendaraan->id) }}';"
                             style="cursor: pointer;">
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $kwitansi->nomor_kwitansi }}</td>
-                            <td>{{ $kwitansi->nama_lengkap }}</td>
-                            <td>{{ $kwitansi->alamat }}</td>
-                            <td>{{ $kwitansi->no_hp }}</td>
-                            <td>{{ $kwitansi->terbilang }}</td>
-                            <td>{{ $kwitansi->pembayaran }}</td>
-                            <td>{{ $kwitansi->keterangan }}</td>
-                            <td>{{ $kwitansi->lokasi }}</td>
-                            <td>{{ $kwitansi->no_kavling }}</td>
-                            <td>{{ $kwitansi->type }}</td>
-                            <td>{{ $kwitansi->jumlah }}</td>
+                            <td>{{ $kendaraan->kode }}</td>
+                            <td>{{ $kendaraan->jenis_kendaraan }}</td>
+                            <td>{{ $kendaraan->merek }}</td>
+                            <td>{{ $kendaraan->tahun_perolehan }}</td>
+                            <td>{{ $kendaraan->harga_perolehan }}</td>
+                            <td>{{ $kendaraan->masa_guna }}</td>
+                            <td>{{ $kendaraan->lama_pakai }}</td>
+                            <td>{{ $kendaraan->kondisi }}</td>
+                            <td>{{ $kendaraan->lokasi }}</td>
+                            <td>{{ $kendaraan->pengguna }}</td>
+                            <td>{{ $kendaraan->masa_pajak }}</td>
                             @can('super admin')
                                 <td
                                     style="padding-left: 1rem; display: flex; height: 6rem; justify-content: space-around; align-items: center">
-                                    <a class="btn btn-edit-pencil" href="{{ route('kwitansi.edit', $kwitansi->id) }}">
+                                    <a class="btn btn-edit-pencil" href="{{ route('kendaraan.edit', $kendaraan->id) }}">
                                         <img src="{{ asset('icon/pen2.svg') }}" alt="" style="margin: 4px 0 4px 0">
                                     </a>
 
-                                    <form action="{{ route('kwitansi.destroy', $kwitansi->id) }}}}" method="POST"
+                                    <form action="{{ route('kendaraan.destroy', $kendaraan->id) }}}}" method="POST"
                                         class="d-inline-grid">
                                         @method('delete')
                                         @csrf
@@ -129,8 +129,8 @@
         $(document).ready(function() {
             // Initialize sorting order for each column
             let noSortOrder = 1;
-            let kwitansiSortOrder = 1;
-            let namaSortOrder = 1;
+            let kodeSortOrder = 1;
+            let jenis_kendaraanSortOrder = 1;
 
             // Function to update the table with sorted data
             function updateTable(sortKey, sortOrder) {
@@ -159,16 +159,16 @@
                 updateTable(0, noSortOrder);
             });
 
-            // Handle click event for sorting by No. Kwitansi
-            $("#sortKwitansi").click(function() {
-                kwitansiSortOrder *= -1;
-                updateTable(1, kwitansiSortOrder);
+            // Handle click event for sorting by Kode
+            $("#sortKode").click(function() {
+                kodeSortOrder *= -1;
+                updateTable(1, kodeSortOrder);
             });
 
-            // Handle click event for sorting by Nama Lengkap
-            $("#sortNama").click(function() {
+            // Handle click event for sorting by Jenis Kendaraan
+            $("#sortJenisKendaraan").click(function() {
                 namaSortOrder *= -1;
-                updateTable(2, namaSortOrder);
+                updateTable(2, jenis_kendaraanSortOrder);
             });
         });
     </script>
@@ -176,7 +176,7 @@
         $(document).ready(function() {
             // Function to initialize the table with the specified number of items per page
             function initializeTable() {
-                const table = $("#kwitansi-table");
+                const table = $("#kendaraan-table");
                 const itemsPerPage = 11; // Jumlah item per halaman
 
                 // Hide all rows in the table, except the header
@@ -190,7 +190,7 @@
             initializeTable();
 
             // Get the table element
-            const table = $("#kwitansi-table");
+            const table = $("#kendaraan-table");
 
             // Get the pagination element
             const pagination = $(".pagination");
@@ -202,7 +202,7 @@
             const itemsPerPage = 10;
 
             // Calculate the total number of pages
-            const totalData = {{ $kwitansis->count() }}; // Ganti dengan jumlah data yang sesungguhnya
+            const totalData = {{ $kendaraans->count() }}; // Ganti dengan jumlah data yang sesungguhnya
             const totalPages = Math.ceil(totalData / itemsPerPage);
 
             // Generate initial pagination buttons
@@ -259,7 +259,7 @@
         margin: 0;
     }
 
-    .kwitansi {
+    .kendaraan {
         flex-grow: 1;
         min-height: calc(100vh - 60px);
     }

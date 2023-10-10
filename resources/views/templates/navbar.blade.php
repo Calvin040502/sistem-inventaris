@@ -18,7 +18,7 @@
             </button>
             <img class="logo-img" src="{{ asset('img/logoremove.png') }}" alt="Logo" width="30" height="24"
                 class="d-inline-block align-text-top" style="margin-right: 10px;">
-            <a class="navbar-brand" href="{{ route('kwitansi') }}" style="margin-top: 0;">
+            <a class="navbar-brand" href="{{ route('kendaraan') }}" style="margin-top: 0;">
                 PT SATRIYO MEGA SARANA
             </a>
 

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kwitansi;
+use App\Models\Kendaraan;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $kwitansis = Kwitansi::all();
+        $kendaraans = Kendaraan::all();
 
-        return view('dashboard.index', compact('kwitansis'));
+        return view('dashboard.index', compact('kendaraans'));
     }
 }
