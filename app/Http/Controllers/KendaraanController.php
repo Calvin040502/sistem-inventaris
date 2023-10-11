@@ -53,13 +53,13 @@ public function create()
     $lastSerialNumber = Kendaraan::latest('kode')->first();
 
     if ($lastSerialNumber) {
-        $lastNumber = (int) substr($lastSerialNumber->kode, 5); // Ubah dari 4 menjadi 5
+        $lastNumber = (int) substr($lastSerialNumber->kode, 4);
         $nextNumber = $lastNumber + 1;
     } else {
         $nextNumber = 1;
     }
 
-    $serialNumber = 'KDRN-' . str_pad($nextNumber, 2, '0', STR_PAD_LEFT);
+    $serialNumber = 'KDRN-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT); // Menggunakan 5 digit atau lebih
 
     return view('kendaraan.create', compact('serialNumber'));
 }
@@ -70,13 +70,13 @@ public function store(Request $request)
         $lastSerialNumber = Kendaraan::latest('kode')->first();
 
         if ($lastSerialNumber) {
-            $lastNumber = (int) substr($lastSerialNumber->kode, 5); // Ubah dari 4 menjadi 5
+            $lastNumber = (int) substr($lastSerialNumber->kode, 4);
             $nextNumber = $lastNumber + 1;
         } else {
             $nextNumber = 1;
         }
 
-        $serialNumber = 'KDRN-' . str_pad($nextNumber, 2, '0', STR_PAD_LEFT);
+        $serialNumber = 'KDRN-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT); // Menggunakan 5 digit atau lebih
 
         $validatedData = $request->validate([
             'jenis_kendaraan' => 'required',

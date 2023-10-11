@@ -11,6 +11,8 @@ class DashboardController extends Controller
     {
         $kendaraans = Kendaraan::all();
 
+        $kendaraans = Kendaraan::latest()->get();
+
         return view('dashboard.index', compact('kendaraans'));
     }
 }
