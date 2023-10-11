@@ -5,9 +5,20 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Kendaraan</title>
+    <title>Aset Kendaraan</title>
     <link rel="icon" href="{{ asset('img/logoremove.png') }}">
 </head>
+
+<script>
+    // Function to print the list of Kendaraan
+    function printKendaraanList() {
+        var printContents = document.querySelector('.kendaraan').innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
 
 <body>
     @include('templates.navbar')
@@ -16,16 +27,13 @@
             {{ date('l, j F Y') }}
         </label>
     </div>
-    <section class="kendaraan" style="padding: 1.5rem 24px 1.5rem 24px">
-        <h1 class="text-center"> <a href="{{ route('kendaraan') }}" class="text-decoration-none"
-                style="color: black">List Aset Kendaraan</a>
-        </h1>
-        <div class="input mb-2" style="padding-top: 2rem">
+    <div class="input mb-2" style="padding: 1.5rem 24px 1.5rem 24px">
             <div class="row">
                 <div class="col">
                     <a href="{{ route('kendaraan.create') }}" class="btn btn-add mb-1"
                         style="margin-right: 24px">Tambah</a>
-                    <a href="{{ url('kendaraan/export/excel') }}" class="btn btn-print mb-1 ">Export To Excel</a>
+                    <a href="{{ url('kendaraan/export/excel') }}" class="btn btn-export mb-1 ">Export To Excel</a>
+                    <button class="btn btn-print mb-1" onclick="printKendaraanList()">Print</button> <!-- Tombol Print -->
                 </div>
                 <div class="col" style="padding-left:50%">
                     <form action="/kendaraan" method="GET" class="float-right">
@@ -43,6 +51,11 @@
                 </div>
             </div>
         </div>
+    <section class="kendaraan" style="padding: 1.5rem 24px 1.5rem 24px">
+        <h1 class="text-center"> <a href="{{ route('kendaraan') }}" class="text-decoration-none"
+                style="color: black">List Aset Kendaraan</a>
+        </h1>
+        
 
         @if (session()->has('error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -246,6 +259,27 @@
     </script>
     @extends('templates.footer')
 </body>
+<style>
+    /* CSS untuk elemen cetak */
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        .kendaraan, .kendaraan * {
+            visibility: visible;
+        }
+        .kendaraan {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .button.wrapper * {
+                display: none;
+                visibility: none;
+            }
+    }
+</style>
 
 <style>
     .date {
@@ -327,17 +361,28 @@
     }
 
     .btn-print {
-        background-color: #f9d150;
-        color: #404567;
-        border-radius: 0.3rem;
+            background-color: #ffef0f;
+            color: #404567;
+            border-radius: 0.3rem;
     }
 
     .btn-print:hover {
-        background-color: #e5eae6;
-        color: #404567;
-        border: 1px solid #8e4761
+            background-color: #e5eae6;
+            color: #404567;
+            border: 1px solid #8e4761
     }
 
+    .btn-export {
+            background-color: #6ac063;
+            color: #404567;
+            border-radius: 0.3rem;
+    }
+
+    .btn-export:hover {
+            background-color: #e5eae6;
+            color: #404567;
+            border: 1px solid #8e4761
+    }
     .btn-edit-pencil {
         background-color: #d96652;
         color: #e9ecf1;
