@@ -53,7 +53,7 @@ public function create()
     $lastSerialNumber = Kendaraan::latest('kode')->first();
 
     if ($lastSerialNumber) {
-        $lastNumber = (int) substr($lastSerialNumber->kode, 4);
+        $lastNumber = (int) substr($lastSerialNumber->kode, 3);
         $nextNumber = $lastNumber + 1;
     } else {
         $nextNumber = 1;
@@ -70,7 +70,7 @@ public function store(Request $request)
         $lastSerialNumber = Kendaraan::latest('kode')->first();
 
         if ($lastSerialNumber) {
-            $lastNumber = (int) substr($lastSerialNumber->kode, 4);
+            $lastNumber = (int) substr($lastSerialNumber->kode, 3);
             $nextNumber = $lastNumber + 1;
         } else {
             $nextNumber = 1;
