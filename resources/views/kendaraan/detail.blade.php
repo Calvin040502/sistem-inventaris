@@ -73,7 +73,7 @@
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
-                        <label>Tanggal Service:</label>
+                        <label>Service:</label>
                         <span>{{ $kendaraan->service }}</span>
                     </div>
                     <div class="spacer"></div>

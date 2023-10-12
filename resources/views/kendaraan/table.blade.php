@@ -13,7 +13,7 @@
             <th>Lokasi</th>
             <th>Pengguna</th>
             <th>Tanggal Ganti Oli</th>
-            <th>Tanggal Service</th>
+            <th>Service</th>
             <th>Masa Pajak</th>
         </tr>
     </thead>

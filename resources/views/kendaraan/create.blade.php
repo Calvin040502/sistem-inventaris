@@ -99,9 +99,9 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm-12">
-                                    <label for="service" class="col-form-label"> Tanggal Service </label>
+                                    <label for="service" class="col-form-label"> Service </label>
                                     <input class="form-control shadow-sm bg-body-tertiary rounded" id="service" name="service"
-                                        placeholder="Masukkan Tanggal Service" required>
+                                        placeholder="Masukkan Service" required>
                                 </div>
                             </div>
                             <div class="row mb-3">

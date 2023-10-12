@@ -168,7 +168,7 @@
                             </div>
                             <div class="col mb-3 mt-3">
                                 <div class="col-md-12">
-                                    <label for="service">Tanggal Service</label>
+                                    <label for="service">Service</label>
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('service') is-invalid @enderror"
                                         id="service" name="service"

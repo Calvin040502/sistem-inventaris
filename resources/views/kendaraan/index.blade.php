@@ -80,7 +80,7 @@
                         <th style="width: 1rem;">Lokasi</th>
                         <th style="width: 1rem;">Pengguna</th>
                         <th style="width: 1rem;">Tanggal Ganti Oli</th>
-                        <th style="width: 1rem;">Tanggal Service</th>
+                        <th style="width: 6rem;">Service</th>
                         <th
                             style="width: 5rem; @cannot('super admin')
                         border-top-right-radius: 6px                            
