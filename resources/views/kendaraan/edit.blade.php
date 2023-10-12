@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Edit Kwitansi</title>
+    <title>Edit Aset Kendaraan</title>
     <link rel="icon" href="{{ asset('img/logoremove.png') }}">
 </head>
 
@@ -42,7 +42,6 @@
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('jenis_kendaraan') is-invalid @enderror"
                                         id="jenis_kendaraan" name="jenis_kendaraan"
-                                        onkeypress="return hanyaHurufDanSpasi(event)"
                                         value="{{ old('jenis_kendaraan', $kendaraan->jenis_kendaraan) }}">
                                     @error('jenis_kendaraan')
                                         <div class="invalid-feedback">
@@ -140,14 +139,41 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col mb-3 mt-3">
-                                <div class="col-md-12">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
                                     <label for="pengguna">Pengguna</label>
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('pengguna') is-invalid @enderror"
                                         id="pengguna" name="pengguna"
+                                        onkeypress="return hanyaHurufDanSpasi(event)"
                                         value="{{ old('pengguna', $kendaraan->pengguna) }}">
                                     @error('pengguna')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ganti_oli">Tanggal Ganti Oli</label>
+                                    <input type="text"
+                                        class="form-control shadow-sm bg-body-tertiary rounded @error('masa_guna') is-invalid @enderror"
+                                        id="ganti_oli" name="ganti_oli"
+                                        value="{{ old('ganti_oli', $kendaraan->ganti_oli) }}">
+                                    @error('ganti_oli')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col mb-3 mt-3">
+                                <div class="col-md-12">
+                                    <label for="service">Tanggal Service</label>
+                                    <input type="text"
+                                        class="form-control shadow-sm bg-body-tertiary rounded @error('service') is-invalid @enderror"
+                                        id="service" name="service"
+                                        value="{{ old('service', $kendaraan->service) }}">
+                                    @error('service')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

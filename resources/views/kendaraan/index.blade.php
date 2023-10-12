@@ -70,15 +70,17 @@
                         <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 6px"
                             id="sortNo">No.</th>
                         <th style="width: 4.5rem; cursor: pointer;" id="sortKode">Kode</th>
-                        <th style="width: 6rem; cursor: pointer;" id="sortJenisKendaraan">Jenis Kendaraan</th>
-                        <th style="width: 10rem;">Merk</th>
-                        <th style="width: 4.5rem;">Tahun Perolehan</th>
+                        <th style="width: 6rem; cursor: pointer;" >Jenis Kendaraan</th>
+                        <th style="width: 5rem;">Merk</th>
+                        <th style="width: 4.5rem; cursor: pointer;" id="sortTahun">Tahun Perolehan</th>
                         <th style="width: 8.5rem;">Harga Perolehan</th>
                         <th style="width: 4rem;">Masa Guna</th>
                         <th style="width: 4rem;">Lama Pakai</th>
-                        <th style="width: 4rem;">Kondisi</th>
+                        <th style="width: 1rem;">Kondisi</th>
                         <th style="width: 1rem;">Lokasi</th>
                         <th style="width: 1rem;">Pengguna</th>
+                        <th style="width: 1rem;">Tanggal Ganti Oli</th>
+                        <th style="width: 1rem;">Tanggal Service</th>
                         <th
                             style="width: 5rem; @cannot('super admin')
                         border-top-right-radius: 6px                            
@@ -105,6 +107,8 @@
                             <td>{{ $kendaraan->kondisi }}</td>
                             <td>{{ $kendaraan->lokasi }}</td>
                             <td>{{ $kendaraan->pengguna }}</td>
+                            <td>{{ $kendaraan->ganti_oli }}</td>
+                            <td>{{ $kendaraan->service }}</td>
                             <td>{{ $kendaraan->masa_pajak }}</td>
                             @can('super admin')
                                 <td
@@ -143,45 +147,48 @@
             // Initialize sorting order for each column
             let noSortOrder = 1;
             let kodeSortOrder = 1;
-            let jenis_kendaraanSortOrder = 1;
-
-            // Function to update the table with sorted data
+            let tahun_perolehanSortOrder = 1;
+    
+            // Function to update the entire table with sorted data
             function updateTable(sortKey, sortOrder) {
                 const $table = $("table tbody");
                 const $rows = $table.find("tr").get();
-
+    
                 $rows.sort(function(a, b) {
                     const aValue = $(a).find("td").eq(sortKey).text();
                     const bValue = $(b).find("td").eq(sortKey).text();
-
-                    if (sortKey === 1 || sortKey === 2) {
-                        // Convert values to lowercase for case-insensitive sorting
-                        return sortOrder * aValue.toLowerCase().localeCompare(bValue.toLowerCase());
+    
+                    if (sortKey === 1) {
+                        // Sorting No. Kwitansi
+                        return sortOrder * aValue.localeCompare(bValue);
+                    } else if (sortKey === 3) {
+                        // Sorting Nama Lengkap
+                        return sortOrder * aValue.localeCompare(bValue);
+                    } else {
+                        // Sorting other columns as numbers
+                        return sortOrder * (parseFloat(aValue) - parseFloat(bValue));
                     }
-
-                    // Sort as numbers
-                    return sortOrder * (parseFloat(aValue) - parseFloat(bValue));
                 });
-
+    
                 $table.empty().append($rows);
             }
-
+    
             // Handle click event for sorting by No
             $("#sortNo").click(function() {
                 noSortOrder *= -1;
                 updateTable(0, noSortOrder);
             });
-
-            // Handle click event for sorting by Kode
+    
+            // Handle click event for sorting by No. Kwitansi
             $("#sortKode").click(function() {
                 kodeSortOrder *= -1;
                 updateTable(1, kodeSortOrder);
             });
-
-            // Handle click event for sorting by Jenis Kendaraan
-            $("#sortJenisKendaraan").click(function() {
-                namaSortOrder *= -1;
-                updateTable(2, jenis_kendaraanSortOrder);
+    
+            // Handle click event for sorting by Nama Lengkap
+            $("#sortTahun").click(function() {
+                tahun_perolehanSortOrder *= -1;
+                updateTable(4, tahun_perolehanSortOrder);
             });
         });
     </script>

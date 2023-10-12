@@ -34,6 +34,8 @@ class KendaraanController extends Controller
             ->orWhere('kondisi', 'LIKE', '%' . $search . '%')
             ->orWhere('lokasi', 'LIKE', '%' . $search . '%')
             ->orWhere('pengguna', 'LIKE', '%' . $search . '%')
+            ->orWhere('ganti_oli', 'LIKE', '%' . $search . '%')
+            ->orWhere('service', 'LIKE', '%' . $search . '%')
             ->orWhere('masa_pajak', 'LIKE', '%' . $search . '%');
     })->get();
 
@@ -53,13 +55,13 @@ public function create()
     $lastSerialNumber = Kendaraan::latest('kode')->first();
 
     if ($lastSerialNumber) {
-        $lastNumber = (int) substr($lastSerialNumber->kode, 3);
+        $lastNumber = (int) substr($lastSerialNumber->kode, 5); // Ubah 3 menjadi 5
         $nextNumber = $lastNumber + 1;
     } else {
         $nextNumber = 1;
     }
 
-    $serialNumber = 'KDRN-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT); // Menggunakan 5 digit atau lebih
+    $serialNumber = 'KDRN-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
 
     return view('kendaraan.create', compact('serialNumber'));
 }
@@ -70,13 +72,13 @@ public function store(Request $request)
         $lastSerialNumber = Kendaraan::latest('kode')->first();
 
         if ($lastSerialNumber) {
-            $lastNumber = (int) substr($lastSerialNumber->kode, 3);
+            $lastNumber = (int) substr($lastSerialNumber->kode, 5); // Ubah 3 menjadi 5
             $nextNumber = $lastNumber + 1;
         } else {
             $nextNumber = 1;
         }
 
-        $serialNumber = 'KDRN-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT); // Menggunakan 5 digit atau lebih
+        $serialNumber = 'KDRN-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
 
         $validatedData = $request->validate([
             'jenis_kendaraan' => 'required',
@@ -88,6 +90,8 @@ public function store(Request $request)
             'kondisi' => 'required',
             'lokasi' => 'required',
             'pengguna' => 'required',
+            'ganti_oli' => 'required',
+            'service' => 'required',
             'masa_pajak' => 'required',
         ]);
 
@@ -103,6 +107,7 @@ public function store(Request $request)
         return back();
     }
 }
+
 
     public function detail($id)
     {
@@ -147,6 +152,8 @@ public function store(Request $request)
                 'kondisi' => 'required',
                 'lokasi' => 'required',
                 'pengguna' => 'required',
+                'ganti_oli' => 'required',
+                'service' => 'required',
                 'masa_pajak' => 'required',
             ];
 

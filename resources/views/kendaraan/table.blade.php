@@ -12,6 +12,8 @@
             <th>Kondisi</th>
             <th>Lokasi</th>
             <th>Pengguna</th>
+            <th>Tanggal Ganti Oli</th>
+            <th>Tanggal Service</th>
             <th>Masa Pajak</th>
         </tr>
     </thead>
@@ -29,6 +31,8 @@
                 <td>{{ $kendaraan->kondisi }}</td>
                 <td>{{ $kendaraan->lokasi }}</td>
                 <td>{{ $kendaraan->pengguna }}</td>
+                <td>{{ $kendaraan->ganti_oli }}</td>
+                <td>{{ $kendaraan->service }}</td>
                 <td>{{ $kendaraan->masa_pajak }}</td>
             </tr>
         @endforeach

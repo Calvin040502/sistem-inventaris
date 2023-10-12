@@ -86,11 +86,22 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-sm-12">
+                                <div class="col-sm-6">
                                     <label for="pengguna" class="col-form-label"> Pengguna </label>
-                                    <input class="form-control shadow-sm bg-body-tertiary rounded" id="pengguna" name="pengguna"
-                                        placeholder="Masukkan Pengguna" onkeypress="return hanyaHurufDanSpasi(event)"
-                                        required>
+                                    <input id="pengguna" class="form-control shadow-sm bg-body-tertiary rounded" type="text" id="pengguna"
+                                        name="pengguna" placeholder="Masukkan Nama Pengguna" onkeypress="return hanyaHurufDanSpasi(event)" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="ganti_oli" class="col-form-label"> Tanggal Ganti Oli </label>
+                                    <input id="ganti_oli" class="form-control shadow-sm bg-body-tertiary rounded" type="text" id="ganti_oli"
+                                        name="ganti_oli" placeholder="Masukkan Tanggal Ganti Oli" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-12">
+                                    <label for="service" class="col-form-label"> Tanggal Service </label>
+                                    <input class="form-control shadow-sm bg-body-tertiary rounded" id="service" name="service"
+                                        placeholder="Masukkan Tanggal Service" required>
                                 </div>
                             </div>
                             <div class="row mb-3">

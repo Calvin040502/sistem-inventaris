@@ -26,6 +26,8 @@ class CreateKendaraansTable extends Migration
             $table->text('kondisi');
             $table->string('lokasi');
             $table->text('pengguna');
+            $table->string('ganti_oli');
+            $table->string('service');
             $table->string('masa_pajak');
             $table->timestamps();
         });

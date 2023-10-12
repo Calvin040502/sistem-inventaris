@@ -13,71 +13,90 @@
     @include('templates.navbar')
     <div class="container">
         <div class="content">
-            <h1>Detail Kendaraan</h1>
-            <div class="output">
-                <div class="kode">
-                    <label class="no">Kode:</label>
-                    <span>{{ $kendaraan->kode }}</span>
+            <h1 class="text-center">Detail Kendaraan</h1>
+            <div class="output-columns">
+                <div class="column-left">
+                    <div class="kode">
+                        <label class="no">Kode:</label>
+                        <span>{{ $kendaraan->kode }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Jenis Kendaraan:</label>
+                        <span>{{ $kendaraan->jenis_kendaraan }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Merek:</label>
+                        <span>{{ $kendaraan->merek }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Tahun Perolehan:</label>
+                        <span>{{ $kendaraan->tahun_perolehan }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Harga Perolehan:</label>
+                        <span>{{ $kendaraan->harga_perolehan }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Masa Guna:</label>
+                        <span>{{ $kendaraan->masa_guna }}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="output">
-                <label>Jenis Kendaraan:</label>
-                <span>{{ $kendaraan->jenis_kendaraan }}</span>
-            </div>
-            <div class="output">
-                <label>Merek:</label>
-                <span>{{ $kendaraan->merek }}</span>
-            </div>
-            <div class="output">
-                <label>Tahun Perolehan:</label>
-                <span>{{ $kendaraan->tahun_perolehan }}</span>
-            </div>
-            <div class="output">
-                <label>Harga Perolehan:</label>
-                <span>{{ $kendaraan->harga_perolehan }}</span>
-            </div>
-            <div class="output">
-                <label>Masa Guna:</label>
-                <span>{{ $kendaraan->masa_guna }}</span>
-            </div>
-            <div class="output">
-                <label>Lama Pakai:</label>
-                <span>{{ $kendaraan->lama_pakai }}</span>
-            </div>
-            <div class="output">
-                <label>Kondisi:</label>
-                <span>{{ $kendaraan->kondisi }}</span>
-            </div>
-            <div class="output">
-                <label>Lokasi:</label>
-                <span>{{ $kendaraan->lokasi }}</span>
-            </div>
-            <div class="output">
-                <label>Pengguna:</label>
-                <span>{{ $kendaraan->pengguna }}</span>
-            </div>
-            <div class="output">
-                <label>Masa Pajak:</label>
-                <span>{{ $kendaraan->masa_pajak }}</span>
+                <div class="column-right">
+                    <div class="output">
+                        <label>Lama Pakai:</label>
+                        <span>{{ $kendaraan->lama_pakai }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Kondisi:</label>
+                        <span>{{ $kendaraan->kondisi }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Lokasi:</label>
+                        <span>{{ $kendaraan->lokasi }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Pengguna:</label>
+                        <span>{{ $kendaraan->pengguna }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Tanggal Ganti Oli:</label>
+                        <span>{{ $kendaraan->ganti_oli }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Tanggal Service:</label>
+                        <span>{{ $kendaraan->service }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Masa Pajak:</label>
+                        <span>{{ $kendaraan->masa_pajak }}</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="button wrapper"
-            style="padding: 32px; position: relative; flex-direction: row; display: flex; justify-content: center; align-items: center">
-            <div
-                style="width: 21.59cm; text-align: center; display: flex; justify-content: space-between; align-items: center">
-                <div style="flex: 1">
-                    <a style="width: 6rem" class="btn btn-back" href="{{ route('kendaraan') }}">Kembali</a>
-                </div>
-                @can('super admin')
-                    <div style="flex: 1">
-                        <button style="width: 6rem" type="button"
-                            onclick="window.location.href='{{ route('kendaraan.edit', $kendaraan->id) }}'"
-                            class="btn btn-edit">Edit</button>
-                    </div>
-                @endcan
+        <div class="button-wrapper" style="padding: 32px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="flex: 20;">
+                <a style="width: 6rem;" class="btn btn-back" href="{{ route('kendaraan') }}">Kembali</a>
             </div>
+            @can('super admin')
+            <div style="flex: 1;">
+                <button style="width: 6rem;" type="button" onclick="window.location.href='{{ route('kendaraan.edit', $kendaraan->id) }}'" class="btn btn-edit">Edit</button>
+            </div>
+            @endcan
         </div>
     </div>
+       
+    
     <div class="footer">
     @include('templates.footer')
     </div>
@@ -86,6 +105,28 @@
 
 </html>
 <style>
+
+    .spacer {
+        margin: 20px 0;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .output-columns {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .column-left {
+        flex: 0.6;
+    }
+    
+    .column-right {
+        flex: 0.3;
+    }
+
     .btn-back {
         background-color: #82bcde;
         color: #404567;

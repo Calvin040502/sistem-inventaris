@@ -19,6 +19,8 @@ class Kendaraan extends Model
         'kondisi',
         'lokasi',
         'pengguna',
+        'ganti_oli',
+        'service',
         'masa_pajak',
     ];
 
