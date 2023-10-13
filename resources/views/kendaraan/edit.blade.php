@@ -139,41 +139,14 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
+                            <div class="col mb-3 mt-3">
+                                <div class="col-md-12">
                                     <label for="pengguna">Pengguna</label>
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('pengguna') is-invalid @enderror"
                                         id="pengguna" name="pengguna"
-                                        onkeypress="return hanyaHurufDanSpasi(event)"
                                         value="{{ old('pengguna', $kendaraan->pengguna) }}">
                                     @error('pengguna')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="ganti_oli">Tanggal Ganti Oli</label>
-                                    <input type="text"
-                                        class="form-control shadow-sm bg-body-tertiary rounded @error('masa_guna') is-invalid @enderror"
-                                        id="ganti_oli" name="ganti_oli"
-                                        value="{{ old('ganti_oli', $kendaraan->ganti_oli) }}">
-                                    @error('ganti_oli')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col mb-3 mt-3">
-                                <div class="col-md-12">
-                                    <label for="service">Service</label>
-                                    <input type="text"
-                                        class="form-control shadow-sm bg-body-tertiary rounded @error('service') is-invalid @enderror"
-                                        id="service" name="service"
-                                        value="{{ old('service', $kendaraan->service) }}">
-                                    @error('service')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

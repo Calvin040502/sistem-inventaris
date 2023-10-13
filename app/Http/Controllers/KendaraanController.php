@@ -34,8 +34,6 @@ class KendaraanController extends Controller
             ->orWhere('kondisi', 'LIKE', '%' . $search . '%')
             ->orWhere('lokasi', 'LIKE', '%' . $search . '%')
             ->orWhere('pengguna', 'LIKE', '%' . $search . '%')
-            ->orWhere('ganti_oli', 'LIKE', '%' . $search . '%')
-            ->orWhere('service', 'LIKE', '%' . $search . '%')
             ->orWhere('masa_pajak', 'LIKE', '%' . $search . '%');
     })->get();
 
@@ -90,8 +88,6 @@ public function store(Request $request)
             'kondisi' => 'required',
             'lokasi' => 'required',
             'pengguna' => 'required',
-            'ganti_oli' => 'required',
-            'service' => 'required',
             'masa_pajak' => 'required',
         ]);
 
@@ -152,8 +148,6 @@ public function store(Request $request)
                 'kondisi' => 'required',
                 'lokasi' => 'required',
                 'pengguna' => 'required',
-                'ganti_oli' => 'required',
-                'service' => 'required',
                 'masa_pajak' => 'required',
             ];
 

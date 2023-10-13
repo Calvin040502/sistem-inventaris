@@ -7,8 +7,10 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ManageUsersController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ServiceController;
 use App\Models\Kwitansi;
 use App\Models\Kendaraan;
+use App\Models\Service;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +40,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/kendaraan', [KendaraanController::class, 'index'])->name('kendaraan')->middleware('can:admin');
 Route::get('/kendaraan/create', [KendaraanController::class, 'create'])->name('kendaraan.create')->middleware('can:admin');
 Route::post('/kendaraan', [KendaraanController::class, 'store'])->name('kendaraan.store')->middleware('auth');
-Route::get('/kendaraan/detail/{kendaraan:id}', [KendaraanController::class, 'detail'])->name('kendaraan.detail')->middleware('can:admin');
+Route::get('/kendaraan/{kendaraan:id}/detail/', [KendaraanController::class, 'detail'])->name('kendaraan.detail')->middleware('can:admin');
 Route::get('/kendaraan/{kendaraan:id}/edit', [KendaraanController::class, 'edit'])->name('kendaraan.edit')->middleware('can:super admin');
 Route::put('/kendaraan/{kendaraan:id}', [KendaraanController::class, 'update'])->name('kendaraan.update')->middleware('can:super admin');
 Route::delete('/kendaraan/{kendaraan:id}', [KendaraanController::class, 'destroy'])->name('kendaraan.destroy')->middleware('can:super admin');
@@ -65,3 +67,4 @@ Route::post('/manage-users/{userId}/assign-role', [ManageUsersController::class,
 Route::get('/user/{userId}/remove-role', [ManageUsersController::class, 'showRemoveRoleForm'])->name('remove.role')->middleware('can:super admin');
 Route::post('/user/{userId}/remove-role', [ManageUsersController::class, 'removeRole'])->name('remove.role')->middleware('can:super admin');
 
+Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');

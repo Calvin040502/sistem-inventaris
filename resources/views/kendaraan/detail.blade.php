@@ -68,16 +68,6 @@
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
-                        <label>Tanggal Ganti Oli:</label>
-                        <span>{{ $kendaraan->ganti_oli }}</span>
-                    </div>
-                    <div class="spacer"></div>
-                    <div class="output">
-                        <label>Service:</label>
-                        <span>{{ $kendaraan->service }}</span>
-                    </div>
-                    <div class="spacer"></div>
-                    <div class="output">
                         <label>Masa Pajak:</label>
                         <span>{{ $kendaraan->masa_pajak }}</span>
                     </div>
@@ -85,7 +75,7 @@
             </div>
         </div>
         <div class="button-wrapper" style="padding: 32px; display: flex; justify-content: space-between; align-items: center;">
-            <div style="flex: 20;">
+            <div style="flex: 6;">
                 <a style="width: 6rem;" class="btn btn-back" href="{{ route('kendaraan') }}">Kembali</a>
             </div>
             @can('super admin')
@@ -124,7 +114,7 @@
     }
     
     .column-right {
-        flex: 0.3;
+        flex: 0.2;
     }
 
     .btn-back {

@@ -79,8 +79,6 @@
                         <th style="width: 1rem;">Kondisi</th>
                         <th style="width: 1rem;">Lokasi</th>
                         <th style="width: 1rem;">Pengguna</th>
-                        <th style="width: 1rem;">Tanggal Ganti Oli</th>
-                        <th style="width: 6rem;">Service</th>
                         <th
                             style="width: 5rem; @cannot('super admin')
                         border-top-right-radius: 6px                            
@@ -94,7 +92,7 @@
                 </thead>
                 <tbody>
                     @foreach ($kendaraans as $kendaraan)
-                        <tr onclick="window.location.href='{{ route('kendaraan.detail', $kendaraan->id) }}';"
+                        <tr onclick="window.location.href='{{ route('kendaraan.detail', ['kendaraan' => $kendaraan->id]) }}';"
                             style="cursor: pointer;">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $kendaraan->kode }}</td>
@@ -107,8 +105,6 @@
                             <td>{{ $kendaraan->kondisi }}</td>
                             <td>{{ $kendaraan->lokasi }}</td>
                             <td>{{ $kendaraan->pengguna }}</td>
-                            <td>{{ $kendaraan->ganti_oli }}</td>
-                            <td>{{ $kendaraan->service }}</td>
                             <td>{{ $kendaraan->masa_pajak }}</td>
                             @can('super admin')
                                 <td
