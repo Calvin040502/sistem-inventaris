@@ -19,7 +19,7 @@
                     List Aset Kendaraan</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('kendaraan') }}" class="nav-link text-truncate">
+                <a href="{{ route('elektronik') }}" class="nav-link text-truncate">
                     <img class="article" src="{{ asset('icon/article.svg') }}" alt="">
                     List Aset Elektronik</a>
             </li>

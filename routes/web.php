@@ -7,10 +7,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ManageUsersController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ServiceController;
-use App\Models\Kwitansi;
+use App\Http\Controllers\ElektronikController;
 use App\Models\Kendaraan;
-use App\Models\Service;
+use App\Models\Elektronik;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +24,11 @@ use App\Models\Service;
 
 Route::get('/', function () {
     $kendaraans = Kendaraan::get();
-       
+
     return view('kendaraan.index', [
-       'kendaraans' => $kendaraans,
+    'kendaraans' => $kendaraans,
     ]);
-   })->middleware('auth');
+})->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
@@ -46,6 +45,16 @@ Route::put('/kendaraan/{kendaraan:id}', [KendaraanController::class, 'update'])-
 Route::delete('/kendaraan/{kendaraan:id}', [KendaraanController::class, 'destroy'])->name('kendaraan.destroy')->middleware('can:super admin');
 Route::get('/kendaraan/detail/{kendaraan:id}/print', [KendaraanController::class, 'print'])->name('kendaraan.print')->middleware('can:admin');
 Route::get('/kendaraan/export/excel', [KendaraanController::class, 'export_excel'])->middleware('can:admin');
+
+Route::get('/elektronik', [ElektronikController::class, 'index'])->name('elektronik')->middleware('can:admin');
+Route::get('/elektronik/create', [ElektronikController::class, 'create'])->name('elektronik.create')->middleware('can:admin');
+Route::post('/elektronik', [ElektronikController::class, 'store'])->name('elektronik.store')->middleware('auth');
+Route::get('/elektronik/{elektronik:id}/detail/', [ElektronikController::class, 'detail'])->name('elektronik.detail')->middleware('can:admin');
+Route::get('/elektronik/{elektronik:id}/edit', [ElektronikController::class, 'edit'])->name('elektronik.edit')->middleware('can:super admin');
+Route::put('/elektronik/{elektronik:id}', [ElektronikController::class, 'update'])->name('elektronik.update')->middleware('can:super admin');
+Route::delete('/elektronik/{elektronik:id}', [ElektronikController::class, 'destroy'])->name('elektronik.destroy')->middleware('can:super admin');
+Route::get('/elektronik/detail/{elektronik:id}/print', [ElektronikController::class, 'print'])->name('elektronik.print')->middleware('can:admin');
+Route::get('/elektronik/export/excel', [ElektronikController::class, 'export_excel'])->middleware('can:admin');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.process');

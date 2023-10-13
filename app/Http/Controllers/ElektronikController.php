@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\ExportKendaraan;
-use App\Models\Kendaraan;
+use App\Exports\ExportElektronik;
+use App\Models\Elektronik;
 use Exception;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class KendaraanController extends Controller
+class ElektronikController extends Controller
 {
-    protected $kendaraans;
+    protected $elektroniks;
 
     public function __construct()
     {
-        $this->kendaraans = Kendaraan::all();
+        $this->elektroniks = Elektronik::all();
     }
 
     public function index(Request $request)
 {
     $search = $request->input('search');
 
-    // Filter Kendaraan berdasarkan pencarian
-    $kendaraans = Kendaraan::where(function ($query) use ($search) {
+    // Filter Elektronik berdasarkan pencarian
+    $elektroniks = Elektronik::where(function ($query) use ($search) {
         $query
             ->where('kode', 'LIKE', '%' . $search . '%')
-            ->orWhere('jenis_kendaraan', 'LIKE', '%' . $search . '%')
+            ->orWhere('jenis_elektronik', 'LIKE', '%' . $search . '%')
             ->orWhere('merek', 'LIKE', '%' . $search . '%')
             ->orWhere('tahun_perolehan', 'LIKE', '%' . $search . '%') 
             ->orWhere('harga_perolehan', 'LIKE', '%' . $search . '%')
@@ -33,24 +33,23 @@ class KendaraanController extends Controller
             ->orWhere('lama_pakai', 'LIKE', '%' . $search . '%')
             ->orWhere('kondisi', 'LIKE', '%' . $search . '%')
             ->orWhere('lokasi', 'LIKE', '%' . $search . '%')
-            ->orWhere('pengguna', 'LIKE', '%' . $search . '%')
-            ->orWhere('masa_pajak', 'LIKE', '%' . $search . '%');
+            ->orWhere('pengguna', 'LIKE', '%' . $search . '%');
     })->get();
 
-    if ($kendaraans->count() == 0) {
+    if ($elektroniks->count() == 0) {
         session()->flash('error', 'Aset tidak ditemukan');
-        return redirect('/kendaraan');
+        return redirect('/elektronik');
     }
 
-    return view('kendaraan.index', [
-        'kendaraans' => $kendaraans,
+    return view('elektronik.index', [
+        'elektroniks' => $elektroniks,
     ]);
 }
 
 public function create()
 {
     // $this->authorize('super admin');
-    $lastSerialNumber = Kendaraan::latest('kode')->first();
+    $lastSerialNumber = Elektronik::latest('kode')->first();
 
     if ($lastSerialNumber) {
         $lastNumber = (int) substr($lastSerialNumber->kode, 5); // Ubah 3 menjadi 5
@@ -59,15 +58,15 @@ public function create()
         $nextNumber = 1;
     }
 
-    $serialNumber = 'KDRN-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
+    $serialNumber = 'ELTK-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
 
-    return view('kendaraan.create', compact('serialNumber'));
+    return view('elektronik.create', compact('serialNumber'));
 }
 
 public function store(Request $request)
 {
     try {
-        $lastSerialNumber = Kendaraan::latest('kode')->first();
+        $lastSerialNumber = Elektronik::latest('kode')->first();
 
         if ($lastSerialNumber) {
             $lastNumber = (int) substr($lastSerialNumber->kode, 5); // Ubah 3 menjadi 5
@@ -76,10 +75,10 @@ public function store(Request $request)
             $nextNumber = 1;
         }
 
-        $serialNumber = 'KDRN-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
+        $serialNumber = 'ELTK-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
 
         $validatedData = $request->validate([
-            'jenis_kendaraan' => 'required',
+            'jenis_elektronik' => 'required',
             'merek' => 'required',
             'tahun_perolehan' => 'required',
             'harga_perolehan' => 'required',
@@ -88,15 +87,14 @@ public function store(Request $request)
             'kondisi' => 'required',
             'lokasi' => 'required',
             'pengguna' => 'required',
-            'masa_pajak' => 'required',
         ]);
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['kode'] = $serialNumber;
 
-        Kendaraan::create($validatedData);
+        Elektronik::create($validatedData);
 
-        return redirect('/kendaraan');
+        return redirect('/elektronik');
     } catch (Exception $e) {
         session()->flash('error', $e->getMessage());
 
@@ -107,39 +105,39 @@ public function store(Request $request)
 
     public function detail($id)
     {
-        $kendaraan = $this->kendaraans->find($id);
+        $elektronik = $this->elektroniks->find($id);
 
-        if (!$kendaraan) {
+        if (!$elektronik) {
             session()->flash('error', 'Aset tidak ditemukan');
 
-            return redirect('/kendaraan');
+            return redirect('/elektronik');
         }
 
-        return view('kendaraan.detail', compact('kendaraan'));
+        return view('elektronik.detail', compact('elektronik'));
     }
     public function print($id)
     {
-        $kendaraan = $this->kendaraans->find($id);
+        $elektronik = $this->elektroniks->find($id);
 
-        if (!$kendaraan) {
+        if (!$elektronik) {
             session()->flash('error', 'Aset tidak ditemukan');
 
-            return redirect('/kendaraan');
+            return redirect('/elektronik');
         }
 
-        return view('kendaraan.cetak', compact('kendaraan'));
+        return view('elektronik.cetak', compact('elektronik'));
     }
 
-    public function edit(Kendaraan $kendaraan)
+    public function edit(Elektronik $elektronik)
     {
-        return view('kendaraan.edit', compact('kendaraan'));
+        return view('elektronik.edit', compact('elektronik'));
     }
 
-    public function update(Request $request, Kendaraan $kendaraan)
+    public function update(Request $request, Elektronik $elektronik)
     {
         try {
             $rules = [
-                'jenis_kendaraan' => 'required',
+                'jenis_elektronik' => 'required',
                 'merek' => 'required',
                 'tahun_perolehan' => 'required',
                 'harga_perolehan' => 'required',
@@ -148,16 +146,15 @@ public function store(Request $request)
                 'kondisi' => 'required',
                 'lokasi' => 'required',
                 'pengguna' => 'required',
-                'masa_pajak' => 'required',
             ];
 
             
             $validatedData = $request->validate($rules);
 
             // Update data kwitansi
-            $kendaraan->update($validatedData);
+            $elektronik->update($validatedData);
 
-            return redirect('/kendaraan')->with('success', 'Aset berhasil diperbarui');
+            return redirect('/elektronik')->with('success', 'Aset berhasil diperbarui');
         } catch (Exception $e) {
             session()->flash('error', $e->getMessage());
 
@@ -165,15 +162,15 @@ public function store(Request $request)
         }
     }
 
-    public function destroy(Kendaraan $kendaraan)
+    public function destroy(Elektronik $elektronik)
     {
-        Kendaraan::destroy($kendaraan->id);
+        Elektronik::destroy($elektronik->id);
 
-        return redirect('/kendaraan');
+        return redirect('/elektronik');
     }
 
     function export_excel()
     {
-        return Excel::Download(new ExportKendaraan(), 'Kendaraan.xlsx');
+        return Excel::Download(new ExportKendaraan(), 'Elektronik.xlsx');
     }
 }
