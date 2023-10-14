@@ -70,7 +70,7 @@
                         <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 6px"
                             id="sortNo">No.</th>
                         <th style="width: 4.5rem; cursor: pointer;" id="sortKode">Kode</th>
-                        <th style="width: 6rem; cursor: pointer;" >Jenis Elektronik</th>
+                        <th style="width: 6rem;" >Jenis Elektronik</th>
                         <th style="width: 5rem;">Merk</th>
                         <th style="width: 4.5rem; cursor: pointer;" id="sortTahun">Tahun Perolehan</th>
                         <th style="width: 8.5rem;">Harga Perolehan</th>
