@@ -36,14 +36,12 @@ class ElektronikController extends Controller
             ->orWhere('pengguna', 'LIKE', '%' . $search . '%');
     })->get();
 
-    if ($elektroniks->count() == 0) {
+    if ($elektroniks->isEmpty()) {
         session()->flash('error', 'Aset tidak ditemukan');
-        return redirect('/elektronik');
+        return view('elektronik.index', ['elektroniks' => $elektroniks]);
     }
 
-    return view('elektronik.index', [
-        'elektroniks' => $elektroniks,
-    ]);
+    return view('elektronik.index', ['elektroniks' => $elektroniks]);
 }
 
 public function create()
@@ -171,6 +169,6 @@ public function store(Request $request)
 
     function export_excel()
     {
-        return Excel::Download(new ExportKendaraan(), 'Elektronik.xlsx');
+        return Excel::Download(new ExportElektronik(), 'Elektronik.xlsx');
     }
 }

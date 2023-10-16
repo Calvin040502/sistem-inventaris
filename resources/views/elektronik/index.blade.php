@@ -53,7 +53,7 @@
         </div>
     <section class="elektronik" style="padding: 1.5rem 24px 1.5rem 24px">
         <h1 class="text-center"> <a href="{{ route('elektronik') }}" class="text-decoration-none"
-                style="color: black">List Aset Kendaraan</a>
+                style="color: black">List Aset Elektronik</a>
         </h1>
         
 

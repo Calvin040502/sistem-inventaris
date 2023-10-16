@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detail Kendaraan</title>
+    <title>Detail Aset Elektronik</title>
     <link rel="icon" href="{{ asset('img/logoremove.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
@@ -13,74 +13,74 @@
     @include('templates.navbar')
     <div class="container">
         <div class="content">
-            <h1 class="text-center">Detail Kendaraan</h1>
+            <h1 class="text-center">Detail Elektronik</h1>
             <div class="output-columns">
                 <div class="column-left">
                     <div class="kode">
                         <label class="no">Kode:</label>
-                        <span>{{ $kendaraan->kode }}</span>
+                        <span>{{ $elektronik->kode }}</span>
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
-                        <label>Jenis Kendaraan:</label>
-                        <span>{{ $kendaraan->jenis_kendaraan }}</span>
+                        <label>Jenis Elektronik:</label>
+                        <span>{{ $elektronik->jenis_elektronik }}</span>
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
                         <label>Merek:</label>
-                        <span>{{ $kendaraan->merek }}</span>
+                        <span>{{ $elektronik->merek }}</span>
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
                         <label>Tahun Perolehan:</label>
-                        <span>{{ $kendaraan->tahun_perolehan }}</span>
+                        <span>{{ $elektronik->tahun_perolehan }}</span>
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
                         <label>Harga Perolehan:</label>
-                        <span>{{ $kendaraan->harga_perolehan }}</span>
+                        <span>{{ $elektronik->harga_perolehan }}</span>
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
                         <label>Masa Guna:</label>
-                        <span>{{ $kendaraan->masa_guna }}</span>
+                        <span>{{ $elektronik->masa_guna }}</span>
                     </div>
                 </div>
                 <div class="column-right">
                     <div class="output">
                         <label>Lama Pakai:</label>
-                        <span>{{ $kendaraan->lama_pakai }}</span>
+                        <span>{{ $elektronik->lama_pakai }}</span>
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
                         <label>Kondisi:</label>
-                        <span>{{ $kendaraan->kondisi }}</span>
+                        <span>{{ $elektronik->kondisi }}</span>
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
                         <label>Lokasi:</label>
-                        <span>{{ $kendaraan->lokasi }}</span>
+                        <span>{{ $elektronik->lokasi }}</span>
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
                         <label>Pengguna:</label>
-                        <span>{{ $kendaraan->pengguna }}</span>
+                        <span>{{ $elektronik->pengguna }}</span>
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
                         <label>Masa Pajak:</label>
-                        <span>{{ $kendaraan->masa_pajak }}</span>
+                        <span>{{ $elektronik->masa_pajak }}</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="button-wrapper" style="padding: 32px; display: flex; justify-content: space-between; align-items: center;">
             <div style="flex: 6;">
-                <a style="width: 6rem;" class="btn btn-back" href="{{ route('kendaraan') }}">Kembali</a>
+                <a style="width: 6rem;" class="btn btn-back" href="{{ route('elektronik') }}">Kembali</a>
             </div>
             @can('super admin')
             <div style="flex: 1;">
-                <button style="width: 6rem;" type="button" onclick="window.location.href='{{ route('kendaraan.edit', $kendaraan->id) }}'" class="btn btn-edit">Edit</button>
+                <button style="width: 6rem;" type="button" onclick="window.location.href='{{ route('elektronik.edit', $kendaraan->id) }}'" class="btn btn-edit">Edit</button>
             </div>
             @endcan
         </div>

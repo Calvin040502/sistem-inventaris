@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Edit Aset Kendaraan</title>
+    <title>Edit Aset Elektronik</title>
     <link rel="icon" href="{{ asset('img/logoremove.png') }}">
 </head>
 
@@ -18,18 +18,18 @@
                 <div class="row gx-lg-0 gx-xl-8 gy-10 gy-md-13 gy-lg-0 mb-7 mb-md-10 mb-lg-16 align-items-center">
                     <div class="col-lg-8 mx-auto">
                         <div class="title-form mt-3 mb-4" id="title-form">
-                            <h1 class="h2">EDIT KWITANSI</h1>
+                            <h1 class="h2">Edit Elektronik</h1>
                         </div>
-                        <form method="POST" action="{{ route('kendaraan.update', $kendaraan->id) }}" class="mb-3">
+                        <form method="POST" action="{{ route('elektronik.update', $elektronik->id) }}" class="mb-3">
                             @method('put')
                             @csrf
-                            <a class="btn btn-back mb-3" href="/kendaraan">Kembali</a>
+                            <a class="btn btn-back mb-3" href="/elektronik">Kembali</a>
                             <div class="mb-3">
                                 <label for="kode">Kode :</label>
                                 <input type="text"
                                     class="form-control shadow-sm bg-body-tertiary rounded @error('kode') is-invalid @enderror"
                                     id="kode" name="kode" readonly
-                                    value="{{ old('kode', $kendaraan->kode) }}">
+                                    value="{{ old('kode', $elektronik->kode) }}">
                                 @error('kode')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -38,12 +38,12 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="jenis_kendaraan">Jenis Kendaraan</label>
+                                    <label for="jenis_elektronik">Jenis Elektronik</label>
                                     <input type="text"
-                                        class="form-control shadow-sm bg-body-tertiary rounded @error('jenis_kendaraan') is-invalid @enderror"
-                                        id="jenis_kendaraan" name="jenis_kendaraan"
-                                        value="{{ old('jenis_kendaraan', $kendaraan->jenis_kendaraan) }}">
-                                    @error('jenis_kendaraan')
+                                        class="form-control shadow-sm bg-body-tertiary rounded @error('jenis_elektronik') is-invalid @enderror"
+                                        id="jenis_elektronik" name="jenis_elektronik"
+                                        value="{{ old('jenis_elektronik', $elektronik->jenis_elektronik) }}">
+                                    @error('jenis_elektronik')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -54,7 +54,7 @@
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('merek') is-invalid @enderror"
                                         id="merek" name="merek"
-                                        value="{{ old('merek', $kendaraan->merek) }}">
+                                        value="{{ old('merek', $elektronik->merek) }}">
                                     @error('merek')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -67,7 +67,7 @@
                                     <label for="tahun_perolehan">Tahun Perolehan</label>
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('tahun_perolehan') is-invalid @enderror"
-                                        id="tahun_perolehan" name="tahun_perolehan" value="{{ old('tahun_perolehan', $kendaraan->tahun_perolehan) }}">
+                                        id="tahun_perolehan" name="tahun_perolehan" value="{{ old('tahun_perolehan', $elektronik->tahun_perolehan) }}">
                                     @error('tahun_perolehan')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -79,7 +79,7 @@
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('harga_perolehan') is-invalid @enderror"
                                         id="harga_perolehan" name="harga_perolehan"
-                                        value="{{ old('harga_perolehan', $kendaraan->harga_perolehan) }}">
+                                        value="{{ old('harga_perolehan', $elektronik->harga_perolehan) }}">
                                     @error('harga_perolehan')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -93,7 +93,7 @@
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('masa_guna') is-invalid @enderror"
                                         id="masa_guna" name="masa_guna"
-                                        value="{{ old('masa_guna', $kendaraan->masa_guna) }}">
+                                        value="{{ old('masa_guna', $elektronik->masa_guna) }}">
                                     @error('masa_guna')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -105,7 +105,7 @@
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('masa_guna') is-invalid @enderror"
                                         id="lama_pakai" name="lama_pakai"
-                                        value="{{ old('lama_pakai', $kendaraan->lama_pakai) }}">
+                                        value="{{ old('lama_pakai', $elektronik->lama_pakai) }}">
                                     @error('lama_pakai')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -119,7 +119,7 @@
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('kondisi') is-invalid @enderror"
                                         id="kondisi" name="kondisi"
-                                        value="{{ old('kondisi', $kendaraan->kondisi) }}">
+                                        value="{{ old('kondisi', $elektronik->kondisi) }}">
                                     @error('kondisi')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -131,7 +131,7 @@
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('masa_guna') is-invalid @enderror"
                                         id="lokasi" name="lokasi"
-                                        value="{{ old('lokasi', $kendaraan->lokasi) }}">
+                                        value="{{ old('lokasi', $elektronik->lokasi) }}">
                                     @error('lokasi')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -145,7 +145,7 @@
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('pengguna') is-invalid @enderror"
                                         id="pengguna" name="pengguna"
-                                        value="{{ old('pengguna', $kendaraan->pengguna) }}">
+                                        value="{{ old('pengguna', $elektronik->pengguna) }}">
                                     @error('pengguna')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -157,7 +157,7 @@
                                 <label for="masa_pajak">Masa Pajak</label>
                                 <input type="text"
                                     class="form-control shadow-sm bg-body-tertiary rounded @error('masa_pajak') is-invalid @enderror"
-                                    id="masa_pajak" name="masa_pajak" value="{{ old('masa_pajak', $kendaraan->masa_pajak) }}">
+                                    id="masa_pajak" name="masa_pajak" value="{{ old('masa_pajak', $elektronik->masa_pajak) }}">
                                 @error('masa_pajak')
                                     <div class="invalid-feedback">
                                         {{ $message }}

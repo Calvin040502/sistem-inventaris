@@ -37,14 +37,12 @@ class KendaraanController extends Controller
             ->orWhere('masa_pajak', 'LIKE', '%' . $search . '%');
     })->get();
 
-    if ($kendaraans->count() == 0) {
+    if ($kendaraans->isEmpty()) {
         session()->flash('error', 'Aset tidak ditemukan');
-        return redirect('/kendaraan');
+        return view('kendaraan.index', ['kendaraans' => $kendaraans]);
     }
 
-    return view('kendaraan.index', [
-        'kendaraans' => $kendaraans,
-    ]);
+    return view('kendaraan.index', ['kendaraans' => $kendaraans]);
 }
 
 public function create()
