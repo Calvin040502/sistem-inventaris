@@ -153,18 +153,6 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col mb-3">
-                                <label for="masa_pajak">Masa Pajak</label>
-                                <input type="text"
-                                    class="form-control shadow-sm bg-body-tertiary rounded @error('masa_pajak') is-invalid @enderror"
-                                    id="masa_pajak" name="masa_pajak" value="{{ old('masa_pajak', $elektronik->masa_pajak) }}">
-                                @error('masa_pajak')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
                             <button type="submit" class="btn btn-add shadow-sm">Simpan
                                 Perubahan</button>
                         </form>

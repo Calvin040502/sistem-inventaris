@@ -80,7 +80,7 @@
             </div>
             @can('super admin')
             <div style="flex: 1;">
-                <button style="width: 6rem;" type="button" onclick="window.location.href='{{ route('elektronik.edit', $kendaraan->id) }}'" class="btn btn-edit">Edit</button>
+                <button style="width: 6rem;" type="button" onclick="window.location.href='{{ route('elektronik.edit', $elektronik->id) }}'" class="btn btn-edit">Edit</button>
             </div>
             @endcan
         </div>

@@ -67,32 +67,25 @@
             <table class="table table-hover table-striped text-center" id="elektronik-table" style="margin-bottom: 2rem">
                 <thead>
                     <tr class="bg-info">
-                        <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 6px"
-                            id="sortNo">No.</th>
+                        <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 6px" id="sortNo">No.</th>
                         <th style="width: 4.5rem; cursor: pointer;" id="sortKode">Kode</th>
-                        <th style="width: 6rem;" >Jenis Elektronik</th>
+                        <th style="width: 6rem;">Jenis Elektronik</th>
                         <th style="width: 5rem;">Merk</th>
                         <th style="width: 4.5rem; cursor: pointer;" id="sortTahun">Tahun Perolehan</th>
                         <th style="width: 8.5rem;">Harga Perolehan</th>
                         <th style="width: 4rem;">Masa Guna</th>
                         <th style="width: 4rem;">Lama Pakai</th>
-                        <th style="width: 1rem;">Kondisi</th>
-                        <th style="width: 1rem;">Lokasi</th>
-                        <th style="width: 1rem;">Pengguna</th>
-                        <th
-                            style="width: 5rem; @cannot('super admin')
-                        border-top-right-radius: 6px                            
-                        @endcannot">
+                        <th style="width: 2rem;">Kondisi</th>
+                        <th style="width: 3rem;">Lokasi</th>
+                        <th style="width: 3rem;">Pengguna</th>
                         @can('super admin')
-                            <th style="width: 6.7rem; border-top-right-radius: 6px"> Action</th>
+                            <th style="width: 6.7rem; border-top-right-radius: 6px">Action</th>
                         @endcan
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($elektroniks as $elektronik)
-                        <tr onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
-                            style="cursor: pointer;">
+                        <tr onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';" style="cursor: pointer;">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $elektronik->kode }}</td>
                             <td>{{ $elektronik->jenis_elektronik }}</td>
@@ -105,18 +98,15 @@
                             <td>{{ $elektronik->lokasi }}</td>
                             <td>{{ $elektronik->pengguna }}</td>
                             @can('super admin')
-                                <td
-                                    style="padding-left: 1rem; display: flex; height: 6rem; justify-content: space-around; align-items: center">
+                                <td style="display: flex; justify-content: space-around; align-items: center">
                                     <a class="btn btn-edit-pencil" href="{{ route('elektronik.edit', $elektronik->id) }}">
                                         <img src="{{ asset('icon/pen2.svg') }}" alt="" style="margin: 4px 0 4px 0">
                                     </a>
-
-                                    <form action="{{ route('elektronik.destroy', $elektronik->id) }}}}" method="POST"
-                                        class="d-inline-grid">
+            
+                                    <form action="{{ route('elektronik.destroy', $elektronik->id) }}" method="POST" class="d-inline-grid">
                                         @method('delete')
                                         @csrf
-                                        <button class="btn btn-delete" onclick="return confirm('Are you sure?')"
-                                            style="margin:0 ; padding: 6.5px 8px 6.5px 8px; border-radius: 100%;">
+                                        <button class="btn btn-delete" onclick="return confirm('Are you sure?')" style="margin: 0; padding: 6.5px 8px 6.5px 8px; border-radius: 100%;">
                                             <img src="{{ asset('icon/trash3.svg') }}" alt="">
                                         </button>
                                     </form>
@@ -126,6 +116,7 @@
                     @endforeach
                 </tbody>
             </table>
+            
             <div class="pagination" style="display: flex">
             </div>
         </div>

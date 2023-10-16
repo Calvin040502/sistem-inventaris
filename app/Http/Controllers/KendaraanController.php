@@ -115,6 +115,7 @@ public function store(Request $request)
 
         return view('kendaraan.detail', compact('kendaraan'));
     }
+    
     public function print($id)
     {
         $kendaraan = $this->kendaraans->find($id);
