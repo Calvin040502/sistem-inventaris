@@ -27,6 +27,9 @@ class CreateKendaraansTable extends Migration
             $table->string('lokasi');
             $table->text('pengguna');
             $table->string('masa_pajak');
+            $table->date('service_date')->nullable();
+            $table->string('service_type')->nullable();
+            $table->date('oil_change_date')->nullable();
             $table->timestamps();
         });
     }

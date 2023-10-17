@@ -175,4 +175,30 @@ public function store(Request $request)
     {
         return Excel::Download(new ExportKendaraan(), 'Kendaraan.xlsx');
     }
+
+    // Di dalam controller Anda, tambahkan metode untuk menangani pengiriman formulir dan memperbarui detail layanan.
+public function updateService(Request $request, $id)
+{
+    // Validasi data formulir (Anda dapat menyesuaikan aturan validasi)
+    $request->validate([
+        'service_date' => 'required|date',
+        'service_type' => 'required|string',
+        'oil_change_date' => 'required|date',
+    ]);
+
+    // Temukan kendaraan berdasarkan ID
+    $kendaraan = Kendaraan::find($id);
+
+    // Perbarui detail layanan
+    $kendaraan->service_date = $request->input('service_date');
+    $kendaraan->service_type = $request->input('service_type');
+    $kendaraan->oil_change_date = $request->input('oil_change_date');
+
+    // Simpan perubahan
+    $kendaraan->save();
+
+    // Alihkan kembali ke halaman detail kendaraan
+    return redirect()->route('kendaraan.detail', $id);
+}
+
 }

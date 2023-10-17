@@ -46,6 +46,12 @@ Route::delete('/kendaraan/{kendaraan:id}', [KendaraanController::class, 'destroy
 Route::get('/kendaraan/detail/{kendaraan:id}/print', [KendaraanController::class, 'print'])->name('kendaraan.print')->middleware('can:admin');
 Route::get('/kendaraan/export/excel', [KendaraanController::class, 'export_excel'])->middleware('can:admin');
 
+// Rute untuk menampilkan formulir pembaruan detail layanan
+Route::get('/kendaraan/edit-service/{id}', [KendaraanController::class, 'editService'])->name('kendaraan.editService');
+
+// Rute untuk meng-handle pembaruan detail layanan
+Route::put('/kendaraan/update-service/{id}', [KendaraanController::class, 'updateService'])->name('kendaraan.updateService');
+
 Route::get('/elektronik', [ElektronikController::class, 'index'])->name('elektronik')->middleware('can:admin');
 Route::get('/elektronik/create', [ElektronikController::class, 'create'])->name('elektronik.create')->middleware('can:admin');
 Route::post('/elektronik', [ElektronikController::class, 'store'])->name('elektronik.store')->middleware('auth');

@@ -9,6 +9,23 @@
     <link rel="icon" href="{{ asset('img/logoremove.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
+    <style>
+        /* Center the service form */
+        .service-form {
+            margin: 0 auto;
+            max-width: 500px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        /* Style the form fields */
+        .service-form .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
 <body>
     @include('templates.navbar')
     <div class="container">
@@ -45,13 +62,13 @@
                         <label>Masa Guna:</label>
                         <span>{{ $kendaraan->masa_guna }}</span>
                     </div>
-                </div>
-                <div class="column-right">
+                    <div class="spacer"></div>
                     <div class="output">
                         <label>Lama Pakai:</label>
                         <span>{{ $kendaraan->lama_pakai }}</span>
                     </div>
-                    <div class="spacer"></div>
+                </div>
+                <div class="column-right">
                     <div class="output">
                         <label>Kondisi:</label>
                         <span>{{ $kendaraan->kondisi }}</span>
@@ -71,22 +88,59 @@
                         <label>Masa Pajak:</label>
                         <span>{{ $kendaraan->masa_pajak }}</span>
                     </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Tanggal Servis:</label>
+                        <span>{{ date('j F Y', strtotime($kendaraan->service_date)) }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Jenis Servis:</label>
+                        <span>{{ $kendaraan->service_type }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Tanggal Ganti Oli:</label>
+                        <span>{{ date('j F Y', strtotime($kendaraan->oil_change_date)) }}</span>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="spacer"></div>
+    <div class="service-form">
+        <h2>Isi Informasi Servis & Ganti Oli</h2>
+        <form id="service-details-form" action="{{ route('kendaraan.updateService', $kendaraan->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+
+            <div class="form-group">
+                <label for="service-date">Tanggal Servis:</label>
+                <input type="date" name="service_date" id="service-date">
+            </div>
+            <div class="form-group">
+                <label for="service-type">Jenis Servis:</label>
+                <input type="text" name="service_type" id="service-type">
+            </div>
+            <div class="form-group">
+                <label for="oil-change-date">Tanggal Ganti Oli:</label>
+                <input type="date" name="oil_change_date" id="oil-change-date">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+<div class="spacer"></div>
         <div class="button-wrapper" style="padding: 32px; display: flex; justify-content: space-between; align-items: center;">
             <div style="flex: 6;">
                 <a style="width: 6rem;" class="btn btn-back" href="{{ route('kendaraan') }}">Kembali</a>
             </div>
             @can('super admin')
-            <div style="flex: 1;">
+            <div style="flex: 0;">
                 <button style="width: 6rem;" type="button" onclick="window.location.href='{{ route('kendaraan.edit', $kendaraan->id) }}'" class="btn btn-edit">Edit</button>
             </div>
             @endcan
         </div>
     </div>
-       
-    
     <div class="footer">
     @include('templates.footer')
     </div>

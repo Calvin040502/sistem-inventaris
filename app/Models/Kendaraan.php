@@ -20,6 +20,9 @@ class Kendaraan extends Model
         'lokasi',
         'pengguna',
         'masa_pajak',
+        'service_date',
+        'service_type',
+        'oil_change_date',
     ];
 
     public function author()

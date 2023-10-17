@@ -36,7 +36,7 @@
                     <button class="btn btn-print mb-1" onclick="printElektronikList()">Print</button> <!-- Tombol Print -->
                 </div>
                 <div class="col" style="padding-left:50%">
-                    <form action="/kendaraan" method="GET" class="float-right">
+                    <form action="/elektronik" method="GET" class="float-right">
                         <div class="input-group" style="padding-left: ;">
                             <input type="search" style="border-top-right-radius: 0; border-bottom-right-radius: 0"
                                 class="form-control shadow-sm bg-body-tertiary" placeholder="Search..." name="search"
@@ -133,109 +133,109 @@
             let noSortOrder = 1;
             let kodeSortOrder = 1;
             let tahun_perolehanSortOrder = 1;
-    
+            
+            // Get the table element
+            const table = $("#elektronik-table");
+            
+            // Get the pagination element
+            const pagination = $(".pagination");
+            
+            // Set the number of items per page
+            const itemsPerPage = 10; // Ganti dengan 10 untuk menampilkan 10 data per halaman
+            
             // Function to update the entire table with sorted data
             function updateTable(sortKey, sortOrder) {
                 const $table = $("table tbody");
                 const $rows = $table.find("tr").get();
-    
+            
                 $rows.sort(function(a, b) {
                     const aValue = $(a).find("td").eq(sortKey).text();
                     const bValue = $(b).find("td").eq(sortKey).text();
-    
+            
                     if (sortKey === 1) {
-                        // Sorting No. Kwitansi
+                        
                         return sortOrder * aValue.localeCompare(bValue);
                     } else if (sortKey === 3) {
-                        // Sorting Nama Lengkap
+                        
                         return sortOrder * aValue.localeCompare(bValue);
                     } else {
-                        // Sorting other columns as numbers
+                        
                         return sortOrder * (parseFloat(aValue) - parseFloat(bValue));
                     }
                 });
-    
+            
                 $table.empty().append($rows);
+            
+                // Call the initial sorting to sort the data based on the default column
+                updateTableRows(currentPage);
             }
-    
+            
+            // Function to hide and show rows based on the current page
+            function updateTableRows(currentPage) {
+                // Hide all rows in the table, except the header
+                table.find("tr").not("thead tr").hide();
+            
+                // Show the rows for the current page
+                const startIdx = (currentPage - 1) * itemsPerPage;
+                const endIdx = startIdx + itemsPerPage;
+                table.find("tr").slice(startIdx, endIdx).show();
+            }
+            
+            // **Add the header to the table**
+            table.append(table.find("thead"));
+            
             // Handle click event for sorting by No
             $("#sortNo").click(function() {
                 noSortOrder *= -1;
                 updateTable(0, noSortOrder);
             });
-    
+            
             // Handle click event for sorting by No. Kwitansi
             $("#sortKode").click(function() {
                 kodeSortOrder *= -1;
                 updateTable(1, kodeSortOrder);
             });
-    
+            
             // Handle click event for sorting by Nama Lengkap
             $("#sortTahun").click(function() {
                 tahun_perolehanSortOrder *= -1;
                 updateTable(4, tahun_perolehanSortOrder);
             });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-        // Ambil data dari server dan simpan dalam variabel JavaScript
-        const elektroniks = @json($elektroniks);
-    
-        // Inisialisasi jumlah item per halaman
-        const itemsPerPage = 10;
-    
-        // Menghitung total halaman berdasarkan data dan jumlah item per halaman
-        const totalPages = Math.ceil(elektroniks.length / itemsPerPage);
-    
-        // Menginisialisasi tabel
-        function initializeTable() {
-            updateTable(1); // Menampilkan halaman pertama
-        }
-    
-        // Function untuk menampilkan item pada halaman yang dipilih
-        function updateTable(page) {
-            // Menghitung indeks awal dan akhir untuk item pada halaman yang dipilih
-            const startIndex = (page - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-    
-            // Menghapus semua baris, kecuali header
-            table.find("tr").not("thead tr").remove();
-    
-            // Menambahkan baris sesuai dengan halaman yang dipilih
-            for (let i = startIndex; i < endIndex; i++) {
-                if (i < elektroniks.length) {
-                    const elektronik = elektroniks[i];
-                    const newRow = `<tr>
-                        <td>${i + 1}</td>
-                        <td>${elektronik.kode}</td>
-                        <td>${elektronik.tahun_perolehan}</td>
-                        <!-- Tambahkan kolom lain sesuai kebutuhan -->
-                    </tr>`;
-                    table.append(newRow);
+            
+            // Set the initial page number
+            let currentPage = 1;
+            
+            // Calculate the total number of pages
+            const totalData = {{ $elektroniks->count() }}; // Ganti dengan jumlah data yang sesungguhnya
+            const totalPages = Math.ceil(totalData / itemsPerPage);
+            
+            // Generate initial pagination buttons
+            for (let i = 1; i <= totalPages; i++) {
+                pagination.append(`<a href="#" class="${i === 1 ? 'active' : ''}">${i}</a>`);
+            }
+            
+            // Handle click event for pagination buttons
+            pagination.on("click", "a", function() {
+                // Get the clicked page number
+                const newPage = parseInt($(this).text());
+            
+                // If the clicked page number is different from the current page number
+                if (newPage !== currentPage) {
+                    // Update the current page number
+                    currentPage = newPage;
+            
+                    // Update the active pagination button
+                    pagination.find("a").removeClass("active");
+                    $(this).addClass("active");
+            
+                    // Update the table rows
+                    updateTableRows(currentPage);
                 }
-            }
-        }
-    
-        // Menghandle klik pada tombol pagination
-        pagination.on("click", "a", function() {
-            const newPage = parseInt($(this).text());
-    
-            // Jika halaman yang dipilih berbeda dari halaman saat ini
-            if (newPage !== currentPage) {
-                currentPage = newPage;
-    
-                // Update tombol pagination yang aktif
-                pagination.find("a").removeClass("active");
-                $(this).addClass("active");
-    
-                // Menampilkan item pada halaman yang dipilih
-                updateTable(currentPage);
-            }
-        });
-    
-        // Menginisialisasi tabel saat dokumen siap
-        initializeTable();
+            });
+            
+            // Call the initial sorting to sort the data based on the default column
+            updateTable(0, 1);
+            updateTableRows(currentPage);
         });
     </script>
     @extends('templates.footer')
