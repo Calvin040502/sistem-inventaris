@@ -23,6 +23,11 @@
                     <img class="article" src="{{ asset('icon/article.svg') }}" alt="">
                     List Aset Elektronik</a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('furnitur') }}" class="nav-link text-truncate">
+                    <img class="article" src="{{ asset('icon/article.svg') }}" alt="">
+                    List Aset Furniture</a>
+            </li>
             @can('super admin')
                 <li class="nav-item">
                     <a href="{{ route('manage.users') }}" class="nav-link text-truncate">

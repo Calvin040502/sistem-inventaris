@@ -13,7 +13,7 @@
     @include('templates.navbar')
     <div class="container">
         <div class="content">
-            <h1 class="text-center">Detail Elektronik</h1>
+            <h1 class="text-center">DETAIL ELEKTRONIK</h1>
             <div class="output-columns">
                 <div class="column-left">
                     <div class="kode">

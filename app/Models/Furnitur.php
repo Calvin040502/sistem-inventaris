@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
-class Kendaraan extends Model
+class Furnitur extends Model
 {
     protected $fillable = [
         'user_id',
         'kode',
-        'jenis_kendaraan',
+        'jenis_furniture',
         'merek',
         'tahun_perolehan',
         'harga_perolehan',
@@ -19,21 +19,14 @@ class Kendaraan extends Model
         'kondisi',
         'lokasi',
         'pengguna',
-        'masa_pajak',
     ];
 
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function keterangans()
-    {
-        return $this->hasMany(Keterangan::class);
     }
 }

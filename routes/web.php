@@ -8,8 +8,12 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ManageUsersController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ElektronikController;
+use App\Http\Controllers\KeteranganController;
+use App\Http\Controllers\FurniturController;
 use App\Models\Kendaraan;
 use App\Models\Elektronik;
+use App\Models\Keterangan;
+use App\Models\Furnitur;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,11 +50,9 @@ Route::delete('/kendaraan/{kendaraan:id}', [KendaraanController::class, 'destroy
 Route::get('/kendaraan/detail/{kendaraan:id}/print', [KendaraanController::class, 'print'])->name('kendaraan.print')->middleware('can:admin');
 Route::get('/kendaraan/export/excel', [KendaraanController::class, 'export_excel'])->middleware('can:admin');
 
-// Rute untuk menampilkan formulir pembaruan detail layanan
-Route::get('/kendaraan/edit-service/{id}', [KendaraanController::class, 'editService'])->name('kendaraan.editService');
-
-// Rute untuk meng-handle pembaruan detail layanan
-Route::put('/kendaraan/update-service/{id}', [KendaraanController::class, 'updateService'])->name('kendaraan.updateService');
+Route::get('/kendaraan/{keterangan:id}/keterangan', [KeteranganController::class, 'index'])->name('kendaraan.keterangan.index');
+Route::get('/kendaraan/{keterangan:id}/keterangan/create', [KeteranganController::class, 'create'])->name('kendaraan.keterangan.create');
+Route::post('/kendaraan/{keterangan:id}/keterangan', [KeteranganController::class, 'store'])->name('kendaraan.keterangan.store');
 
 Route::get('/elektronik', [ElektronikController::class, 'index'])->name('elektronik')->middleware('can:admin');
 Route::get('/elektronik/create', [ElektronikController::class, 'create'])->name('elektronik.create')->middleware('can:admin');
@@ -61,6 +63,16 @@ Route::put('/elektronik/{elektronik:id}', [ElektronikController::class, 'update'
 Route::delete('/elektronik/{elektronik:id}', [ElektronikController::class, 'destroy'])->name('elektronik.destroy')->middleware('can:super admin');
 Route::get('/elektronik/detail/{elektronik:id}/print', [ElektronikController::class, 'print'])->name('elektronik.print')->middleware('can:admin');
 Route::get('/elektronik/export/excel', [ElektronikController::class, 'export_excel'])->middleware('can:admin');
+
+Route::get('/furnitur', [FurniturController::class, 'index'])->name('furnitur')->middleware('can:admin');
+Route::get('/furnitur/create', [FurniturController::class, 'create'])->name('furnitur.create')->middleware('can:admin');
+Route::post('/furnitur', [FurniturController::class, 'store'])->name('furnitur.store')->middleware('auth');
+Route::get('/furnitur/{furnitur:id}/detail/', [FurniturController::class, 'detail'])->name('furnitur.detail')->middleware('can:admin');
+Route::get('/furnitur/{furnitur:id}/edit', [FurniturController::class, 'edit'])->name('furnitur.edit')->middleware('can:super admin');
+Route::put('/furnitur/{furnitur:id}', [FurniturController::class, 'update'])->name('furnitur.update')->middleware('can:super admin');
+Route::delete('/furnitur/{furnitur:id}', [FurniturController::class, 'destroy'])->name('furnitur.destroy')->middleware('can:super admin');
+Route::get('/furnitur/detail/{furnitur:id}/print', [FurniturController::class, 'print'])->name('furnitur.print')->middleware('can:admin');
+Route::get('/furnitur/export/excel', [FurniturController::class, 'export_excel'])->middleware('can:admin');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.process');

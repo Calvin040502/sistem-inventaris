@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Aset Kendaraan</title>
+    <title>Aset Furniture</title>
     <link rel="icon" href="{{ asset('img/logoremove.png') }}">
 </head>
 
 <script>
-    // Function to print the list of Kendaraan
-    function printKendaraanList() {
-        var printContents = document.querySelector('.kendaraan').innerHTML;
+    // Function to print the list of Furniture
+    function printFurniturList() {
+        var printContents = document.querySelector('.furnitur').innerHTML;
         var originalContents = document.body.innerHTML;
         document.body.innerHTML = printContents;
         window.print();
@@ -28,33 +28,34 @@
         </label>
     </div>
     <div class="input mb-2" style="padding: 1.5rem 24px 1.5rem 24px">
-        <div class="row">
-            <div class="col">
-                <a href="{{ route('kendaraan.create') }}" class="btn btn-add mb-1" style="margin-right: 24px">Tambah</a>
-                <a href="{{ url('kendaraan/export/excel') }}" class="btn btn-export mb-1 ">Export To Excel</a>
-                <button class="btn btn-print mb-1" onclick="printKendaraanList()">Print</button> <!-- Tombol Print -->
-            </div>
-            <div class="col" style="padding-left:50%">
-                <form action="/kendaraan" method="GET" class="float-right">
-                    <div class="input-group" style="padding-left: ;">
-                        <input type="search" style="border-top-right-radius: 0; border-bottom-right-radius: 0"
-                            class="form-control shadow-sm bg-body-tertiary" placeholder="Search..." name="search"
-                            value="{{ request('search') }}">
-                        <div class="input-group-append" style="padding-left: 2px;">
-                            <button class="btn btn-primary"
-                                style="border-top-left-radius: 0; border-bottom-left-radius: 0; padding: 4px"
-                                type="submit"><img src="{{ asset('icon/search.svg') }}" alt=""></button>
+            <div class="row">
+                <div class="col">
+                    <a href="{{ route('furnitur.create') }}" class="btn btn-add mb-1"
+                        style="margin-right: 24px">Tambah</a>
+                    <a href="{{ url('furnitur/export/excel') }}" class="btn btn-export mb-1 ">Export To Excel</a>
+                    <button class="btn btn-print mb-1" onclick="printFurniturList()">Print</button> <!-- Tombol Print -->
+                </div>
+                <div class="col" style="padding-left:50%">
+                    <form action="/furnitur" method="GET" class="float-right">
+                        <div class="input-group" style="padding-left: ;">
+                            <input type="search" style="border-top-right-radius: 0; border-bottom-right-radius: 0"
+                                class="form-control shadow-sm bg-body-tertiary" placeholder="Search..." name="search"
+                                value="{{ request('search') }}">
+                            <div class="input-group-append" style="padding-left: 2px;">
+                                <button class="btn btn-primary"
+                                    style="border-top-left-radius: 0; border-bottom-left-radius: 0; padding: 4px"
+                                    type="submit"><img src="{{ asset('icon/search.svg') }}" alt=""></button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <section class="kendaraan" style="padding: 1.5rem 24px 1.5rem 24px">
-        <h1 class="text-center"> <a href="{{ route('kendaraan') }}" class="text-decoration-none"
-                style="color: black">List Aset Kendaraan</a>
+    <section class="furnitur" style="padding: 1.5rem 24px 1.5rem 24px">
+        <h1 class="text-center"> <a href="{{ route('furnitur') }}" class="text-decoration-none"
+                style="color: black">List Aset Furniture</a>
         </h1>
-
+        
 
         @if (session()->has('error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -63,61 +64,49 @@
             </div>
         @endif
         <div class="content" style="margin: 2rem 0 2rem 0">
-            <table class="table table-hover table-striped text-center" id="kendaraan-table" style="margin-bottom: 2rem">
+            <table class="table table-hover table-striped text-center" id="furnitur-table" style="margin-bottom: 2rem">
                 <thead>
                     <tr class="bg-info">
-                        <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 6px"
-                            id="sortNo">No.</th>
+                        <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 6px" id="sortNo">No.</th>
                         <th style="width: 4.5rem; cursor: pointer;" id="sortKode">Kode</th>
-                        <th style="width: 6rem;">Jenis Kendaraan</th>
+                        <th style="width: 6rem;">Jenis Furniture</th>
                         <th style="width: 5rem;">Merk</th>
                         <th style="width: 4.5rem; cursor: pointer;" id="sortTahun">Tahun Perolehan</th>
                         <th style="width: 8.5rem;">Harga Perolehan</th>
                         <th style="width: 4rem;">Masa Guna</th>
                         <th style="width: 4rem;">Lama Pakai</th>
-                        <th style="width: 1rem;">Kondisi</th>
-                        <th style="width: 1rem;">Lokasi</th>
-                        <th style="width: 1rem;">Pengguna</th>
-                        <th
-                            style="width: 5rem; @cannot('super admin')
-                        border-top-right-radius: 6px                            
-                        @endcannot">
-                            Masa Pajak</th>
+                        <th style="width: 2rem;">Kondisi</th>
+                        <th style="width: 3rem;">Lokasi</th>
+                        <th style="width: 3rem;">Pengguna</th>
                         @can('super admin')
-                            <th style="width: 6.7rem; border-top-right-radius: 6px"> Action</th>
+                            <th style="width: 6.7rem; border-top-right-radius: 6px">Action</th>
                         @endcan
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($kendaraans as $kendaraan)
-                        <tr onclick="window.location.href='{{ route('kendaraan.detail', ['kendaraan' => $kendaraan->id]) }}';"
-                            style="cursor: pointer;">
+                    @foreach ($furniturs as $furnitur)
+                        <tr onclick="window.location.href='{{ route('furnitur.detail', ['furnitur' => $furnitur->id]) }}';" style="cursor: pointer;">
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $kendaraan->kode }}</td>
-                            <td>{{ $kendaraan->jenis_kendaraan }}</td>
-                            <td>{{ $kendaraan->merek }}</td>
-                            <td>{{ $kendaraan->tahun_perolehan }}</td>
-                            <td>{{ $kendaraan->harga_perolehan }}</td>
-                            <td>{{ $kendaraan->masa_guna }}</td>
-                            <td>{{ $kendaraan->lama_pakai }}</td>
-                            <td>{{ $kendaraan->kondisi }}</td>
-                            <td>{{ $kendaraan->lokasi }}</td>
-                            <td>{{ $kendaraan->pengguna }}</td>
-                            <td>{{ $kendaraan->masa_pajak }}</td>
+                            <td>{{ $furnitur->kode }}</td>
+                            <td>{{ $furnitur->jenis_furniture }}</td>
+                            <td>{{ $furnitur->merek }}</td>
+                            <td>{{ $furnitur->tahun_perolehan }}</td>
+                            <td>{{ $furnitur->harga_perolehan }}</td>
+                            <td>{{ $furnitur->masa_guna }}</td>
+                            <td>{{ $furnitur->lama_pakai }}</td>
+                            <td>{{ $furnitur->kondisi }}</td>
+                            <td>{{ $furnitur->lokasi }}</td>
+                            <td>{{ $furnitur->pengguna }}</td>
                             @can('super admin')
-                                <td
-                                    style="padding-left: 1rem; display: flex; height: 6rem; justify-content: space-around; align-items: center">
-                                    <a class="btn btn-edit-pencil" href="{{ route('kendaraan.edit', $kendaraan->id) }}">
+                                <td style="display: flex; justify-content: space-around; align-items: center">
+                                    <a class="btn btn-edit-pencil" href="{{ route('furnitur.edit', $furnitur->id) }}">
                                         <img src="{{ asset('icon/pen2.svg') }}" alt="" style="margin: 4px 0 4px 0">
                                     </a>
-
-                                    <form action="{{ route('kendaraan.destroy', $kendaraan->id) }}}}" method="POST"
-                                        class="d-inline-grid">
+            
+                                    <form action="{{ route('furnitur.destroy', $furnitur->id) }}" method="POST" class="d-inline-grid">
                                         @method('delete')
                                         @csrf
-                                        <button class="btn btn-delete" onclick="return confirm('Are you sure?')"
-                                            style="margin:0 ; padding: 6.5px 8px 6.5px 8px; border-radius: 100%;">
+                                        <button class="btn btn-delete" onclick="return confirm('Are you sure?')" style="margin: 0; padding: 6.5px 8px 6.5px 8px; border-radius: 100%;">
                                             <img src="{{ asset('icon/trash3.svg') }}" alt="">
                                         </button>
                                     </form>
@@ -127,6 +116,7 @@
                     @endforeach
                 </tbody>
             </table>
+            
             <div class="pagination" style="display: flex">
             </div>
         </div>
@@ -143,106 +133,106 @@
             let noSortOrder = 1;
             let kodeSortOrder = 1;
             let tahun_perolehanSortOrder = 1;
-
+            
             // Get the table element
-            const table = $("#kendaraan-table");
-
+            const table = $("#furnitur-table");
+            
             // Get the pagination element
             const pagination = $(".pagination");
-
+            
             // Set the number of items per page
             const itemsPerPage = 10; // Ganti dengan 10 untuk menampilkan 10 data per halaman
-
+            
             // Function to update the entire table with sorted data
             function updateTable(sortKey, sortOrder) {
                 const $table = $("table tbody");
                 const $rows = $table.find("tr").get();
-
+            
                 $rows.sort(function(a, b) {
                     const aValue = $(a).find("td").eq(sortKey).text();
                     const bValue = $(b).find("td").eq(sortKey).text();
-
+            
                     if (sortKey === 1) {
-
+                        
                         return sortOrder * aValue.localeCompare(bValue);
                     } else if (sortKey === 3) {
-
+                        
                         return sortOrder * aValue.localeCompare(bValue);
                     } else {
-
+                        
                         return sortOrder * (parseFloat(aValue) - parseFloat(bValue));
                     }
                 });
-
+            
                 $table.empty().append($rows);
-
+            
                 // Call the initial sorting to sort the data based on the default column
                 updateTableRows(currentPage);
             }
-
+            
             // Function to hide and show rows based on the current page
             function updateTableRows(currentPage) {
                 // Hide all rows in the table, except the header
                 table.find("tr").not("thead tr").hide();
-
+            
                 // Show the rows for the current page
                 const startIdx = (currentPage - 1) * itemsPerPage;
                 const endIdx = startIdx + itemsPerPage;
                 table.find("tr").slice(startIdx, endIdx).show();
             }
-
+            
             // **Add the header to the table**
             table.append(table.find("thead"));
-
+            
             // Handle click event for sorting by No
             $("#sortNo").click(function() {
                 noSortOrder *= -1;
                 updateTable(0, noSortOrder);
             });
-
+            
             // Handle click event for sorting by No. Kwitansi
             $("#sortKode").click(function() {
                 kodeSortOrder *= -1;
                 updateTable(1, kodeSortOrder);
             });
-
+            
             // Handle click event for sorting by Nama Lengkap
             $("#sortTahun").click(function() {
                 tahun_perolehanSortOrder *= -1;
                 updateTable(4, tahun_perolehanSortOrder);
             });
-
+            
             // Set the initial page number
             let currentPage = 1;
-
+            
             // Calculate the total number of pages
-            const totalData = {{ $kendaraans->count() }}; // Ganti dengan jumlah data yang sesungguhnya
+            const totalData = {{ $furniturs->count() }}; // Ganti dengan jumlah data yang sesungguhnya
             const totalPages = Math.ceil(totalData / itemsPerPage);
-
+            
             // Generate initial pagination buttons
             for (let i = 1; i <= totalPages; i++) {
                 pagination.append(`<a href="#" class="${i === 1 ? 'active' : ''}">${i}</a>`);
             }
-
+            
             // Handle click event for pagination buttons
             pagination.on("click", "a", function() {
                 // Get the clicked page number
                 const newPage = parseInt($(this).text());
-
+            
                 // If the clicked page number is different from the current page number
                 if (newPage !== currentPage) {
                     // Update the current page number
                     currentPage = newPage;
-
+            
                     // Update the active pagination button
                     pagination.find("a").removeClass("active");
                     $(this).addClass("active");
-
+            
                     // Update the table rows
                     updateTableRows(currentPage);
                 }
             });
-
+            
             // Call the initial sorting to sort the data based on the default column
             updateTable(0, 1);
             updateTableRows(currentPage);
@@ -256,22 +246,19 @@
         body * {
             visibility: hidden;
         }
-
-        .kendaraan,
-        .kendaraan * {
+        .furnitur, .furnitur * {
             visibility: visible;
         }
-
-        .kendaraan {
+        .furnitur {
             position: absolute;
             left: 0;
             top: 0;
         }
 
         .button.wrapper * {
-            display: none;
-            visibility: none;
-        }
+                display: none;
+                visibility: none;
+            }
     }
 </style>
 
@@ -287,7 +274,7 @@
         margin: 0;
     }
 
-    .kendaraan {
+    .furnitur {
         flex-grow: 1;
         min-height: calc(100vh - 60px);
     }
@@ -355,29 +342,28 @@
     }
 
     .btn-print {
-        background-color: #ffef0f;
-        color: #404567;
-        border-radius: 0.3rem;
+            background-color: #ffef0f;
+            color: #404567;
+            border-radius: 0.3rem;
     }
 
     .btn-print:hover {
-        background-color: #e5eae6;
-        color: #404567;
-        border: 1px solid #8e4761
+            background-color: #e5eae6;
+            color: #404567;
+            border: 1px solid #8e4761
     }
 
     .btn-export {
-        background-color: #6ac063;
-        color: #404567;
-        border-radius: 0.3rem;
+            background-color: #6ac063;
+            color: #404567;
+            border-radius: 0.3rem;
     }
 
     .btn-export:hover {
-        background-color: #e5eae6;
-        color: #404567;
-        border: 1px solid #8e4761
+            background-color: #e5eae6;
+            color: #404567;
+            border: 1px solid #8e4761
     }
-
     .btn-edit-pencil {
         background-color: #d96652;
         color: #e9ecf1;

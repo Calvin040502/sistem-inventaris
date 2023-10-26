@@ -18,7 +18,7 @@
                 <div class="row gx-lg-0 gx-xl-8 gy-10 gy-md-13 gy-lg-0 mb-7 mb-md-10 mb-lg-16 align-items-center">
                     <div class="col-lg-8 mx-auto">
                         <div class="title-form mt-3 mb-4" id="title-form">
-                            <h1 class="h2">Edit Kendaraan</h1>
+                            <h1 class="h2">EDIT KENDARAAN</h1>
                         </div>
                         <form method="POST" action="{{ route('kendaraan.update', $kendaraan->id) }}" class="mb-3">
                             @method('put')

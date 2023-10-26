@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\ExportKendaraan;
-use App\Models\Kendaraan;
+use App\Exports\ExportFurnitur;
+use App\Models\Furnitur;
 use Exception;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class KendaraanController extends Controller
+class FurniturController extends Controller
 {
-    protected $kendaraans;
+    protected $furniturs;
 
     public function __construct()
     {
-        $this->kendaraans = Kendaraan::all();
+        $this->furniturs = Furnitur::all();
     }
 
     public function index(Request $request)
 {
     $search = $request->input('search');
 
-    // Filter Kendaraan berdasarkan pencarian
-    $kendaraans = Kendaraan::where(function ($query) use ($search) {
+    // Filter Furnitur berdasarkan pencarian
+    $furniturs = Furnitur::where(function ($query) use ($search) {
         $query
             ->where('kode', 'LIKE', '%' . $search . '%')
-            ->orWhere('jenis_kendaraan', 'LIKE', '%' . $search . '%')
+            ->orWhere('jenis_furniture', 'LIKE', '%' . $search . '%')
             ->orWhere('merek', 'LIKE', '%' . $search . '%')
             ->orWhere('tahun_perolehan', 'LIKE', '%' . $search . '%') 
             ->orWhere('harga_perolehan', 'LIKE', '%' . $search . '%')
@@ -33,22 +33,21 @@ class KendaraanController extends Controller
             ->orWhere('lama_pakai', 'LIKE', '%' . $search . '%')
             ->orWhere('kondisi', 'LIKE', '%' . $search . '%')
             ->orWhere('lokasi', 'LIKE', '%' . $search . '%')
-            ->orWhere('pengguna', 'LIKE', '%' . $search . '%')
-            ->orWhere('masa_pajak', 'LIKE', '%' . $search . '%');
+            ->orWhere('pengguna', 'LIKE', '%' . $search . '%');
     })->get();
 
-    if ($kendaraans->isEmpty()) {
+    if ($furniturs->isEmpty()) {
         session()->flash('error', 'Aset tidak ditemukan');
-        return view('kendaraan.index', ['kendaraans' => $kendaraans]);
+        return view('furnitur.index', ['furniturs' => $furniturs]);
     }
 
-    return view('kendaraan.index', ['kendaraans' => $kendaraans]);
+    return view('furnitur.index', ['furniturs' => $furniturs]);
 }
 
 public function create()
 {
     // $this->authorize('super admin');
-    $lastSerialNumber = Kendaraan::latest('kode')->first();
+    $lastSerialNumber = Furnitur::latest('kode')->first();
 
     if ($lastSerialNumber) {
         $lastNumber = (int) substr($lastSerialNumber->kode, 5); // Ubah 3 menjadi 5
@@ -57,15 +56,15 @@ public function create()
         $nextNumber = 1;
     }
 
-    $serialNumber = 'KDRN-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
+    $serialNumber = 'FRTR-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
 
-    return view('kendaraan.create', compact('serialNumber'));
+    return view('furnitur.create', compact('serialNumber'));
 }
 
 public function store(Request $request)
 {
     try {
-        $lastSerialNumber = Kendaraan::latest('kode')->first();
+        $lastSerialNumber = Furnitur::latest('kode')->first();
 
         if ($lastSerialNumber) {
             $lastNumber = (int) substr($lastSerialNumber->kode, 5); // Ubah 3 menjadi 5
@@ -74,10 +73,10 @@ public function store(Request $request)
             $nextNumber = 1;
         }
 
-        $serialNumber = 'KDRN-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
+        $serialNumber = 'FRTR-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
 
         $validatedData = $request->validate([
-            'jenis_kendaraan' => 'required',
+            'jenis_furniture' => 'required',
             'merek' => 'required',
             'tahun_perolehan' => 'required',
             'harga_perolehan' => 'required',
@@ -86,15 +85,14 @@ public function store(Request $request)
             'kondisi' => 'required',
             'lokasi' => 'required',
             'pengguna' => 'required',
-            'masa_pajak' => 'required',
         ]);
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['kode'] = $serialNumber;
 
-        Kendaraan::create($validatedData);
+        Furnitur::create($validatedData);
 
-        return redirect('/kendaraan');
+        return redirect('/furnitur');
     } catch (Exception $e) {
         session()->flash('error', $e->getMessage());
 
@@ -105,40 +103,39 @@ public function store(Request $request)
 
     public function detail($id)
     {
-        $kendaraan = $this->kendaraans->find($id);
+        $furnitur = $this->furniturs->find($id);
 
-        if (!$kendaraan) {
+        if (!$furnitur) {
             session()->flash('error', 'Aset tidak ditemukan');
 
-            return redirect('/kendaraan');
+            return redirect('/furnitur');
         }
 
-        return view('kendaraan.detail', compact('kendaraan'));
+        return view('furnitur.detail', compact('furnitur'));
     }
-    
     public function print($id)
     {
-        $kendaraan = $this->kendaraans->find($id);
+        $furnitur = $this->furniturs->find($id);
 
-        if (!$kendaraan) {
+        if (!$furnitur) {
             session()->flash('error', 'Aset tidak ditemukan');
 
-            return redirect('/kendaraan');
+            return redirect('/furnitur');
         }
 
-        return view('kendaraan.cetak', compact('kendaraan'));
+        return view('furnitur.cetak', compact('furnitur'));
     }
 
-    public function edit(Kendaraan $kendaraan)
+    public function edit(Furnitur $furnitur)
     {
-        return view('kendaraan.edit', compact('kendaraan'));
+        return view('furnitur.edit', compact('furnitur'));
     }
 
-    public function update(Request $request, Kendaraan $kendaraan)
+    public function update(Request $request, Furnitur $furnitur)
     {
         try {
             $rules = [
-                'jenis_kendaraan' => 'required',
+                'jenis_furniture' => 'required',
                 'merek' => 'required',
                 'tahun_perolehan' => 'required',
                 'harga_perolehan' => 'required',
@@ -147,16 +144,15 @@ public function store(Request $request)
                 'kondisi' => 'required',
                 'lokasi' => 'required',
                 'pengguna' => 'required',
-                'masa_pajak' => 'required',
             ];
 
             
             $validatedData = $request->validate($rules);
 
             // Update data kwitansi
-            $kendaraan->update($validatedData);
+            $furnitur->update($validatedData);
 
-            return redirect('/kendaraan')->with('success', 'Aset berhasil diperbarui');
+            return redirect('/furnitur')->with('success', 'Aset berhasil diperbarui');
         } catch (Exception $e) {
             session()->flash('error', $e->getMessage());
 
@@ -164,16 +160,15 @@ public function store(Request $request)
         }
     }
 
-    public function destroy(Kendaraan $kendaraan)
+    public function destroy(Furnitur $furnitur)
     {
-        Kendaraan::destroy($kendaraan->id);
+        Furnitur::destroy($furnitur->id);
 
-        return redirect('/kendaraan');
+        return redirect('/furnitur');
     }
 
     function export_excel()
     {
-        return Excel::Download(new ExportKendaraan(), 'Kendaraan.xlsx');
+        return Excel::Download(new ExportFurnitur(), 'Furnitur.xlsx');
     }
-
 }
