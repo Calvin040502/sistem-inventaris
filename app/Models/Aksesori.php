@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
-class Elektronik extends Model
+class Aksesori extends Model
 {
     protected $fillable = [
         'user_id',
         'kode',
-        'jenis_elektronik',
+        'jenis_aksesoris',
         'merek',
         'tahun_perolehan',
         'harga_perolehan',

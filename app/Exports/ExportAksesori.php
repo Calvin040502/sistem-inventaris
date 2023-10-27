@@ -2,18 +2,18 @@
 
 namespace App\Exports;
 
-use App\Models\Elektronik;
+use App\Models\Aksesori;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
 
-class ExportElektronik implements FromView
+class ExportAksesori implements FromView
 {
     /**
      * @return \Illuminate\Support\Collection
      */
     public function view(): View
     {
-        $data = Elektronik::orderBy('kode', 'asc')->get();
-        return view('elektronik.table', ['elektroniks' => $data]);
+        $data = Aksesori::orderBy('kode', 'asc')->get();
+        return view('aksesori.table', ['aksesoris' => $data]);
     }
 }

@@ -10,10 +10,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ElektronikController;
 use App\Http\Controllers\KeteranganController;
 use App\Http\Controllers\FurniturController;
+use App\Http\Controllers\AksesoriController;
 use App\Models\Kendaraan;
 use App\Models\Elektronik;
 use App\Models\Keterangan;
 use App\Models\Furnitur;
+use App\Models\Aksesori;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +75,16 @@ Route::put('/furnitur/{furnitur:id}', [FurniturController::class, 'update'])->na
 Route::delete('/furnitur/{furnitur:id}', [FurniturController::class, 'destroy'])->name('furnitur.destroy')->middleware('can:super admin');
 Route::get('/furnitur/detail/{furnitur:id}/print', [FurniturController::class, 'print'])->name('furnitur.print')->middleware('can:admin');
 Route::get('/furnitur/export/excel', [FurniturController::class, 'export_excel'])->middleware('can:admin');
+
+Route::get('/aksesori', [AksesoriController::class, 'index'])->name('aksesori')->middleware('can:admin');
+Route::get('/aksesori/create', [AksesoriController::class, 'create'])->name('aksesori.create')->middleware('can:admin');
+Route::post('/aksesori', [AksesoriController::class, 'store'])->name('aksesori.store')->middleware('auth');
+Route::get('/aksesori/{aksesori:id}/detail/', [AksesoriController::class, 'detail'])->name('aksesori.detail')->middleware('can:admin');
+Route::get('/aksesori/{aksesori:id}/edit', [AksesoriController::class, 'edit'])->name('aksesori.edit')->middleware('can:super admin');
+Route::put('/aksesori/{aksesori:id}', [AksesoriController::class, 'update'])->name('aksesori.update')->middleware('can:super admin');
+Route::delete('/aksesori/{aksesori:id}', [AksesoriController::class, 'destroy'])->name('aksesori.destroy')->middleware('can:super admin');
+Route::get('/aksesori/detail/{aksesori:id}/print', [AksesoriController::class, 'print'])->name('aksesori.print')->middleware('can:admin');
+Route::get('/aksesori/export/excel', [AksesoriController::class, 'export_excel'])->middleware('can:admin');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.process');
