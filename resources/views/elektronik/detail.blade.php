@@ -66,11 +66,6 @@
                         <label>Pengguna:</label>
                         <span>{{ $elektronik->pengguna }}</span>
                     </div>
-                    <div class="spacer"></div>
-                    <div class="output">
-                        <label>Masa Pajak:</label>
-                        <span>{{ $elektronik->masa_pajak }}</span>
-                    </div>
                 </div>
             </div>
         </div>

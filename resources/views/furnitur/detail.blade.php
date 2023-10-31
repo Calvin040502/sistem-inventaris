@@ -66,11 +66,6 @@
                         <label>Pengguna:</label>
                         <span>{{ $furnitur->pengguna }}</span>
                     </div>
-                    <div class="spacer"></div>
-                    <div class="output">
-                        <label>Masa Pajak:</label>
-                        <span>{{ $furnitur->masa_pajak }}</span>
-                    </div>
                 </div>
             </div>
         </div>

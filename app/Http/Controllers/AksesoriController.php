@@ -152,7 +152,7 @@ public function store(Request $request)
             // Update data kwitansi
             $aksesori->update($validatedData);
 
-            return redirect('/ak$aksesori')->with('success', 'Aset berhasil diperbarui');
+            return redirect('/aksesori')->with('success', 'Aset berhasil diperbarui');
         } catch (Exception $e) {
             session()->flash('error', $e->getMessage());
 
