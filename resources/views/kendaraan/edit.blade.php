@@ -38,6 +38,18 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
+                                    <label for="plat_nomor">Plat Nomor</label>
+                                    <input type="text"
+                                        class="form-control shadow-sm bg-body-tertiary rounded @error('plat_nomor') is-invalid @enderror"
+                                        id="plat_nomor" name="plat_nomor"
+                                        value="{{ old('plat_nomor', $kendaraan->plat_nomor) }}">
+                                    @error('plat_nomor')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
                                     <label for="jenis_kendaraan">Jenis Kendaraan</label>
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('jenis_kendaraan') is-invalid @enderror"
@@ -49,13 +61,26 @@
                                         </div>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="merek">Merek</label>
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('merek') is-invalid @enderror"
-                                        id="merek" name="merek"
-                                        value="{{ old('merek', $kendaraan->merek) }}">
+                                        id="merek" name="merek" value="{{ old('merek', $kendaraan->merek) }}">
                                     @error('merek')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="tahun_perolehan">Tahun Perolehan</label>
+                                    <input type="text"
+                                        class="form-control shadow-sm bg-body-tertiary rounded @error('tahun_perolehan') is-invalid @enderror"
+                                        id="tahun_perolehan" name="tahun_perolehan"
+                                        value="{{ old('tahun_perolehan', $kendaraan->tahun_perolehan) }}">
+                                    @error('tahun_perolehan')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -63,17 +88,6 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="tahun_perolehan">Tahun Perolehan</label>
-                                    <input type="text"
-                                        class="form-control shadow-sm bg-body-tertiary rounded @error('tahun_perolehan') is-invalid @enderror"
-                                        id="tahun_perolehan" name="tahun_perolehan" value="{{ old('tahun_perolehan', $kendaraan->tahun_perolehan) }}">
-                                    @error('tahun_perolehan')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
                                 <div class="col-md-6">
                                     <label for="harga_perolehan">Harga Perolehan</label>
                                     <input type="text"
@@ -86,8 +100,6 @@
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="masa_guna">Masa Guna</label>
                                     <input type="text"
@@ -100,10 +112,12 @@
                                         </div>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="lama_pakai">Lama Pakai</label>
                                     <input type="text"
-                                        class="form-control shadow-sm bg-body-tertiary rounded @error('masa_guna') is-invalid @enderror"
+                                        class="form-control shadow-sm bg-body-tertiary rounded @error('lama_pakai') is-invalid @enderror"
                                         id="lama_pakai" name="lama_pakai"
                                         value="{{ old('lama_pakai', $kendaraan->lama_pakai) }}">
                                     @error('lama_pakai')
@@ -112,12 +126,10 @@
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="kondisi">Kondisi</label>
                                     <input type="text"
-                                        class="form-control shadow-sm bg-body-tertiary rounded @error('kondisi') is-invalid @enderror"
+                                        class="form-control shadow-sm bg-body-tertiary rounded @error('masa_guna') is-invalid @enderror"
                                         id="kondisi" name="kondisi"
                                         value="{{ old('kondisi', $kendaraan->kondisi) }}">
                                     @error('kondisi')
@@ -126,10 +138,12 @@
                                         </div>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="lokasi">Lokasi</label>
                                     <input type="text"
-                                        class="form-control shadow-sm bg-body-tertiary rounded @error('masa_guna') is-invalid @enderror"
+                                        class="form-control shadow-sm bg-body-tertiary rounded @error('lokasi') is-invalid @enderror"
                                         id="lokasi" name="lokasi"
                                         value="{{ old('lokasi', $kendaraan->lokasi) }}">
                                     @error('lokasi')
@@ -138,12 +152,10 @@
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="col mb-3 mt-3">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label for="pengguna">Pengguna</label>
                                     <input type="text"
-                                        class="form-control shadow-sm bg-body-tertiary rounded @error('pengguna') is-invalid @enderror"
+                                        class="form-control shadow-sm bg-body-tertiary rounded @error('masa_guna') is-invalid @enderror"
                                         id="pengguna" name="pengguna"
                                         value="{{ old('pengguna', $kendaraan->pengguna) }}">
                                     @error('pengguna')
@@ -153,6 +165,7 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col mb-3 mt-3">
                             <div class="col mb-3">
                                 <label for="masa_pajak">Masa Pajak</label>
                                 <input type="text"

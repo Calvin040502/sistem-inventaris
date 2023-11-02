@@ -3,6 +3,7 @@
         <tr class="bg-info">
             <th>No.</th>
             <th>Kode</th>
+            <th>Plat Nomor</th>
             <th>Jenis Kendaraan</th>
             <th>Merek</th>
             <th>Tahun Perolehan</th>
@@ -20,6 +21,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $kendaraan->kode }}</td>
+                <td>{{ $kendaraan->plat_nomor }}</td>
                 <td>{{ $kendaraan->jenis_kendaraan }}</td>
                 <td>{{ $kendaraan->merek }}</td>
                 <td>{{ $kendaraan->tahun_perolehan }}</td>

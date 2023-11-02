@@ -95,6 +95,7 @@
                         <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 6px"
                             id="sortNo">No.</th>
                         <th style="width: 4.5rem; cursor: pointer;" id="sortKode">Kode</th>
+                        <th style="width: 6rem;">Tipe</th>
                         <th style="width: 6rem;">Jenis Elektronik</th>
                         <th style="width: 5rem;">Merk</th>
                         <th style="width: 4.5rem; cursor: pointer;" id="sortTahun">Tahun Perolehan</th>
@@ -115,6 +116,7 @@
                             style="cursor: pointer;">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $elektronik->kode }}</td>
+                            <td>{{ $elektronik->tipe }}</td>
                             <td>{{ $elektronik->jenis_elektronik }}</td>
                             <td>{{ $elektronik->merek }}</td>
                             <td>{{ $elektronik->tahun_perolehan }}</td>

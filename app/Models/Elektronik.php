@@ -10,6 +10,7 @@ class Elektronik extends Model
     protected $fillable = [
         'user_id',
         'kode',
+        'tipe',
         'jenis_elektronik',
         'merek',
         'tahun_perolehan',

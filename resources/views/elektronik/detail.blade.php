@@ -22,7 +22,12 @@
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
-                        <label>Jenis Elektronik:</label>
+                        <label>Tipe:</label>
+                        <span>{{ $elektronik->tipe }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
+                        <label>Jenis elektronike:</label>
                         <span>{{ $elektronik->jenis_elektronik }}</span>
                     </div>
                     <div class="spacer"></div>
@@ -35,18 +40,13 @@
                         <label>Tahun Perolehan:</label>
                         <span>{{ $elektronik->tahun_perolehan }}</span>
                     </div>
-                    <div class="spacer"></div>
+                </div>
+                <div class="column-right">
                     <div class="output">
                         <label>Harga Perolehan:</label>
                         <span>{{ $elektronik->harga_perolehan }}</span>
                     </div>
                     <div class="spacer"></div>
-                    <div class="output">
-                        <label>Masa Guna:</label>
-                        <span>{{ $elektronik->masa_guna }}</span>
-                    </div>
-                </div>
-                <div class="column-right">
                     <div class="output">
                         <label>Lama Pakai:</label>
                         <span>{{ $elektronik->lama_pakai }}</span>

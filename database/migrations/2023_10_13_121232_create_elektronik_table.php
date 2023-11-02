@@ -17,6 +17,7 @@ class CreateElektronikTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('kode');
+            $table->string('tipe');
             $table->string('jenis_elektronik');
             $table->string('merek');
             $table->string('tahun_perolehan');

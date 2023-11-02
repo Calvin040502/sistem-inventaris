@@ -36,56 +36,61 @@
 
                             <div class="row mb-3">
                                 <div class="col-sm-6">
+                                    <label for="tipe" class="col-form-label">Tipe</label>
+                                    <input class="form-control shadow-sm bg-body-tertiary rounded" id="tipe" name="tipe"
+                                        placeholder="Masukkan Tipe" required>
+                                </div>
+                                <div class="col-sm-6">
                                     <label for="jenis_elektronik" class="col-form-label">Jenis Elektronik</label>
                                     <input type="text" class="form-control shadow-sm bg-body-tertiary rounded" id="jenis_elektronik" name="jenis_elektronik"
                                         placeholder="Masukkan Jenis Elektronik"
                                         onkeypress="return hanyaHurufDanSpasi(event)" required>
                                 </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <div class="col-sm-6">
                                     <label for="merek" class="col-form-label">Merek</label>
                                     <input class="form-control shadow-sm bg-body-tertiary rounded" id="merek" name="merek"
                                         placeholder="Masukkan Merek" required>
                                 </div>
-                            </div>
-
-                            <div class="row mb-3">
                                 <div class="col-sm-6">
                                     <label for="tahun_perolehan" class="col-form-label">Tahun Perolehan</label>
                                     <input type="text" class="form-control shadow-sm bg-body-tertiary rounded" id="tahun_perolehan" name="tahun_perolehan"
                                         placeholder="Masukkan Tahun Perolehan" required>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label for="harga_perolehan" class="col-form-label">Harga Perolehan</label>
-                                    <input class="form-control shadow-sm bg-body-tertiary rounded" id="harga_perolehan" name="harga_perolehan"
-                                        placeholder="Masukkan Harga Perolehan" required>
-                                </div>
                             </div>
 
                             <div class="row mb-3">
+                                <div class="col-sm-6">
+                                    <label for="harga_perolehan" class="col-form-label"> Harga Perolehan </label>
+                                    <input id="harga_perolehan" class="form-control shadow-sm bg-body-tertiary rounded" type="text" id="harga_perolehan"
+                                        name="harga_perolehan" placeholder="Masukkan Harga Perolehan" required>
+                                </div>
                                 <div class="col-sm-6">
                                     <label for="masa_guna" class="col-form-label"> Masa Guna </label>
                                     <input id="masa_guna" class="form-control shadow-sm bg-body-tertiary rounded" type="text" id="masa_guna"
                                         name="masa_guna" placeholder="Masukkan Masa Guna" required>
                                 </div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-sm-6">
                                     <label for="lama_pakai" class="col-form-label"> Lama Pakai </label>
                                     <input id="lama_pakai" class="form-control shadow-sm bg-body-tertiary rounded" type="text" id="lama_pakai"
                                         name="lama_pakai" placeholder="Masukkan Lama Pakai" required>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
                                 <div class="col-sm-6">
                                     <label for="kondisi" class="col-form-label"> Kondisi </label>
                                     <input id="kondisi" class="form-control shadow-sm bg-body-tertiary rounded" type="text" id="kondisi"
                                         name="kondisi" placeholder="Masukkan Kondisi" required>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label for="lokasi" class="col-form-label"> Lokasi </label>
-                                    <input id="lokasi" class="form-control shadow-sm bg-body-tertiary rounded" type="text" id="lokasi"
-                                        name="lokasi" placeholder="Masukkan Lokasi" required>
-                                </div>
                             </div>
                             <div class="row mb-3">
+                                <div class="col-sm-12">
+                                    <label for="lokasi" class="col-form-label"> Lokasi </label>
+                                    <input class="form-control shadow-sm bg-body-tertiary rounded" id="lokasi" name="lokasi"
+                                        placeholder="Masukkan Lokasi" required>
+                                </div>
                                 <div class="col-sm-12">
                                     <label for="pengguna" class="col-form-label"> Pengguna </label>
                                     <input class="form-control shadow-sm bg-body-tertiary rounded" id="pengguna" name="pengguna"

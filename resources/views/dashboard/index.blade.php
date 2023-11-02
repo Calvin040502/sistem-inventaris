@@ -101,6 +101,7 @@
                                 <th style="width: 5rem">Nama Admin</th>
                                 <th style="width: 3rem">Tanggal</th>
                                 <th style="width: 4rem">Kode</th>
+                                <th style="width: 4rem">Plat Nomor</th>
                                 <th style="width: 4rem">Jenis Kendaraan</th>
                                 <th style="width: 4rem">Kondisi</th>
                                 <th style="width: 4rem">Masa Guna</th>
@@ -117,6 +118,7 @@
                                     <td>{{ optional($kendaraan->user)->name }}</td>
                                     <td>{{ date('j F Y', strtotime($kendaraan->created_at)) }}</td>
                                     <td>{{ $kendaraan->kode }}</td>
+                                    <td>{{ $kendaraan->plat_nomor }}</td>
                                     <td>{{ $kendaraan->jenis_kendaraan }}</td>
                                     <td>{{ $kendaraan->kondisi }}</td>
                                     <td>{{ $kendaraan->masa_guna }}</td>

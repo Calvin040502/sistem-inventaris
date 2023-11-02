@@ -25,6 +25,7 @@ class KendaraanController extends Controller
     $kendaraans = Kendaraan::where(function ($query) use ($search) {
         $query
             ->where('kode', 'LIKE', '%' . $search . '%')
+            ->orWhere('plat_nomor', 'LIKE', '%' . $search . '%')
             ->orWhere('jenis_kendaraan', 'LIKE', '%' . $search . '%')
             ->orWhere('merek', 'LIKE', '%' . $search . '%')
             ->orWhere('tahun_perolehan', 'LIKE', '%' . $search . '%') 
@@ -77,6 +78,7 @@ public function store(Request $request)
         $serialNumber = 'KDRN-' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
 
         $validatedData = $request->validate([
+            'plat_nomor' => 'required',
             'jenis_kendaraan' => 'required',
             'merek' => 'required',
             'tahun_perolehan' => 'required',
@@ -138,6 +140,7 @@ public function store(Request $request)
     {
         try {
             $rules = [
+                'plat_nomor' => 'required',
                 'jenis_kendaraan' => 'required',
                 'merek' => 'required',
                 'tahun_perolehan' => 'required',

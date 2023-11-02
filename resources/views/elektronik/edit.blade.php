@@ -38,6 +38,18 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
+                                    <label for="tipe">Tipe</label>
+                                    <input type="text"
+                                        class="form-control shadow-sm bg-body-tertiary rounded @error('tipe') is-invalid @enderror"
+                                        id="tipe" name="tipe"
+                                        value="{{ old('tipe', $elektronik->tipe) }}">
+                                    @error('tipe')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
                                     <label for="jenis_elektronik">Jenis Elektronik</label>
                                     <input type="text"
                                         class="form-control shadow-sm bg-body-tertiary rounded @error('jenis_elektronik') is-invalid @enderror"
@@ -49,6 +61,8 @@
                                         </div>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="merek">Merek</label>
                                     <input type="text"
@@ -61,8 +75,6 @@
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="tahun_perolehan">Tahun Perolehan</label>
                                     <input type="text"
@@ -74,6 +86,9 @@
                                         </div>
                                     @enderror
                                 </div>
+                                
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="harga_perolehan">Harga Perolehan</label>
                                     <input type="text"
@@ -86,8 +101,6 @@
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="masa_guna">Masa Guna</label>
                                     <input type="text"
@@ -100,6 +113,8 @@
                                         </div>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="lama_pakai">Lama Pakai</label>
                                     <input type="text"
@@ -112,8 +127,6 @@
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="kondisi">Kondisi</label>
                                     <input type="text"
@@ -126,10 +139,12 @@
                                         </div>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="lokasi">Lokasi</label>
                                     <input type="text"
-                                        class="form-control shadow-sm bg-body-tertiary rounded @error('masa_guna') is-invalid @enderror"
+                                        class="form-control shadow-sm bg-body-tertiary rounded @error('lokasi') is-invalid @enderror"
                                         id="lokasi" name="lokasi"
                                         value="{{ old('lokasi', $elektronik->lokasi) }}">
                                     @error('lokasi')
@@ -138,12 +153,10 @@
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="col mb-3 mt-3">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label for="pengguna">Pengguna</label>
                                     <input type="text"
-                                        class="form-control shadow-sm bg-body-tertiary rounded @error('pengguna') is-invalid @enderror"
+                                        class="form-control shadow-sm bg-body-tertiary rounded @error('masa_guna') is-invalid @enderror"
                                         id="pengguna" name="pengguna"
                                         value="{{ old('pengguna', $elektronik->pengguna) }}">
                                     @error('pengguna')
@@ -152,7 +165,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
+                                </div>
                             <button type="submit" class="btn btn-add shadow-sm">Simpan
                                 Perubahan</button>
                         </form>

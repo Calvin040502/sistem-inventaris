@@ -39,6 +39,11 @@
                     </div>
                     <div class="spacer"></div>
                     <div class="output">
+                        <label>Plat Nomor:</label>
+                        <span>{{ $kendaraan->plat_nomor }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="output">
                         <label>Jenis Kendaraan:</label>
                         <span>{{ $kendaraan->jenis_kendaraan }}</span>
                     </div>
@@ -57,7 +62,8 @@
                         <label>Harga Perolehan:</label>
                         <span>{{ $kendaraan->harga_perolehan }}</span>
                     </div>
-                    <div class="spacer"></div>
+                </div>
+                <div class="column-right">
                     <div class="output">
                         <label>Masa Guna:</label>
                         <span>{{ $kendaraan->masa_guna }}</span>
@@ -67,8 +73,7 @@
                         <label>Lama Pakai:</label>
                         <span>{{ $kendaraan->lama_pakai }}</span>
                     </div>
-                </div>
-                <div class="column-right">
+                    <div class="spacer"></div>
                     <div class="output">
                         <label>Kondisi:</label>
                         <span>{{ $kendaraan->kondisi }}</span>

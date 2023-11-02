@@ -17,6 +17,7 @@ class CreateKendaraansTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('kode');
+            $table->string('plat_nomor');
             $table->string('jenis_kendaraan');
             $table->string('merek');
             $table->string('tahun_perolehan');
