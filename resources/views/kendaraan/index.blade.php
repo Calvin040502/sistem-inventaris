@@ -27,83 +27,48 @@
             {{ date('l, j F Y') }}
         </label>
     </div>
-    <div class="input" style="padding-top: 2rem; margin-right: 2rem">
-        <div class="d-flex justify-content-end mb-3">
-            <form action="/kwitansi" method="GET" class="me-2">
-                <div class="input-group">
-                    <input type="search" class="form-control shadow-sm bg-body-tertiary" placeholder="Search..."
-                        name="search" value="{{ request('search') }}">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary shadow-sm" type="submit"
-                            style="border-top-left-radius: 0; border-bottom-left-radius: 0" title="Search Data">
-                            <img src="{{ asset('icon/search.svg') }}" alt="">
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <div class="btn-group me-2">
-                <a href="{{ route('kendaraan.create') }}" class="btn btn-add shadow-sm" title="Tambah Kwitansi">
-                    <img class="add" src="{{ asset('icon/add_notes.svg') }}" alt="">
-                </a>
-            </div>
-            <div class="btn-group me-2">
-                <a href="#" class="btn btn-filter shadow-sm" id="filterButton" title="Filter Data">
-                    <img class="filter" src="{{ asset('icon/filter.svg') }}" alt="">
-                </a>
-            </div>
-            <div class="btn-group me-2">
-                <a href="#" class="btn btn-refresh shadow-sm" id="refreshButton" title="Refresh Data">
-                    <img style="width: 20px; height: 20px;" class="refresh" src="{{ asset('icon/refresh.svg') }}"
-                        alt="">
-                </a>
-            </div>
-            <div class="btn-group me-2">
-                <button class="btn btn-print shadow-sm" onclick="printKendaraanList()"><img
-                        src="{{ asset('icon/printer.svg') }}" alt=""></button>
-            </div>
-            <div class="btn-group me-2">
-                <button type="button" class="btn btn-print dropdown-toggle shadow-sm" data-bs-toggle="dropdown"
-                    aria-expanded="false" title="Export Data Excel">
-                    <img src="{{ asset('icon/export_notes.svg') }}" alt="">
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ url('kendaraan/export/excel') }}">Export Semua Data</a>
-                    </li>
-                    <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#durationModal">Export
-                            Range Tanggal</button></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    {{-- <div class="input mb-2" style="padding: 1.5rem 24px 1.5rem 24px">
-        <div class="row">
-            <div class="col">
-                <a href="{{ route('kendaraan.create') }}" class="btn btn-add mb-1" style="margin-right: 24px">Tambah</a>
-                <a href="{{ url('kendaraan/export/excel') }}" class="btn btn-export mb-1 ">Export To Excel</a>
-                 <!-- Tombol Print -->
-            </div>
-            <div class="col" style="padding-left:50%">
-                <form action="/kendaraan" method="GET" class="float-right">
-                    <div class="input-group" style="padding-left: ;">
-                        <input type="search" style="border-top-right-radius: 0; border-bottom-right-radius: 0"
-                            class="form-control shadow-sm bg-body-tertiary" placeholder="Search..." name="search"
-                            value="{{ request('search') }}">        
-                        <div class="input-group-append" style="padding-left: 2px;">
-                            <button class="btn btn-primary"
-                                style="border-top-left-radius: 0; border-bottom-left-radius: 0; padding: 4px"
-                                type="submit"><img src="{{ asset('icon/search.svg') }}" alt=""></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> --}}
+
     <section class="kendaraan" style="padding: 1.5rem 24px 1.5rem 24px">
         <h1 class="text-center"> <a href="{{ route('kendaraan') }}" class="text-decoration-none"
                 style="color: black">List Aset Kendaraan</a>
         </h1>
 
-
+        <div class="input" style="padding-top: 2rem;">
+            <div class="d-flex justify-content-end mb-3">
+                <form action="/kendaraan" method="GET" class="me-2">
+                    <div class="input-group">
+                        <input type="search" class="form-control shadow-sm bg-body-tertiary" placeholder="Search..."
+                            name="search" value="{{ request('search') }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary shadow-sm" type="submit"
+                                style="border-top-left-radius: 0; border-bottom-left-radius: 0" title="Search Data">
+                                <img src="{{ asset('icon/search.svg') }}" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="btn-group me-2">
+                    <a href="{{ route('kendaraan.create') }}" class="btn btn-add shadow-sm" title="Tambah Kendaraan">
+                        <img class="add" src="{{ asset('icon/add_notes.svg') }}" alt="">
+                    </a>
+                </div>
+                <div class="btn-group me-2">
+                    <a href="#" class="btn btn-refresh shadow-sm" id="refreshButton" title="Refresh Data">
+                        <img style="width: 20px; height: 20px;" class="refresh" src="{{ asset('icon/refresh.svg') }}"
+                            alt="">
+                    </a>
+                </div>
+                <div class="btn-group me-2">
+                    <button class="btn btn-print shadow-sm" onclick="printKendaraanList()" title="Print Data"><img
+                            src="{{ asset('icon/printer.svg') }}" alt=""></button>
+                </div>
+                <div class="btn-group me-2">
+                    <button type="button" class="btn btn-print shadow-sm" href="{{ url('kendaraan/export/excel') }}" title="Export Data">
+                        <img src="{{ asset('icon/export_notes.svg') }}" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
         @if (session()->has('error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ session()->get('error') }}
@@ -144,7 +109,7 @@
                             style="cursor: pointer;">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $kendaraan->kode }}</td>
-                            <td>{{ $kendaraan->plat_nomor}}</td>
+                            <td>{{ $kendaraan->plat_nomor }}</td>
                             <td>{{ $kendaraan->jenis_kendaraan }}</td>
                             <td>{{ $kendaraan->merek }}</td>
                             <td>{{ $kendaraan->tahun_perolehan }}</td>
@@ -187,91 +152,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // JS Filter Data Menggunakan Tanggal
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButton = document.getElementById('filterButton');
-            const filterDatePickerModal = new bootstrap.Modal(document.getElementById('filterDatePickerModal'));
-
-            filterButton.addEventListener('click', function() {
-                filterDatePickerModal.show();
-            });
-
-            const filterDatePickerModalButton = document.getElementById('filterDatePickerModalButton');
-            filterDatePickerModalButton.addEventListener('click', function() {
-                // Ambil nilai tanggal dari input date picker
-                const startDateText = document.getElementById('start_date_filter').value;
-                const endDateText = document.getElementById('end_date_filter').value;
-
-                // Konversi tanggal dari format "j F Y" ke objek Date
-                const startDate = new Date(startDateText);
-                const endDate = new Date(endDateText);
-
-                // Sembunyikan modal setelah mengambil nilai tanggal
-                filterDatePickerModal.hide();
-
-                // Anda dapat memfilter data di tabel menggunakan startDate dan endDate
-                // Sebagai contoh, Anda dapat menyembunyikan baris yang tidak berada dalam rentang tanggal tertentu.
-
-                // Ambil semua baris dalam tabel
-                const rows = document.querySelectorAll('#kwitansi-table tbody tr');
-
-                // Iterasi melalui setiap baris dan periksa tanggal
-                rows.forEach(row => {
-                    const tanggalText = row.cells[2]
-                        .textContent; // Menggunakan indeks 2 karena kolom tanggal berada pada indeks 2
-                    const tanggal = new Date(tanggalText);
-
-                    // Format tanggal dalam "j F Y"
-                    const formatter = new Intl.DateTimeFormat('id-ID', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
-
-                    if (
-                        formatter.format(tanggal) >= formatter.format(startDate) &&
-                        formatter.format(tanggal) <= formatter.format(endDate)
-                    ) {
-                        // Tampilkan baris jika tanggal berada dalam rentang
-                        row.style.display = '';
-                    } else {
-                        // Sembunyikan baris jika tanggal tidak berada dalam rentang
-                        row.style.display = 'none';
-                    }
-                });
-            });
-        });
-    </script>
-
-
-    <script>
-        //JS Export Data Excell Menggunakan Rentang Tanggal
-        document.addEventListener('DOMContentLoaded', function() {
-            // Temukan elemen tombol ekspor di dalam modal
-            const exportDurationModalButton = document.getElementById('exportDurationModalButton');
-
-            // Tambahkan penanganan acara klik
-            exportDurationModalButton.addEventListener('click', function() {
-                const startDate = document.getElementById('start_date').value;
-                const endDate = document.getElementById('end_date').value;
-
-                // Mengonversi tanggal ke format ISO (YYYY-MM-DD)
-                const isoStartDate = new Date(startDate).toISOString().split('T')[0];
-                const isoEndDate = new Date(endDate).toISOString().split('T')[0];
-
-                // Redirect ke URL ekspor dengan parameter tanggal
-                window.location.href =
-                    `{{ url('kwitansi/export/excel-with-date') }}?start_date=${isoStartDate}&end_date=${isoEndDate}`;
-
-                // Sembunyikan modal setelah pengguna mengklik tombol "Export"
-                const modal = new bootstrap.Modal(document.getElementById('durationModal'));
-                modal.hide();
-            });
-        });
-    </script>
     <script>
         //JS Refresh
         document.addEventListener('DOMContentLoaded', function() {
