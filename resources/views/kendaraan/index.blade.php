@@ -358,7 +358,7 @@
             // Handle click event for sorting by Nama Lengkap
             $("#sortTahun").click(function() {
                 tahun_perolehanSortOrder *= -1;
-                updateTable(4, tahun_perolehanSortOrder);
+                updateTable(5, tahun_perolehanSortOrder);
             });
 
             // Set the initial page number
