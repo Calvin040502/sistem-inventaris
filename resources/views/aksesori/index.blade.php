@@ -27,36 +27,48 @@
             {{ date('l, j F Y') }}
         </label>
     </div>
-    <div class="input mb-2" style="padding: 1.5rem 24px 1.5rem 24px">
-            <div class="row">
-                <div class="col">
-                    <a href="{{ route('aksesori.create') }}" class="btn btn-add mb-1"
-                        style="margin-right: 24px">Tambah</a>
-                    <a href="{{ url('aksesori/export/excel') }}" class="btn btn-export mb-1 ">Export To Excel</a>
-                    <button class="btn btn-print mb-1" onclick="printAksesoriList()">Print</button> <!-- Tombol Print -->
-                </div>
-                <div class="col" style="padding-left:50%">
-                    <form action="/aksesori" method="GET" class="float-right">
-                        <div class="input-group" style="padding-left: ;">
-                            <input type="search" style="border-top-right-radius: 0; border-bottom-right-radius: 0"
-                                class="form-control shadow-sm bg-body-tertiary" placeholder="Search..." name="search"
-                                value="{{ request('search') }}">
-                            <div class="input-group-append" style="padding-left: 2px;">
-                                <button class="btn btn-primary"
-                                    style="border-top-left-radius: 0; border-bottom-left-radius: 0; padding: 4px"
-                                    type="submit"><img src="{{ asset('icon/search.svg') }}" alt=""></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     <section class="aksesori" style="padding: 1.5rem 24px 1.5rem 24px">
         <h1 class="text-center"> <a href="{{ route('aksesori') }}" class="text-decoration-none"
                 style="color: black">List Aset Aksesoris</a>
         </h1>
-        
 
+        <div class="input" style="padding-top: 2rem;">
+            <div class="d-flex justify-content-end mb-3">
+                <form action="/aksesori" method="GET" class="me-2">
+                    <div class="input-group">
+                        <input type="search" class="form-control shadow-sm bg-body-tertiary" placeholder="Search..."
+                            name="search" value="{{ request('search') }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary shadow-sm" type="submit"
+                                style="border-top-left-radius: 0; border-bottom-left-radius: 0" title="Search Data">
+                                <img src="{{ asset('icon/search.svg') }}" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="btn-group me-2">
+                    <a href="{{ route('aksesori.create') }}" class="btn btn-add shadow-sm" title="Tambah Aksesoris">
+                        <img class="add" src="{{ asset('icon/add_notes.svg') }}" alt="">
+                    </a>
+                </div>
+                <div class="btn-group me-2">
+                    <a href="#" class="btn btn-refresh shadow-sm" id="refreshButton" title="Refresh Data">
+                        <img style="width: 20px; height: 20px;" class="refresh" src="{{ asset('icon/refresh.svg') }}"
+                            alt="">
+                    </a>
+                </div>
+                <div class="btn-group me-2">
+                    <button class="btn btn-print shadow-sm" onclick="printAksesoriList()" title="Print Data"><img
+                            src="{{ asset('icon/printer.svg') }}" alt=""></button>
+                </div>
+                <div class="btn-group me-2">
+                    <button type="button" class="btn btn-print shadow-sm" href="{{ url('aksesori/export/excel') }}"
+                        title="Export Data">
+                        <img src="{{ asset('icon/export_notes.svg') }}" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
         @if (session()->has('error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ session()->get('error') }}
@@ -67,7 +79,8 @@
             <table class="table table-hover table-striped text-center" id="aksesori-table" style="margin-bottom: 2rem">
                 <thead>
                     <tr class="bg-info">
-                        <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 6px" id="sortNo">No.</th>
+                        <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 6px"
+                            id="sortNo">No.</th>
                         <th style="width: 4.5rem; cursor: pointer;" id="sortKode">Kode</th>
                         <th style="width: 6rem;">Jenis Aksesoris</th>
                         <th style="width: 5rem;">Merk</th>
@@ -85,7 +98,8 @@
                 </thead>
                 <tbody>
                     @foreach ($aksesoris as $aksesori)
-                        <tr onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';" style="cursor: pointer;">
+                        <tr onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
+                            style="cursor: pointer;">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $aksesori->kode }}</td>
                             <td>{{ $aksesori->jenis_aksesoris }}</td>
@@ -102,11 +116,13 @@
                                     <a class="btn btn-edit-pencil" href="{{ route('aksesori.edit', $aksesori->id) }}">
                                         <img src="{{ asset('icon/pen2.svg') }}" alt="" style="margin: 4px 0 4px 0">
                                     </a>
-            
-                                    <form action="{{ route('aksesori.destroy', $aksesori->id) }}" method="POST" class="d-inline-grid">
+
+                                    <form action="{{ route('aksesori.destroy', $aksesori->id) }}" method="POST"
+                                        class="d-inline-grid">
                                         @method('delete')
                                         @csrf
-                                        <button class="btn btn-delete" onclick="return confirm('Are you sure?')" style="margin: 0; padding: 6.5px 8px 6.5px 8px; border-radius: 100%;">
+                                        <button class="btn btn-delete" onclick="return confirm('Are you sure?')"
+                                            style="margin: 0; padding: 6.5px 8px 6.5px 8px; border-radius: 100%;">
                                             <img src="{{ asset('icon/trash3.svg') }}" alt="">
                                         </button>
                                     </form>
@@ -116,7 +132,7 @@
                     @endforeach
                 </tbody>
             </table>
-            
+
             <div class="pagination" style="display: flex">
             </div>
         </div>
@@ -128,111 +144,125 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        //JS Refresh
+        document.addEventListener('DOMContentLoaded', function() {
+            const refreshButton = document.getElementById('refreshButton');
+
+            refreshButton.addEventListener('click', function() {
+                // Lakukan operasi atau pengiriman data ke server sesuai dengan kebutuhan Anda untuk me-refresh data.
+                // Misalnya, Anda bisa membuat permintaan AJAX ke server untuk memuat ulang data.
+
+                // Setelah memuat ulang data, Anda dapat mereload halaman untuk menampilkan perubahan.
+                location.reload();
+            });
+        });
+    </script>
+    <script>
         $(document).ready(function() {
             // Initialize sorting order for each column
             let noSortOrder = 1;
             let kodeSortOrder = 1;
             let tahun_perolehanSortOrder = 1;
-            
+
             // Get the table element
             const table = $("#aksesori-table");
-            
+
             // Get the pagination element
             const pagination = $(".pagination");
-            
+
             // Set the number of items per page
             const itemsPerPage = 10; // Ganti dengan 10 untuk menampilkan 10 data per halaman
-            
+
             // Function to update the entire table with sorted data
             function updateTable(sortKey, sortOrder) {
                 const $table = $("table tbody");
                 const $rows = $table.find("tr").get();
-            
+
                 $rows.sort(function(a, b) {
                     const aValue = $(a).find("td").eq(sortKey).text();
                     const bValue = $(b).find("td").eq(sortKey).text();
-            
+
                     if (sortKey === 1) {
-                        
+
                         return sortOrder * aValue.localeCompare(bValue);
                     } else if (sortKey === 3) {
-                        
+
                         return sortOrder * aValue.localeCompare(bValue);
                     } else {
-                        
+
                         return sortOrder * (parseFloat(aValue) - parseFloat(bValue));
                     }
                 });
-            
+
                 $table.empty().append($rows);
-            
+
                 // Call the initial sorting to sort the data based on the default column
                 updateTableRows(currentPage);
             }
-            
+
             // Function to hide and show rows based on the current page
             function updateTableRows(currentPage) {
                 // Hide all rows in the table, except the header
                 table.find("tr").not("thead tr").hide();
-            
+
                 // Show the rows for the current page
                 const startIdx = (currentPage - 1) * itemsPerPage;
                 const endIdx = startIdx + itemsPerPage;
                 table.find("tr").slice(startIdx, endIdx).show();
             }
-            
+
             // **Add the header to the table**
             table.append(table.find("thead"));
-            
+
             // Handle click event for sorting by No
             $("#sortNo").click(function() {
                 noSortOrder *= -1;
                 updateTable(0, noSortOrder);
             });
-            
+
             // Handle click event for sorting by No. Kwitansi
             $("#sortKode").click(function() {
                 kodeSortOrder *= -1;
                 updateTable(1, kodeSortOrder);
             });
-            
+
             // Handle click event for sorting by Nama Lengkap
             $("#sortTahun").click(function() {
                 tahun_perolehanSortOrder *= -1;
                 updateTable(4, tahun_perolehanSortOrder);
             });
-            
+
             // Set the initial page number
             let currentPage = 1;
-            
+
             // Calculate the total number of pages
             const totalData = {{ $aksesoris->count() }}; // Ganti dengan jumlah data yang sesungguhnya
             const totalPages = Math.ceil(totalData / itemsPerPage);
-            
+
             // Generate initial pagination buttons
             for (let i = 1; i <= totalPages; i++) {
                 pagination.append(`<a href="#" class="${i === 1 ? 'active' : ''}">${i}</a>`);
             }
-            
+
             // Handle click event for pagination buttons
             pagination.on("click", "a", function() {
                 // Get the clicked page number
                 const newPage = parseInt($(this).text());
-            
+
                 // If the clicked page number is different from the current page number
                 if (newPage !== currentPage) {
                     // Update the current page number
                     currentPage = newPage;
-            
+
                     // Update the active pagination button
                     pagination.find("a").removeClass("active");
                     $(this).addClass("active");
-            
+
                     // Update the table rows
                     updateTableRows(currentPage);
                 }
             });
-            
+
             // Call the initial sorting to sort the data based on the default column
             updateTable(0, 1);
             updateTableRows(currentPage);
@@ -246,9 +276,12 @@
         body * {
             visibility: hidden;
         }
-        .aksesori, .aksesori * {
+
+        .aksesori,
+        .aksesori * {
             visibility: visible;
         }
+
         .aksesori {
             position: absolute;
             left: 0;
@@ -256,9 +289,9 @@
         }
 
         .button.wrapper * {
-                display: none;
-                visibility: none;
-            }
+            display: none;
+            visibility: none;
+        }
     }
 </style>
 
@@ -341,29 +374,51 @@
         border: 1px solid #8e4761
     }
 
+    .btn-refresh {
+        width: 4rem;
+        background-color: #8e4761;
+        color: #ffffff;
+        border-radius: 0.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .btn-refresh:hover {
+        background-color: #acdff8;
+        color: #8e4761;
+        border: 1px solid #8e4761;
+    }
+
+    .btn-refresh:hover img.refresh {
+        content: url('icon/refresh-hover.svg');
+    }
+
     .btn-print {
-            background-color: #ffef0f;
-            color: #404567;
-            border-radius: 0.3rem;
+        background-color: #ffef0f;
+        color: #404567;
+        border-radius: 0.3rem;
     }
 
     .btn-print:hover {
-            background-color: #e5eae6;
-            color: #404567;
-            border: 1px solid #8e4761
+        background-color: #e5eae6;
+        color: #404567;
+        border: 1px solid #8e4761
     }
 
     .btn-export {
-            background-color: #6ac063;
-            color: #404567;
-            border-radius: 0.3rem;
+        background-color: #6ac063;
+        color: #404567;
+        border-radius: 0.3rem;
     }
 
     .btn-export:hover {
-            background-color: #e5eae6;
-            color: #404567;
-            border: 1px solid #8e4761
+        background-color: #e5eae6;
+        color: #404567;
+        border: 1px solid #8e4761
     }
+
     .btn-edit-pencil {
         background-color: #d96652;
         color: #e9ecf1;

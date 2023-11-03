@@ -115,7 +115,7 @@
                             <td>{{ $elektronik->lokasi }}</td>
                             <td>{{ $elektronik->pengguna }}</td>
                             @can('super admin')
-                                <td style="display: flex; justify-content: space-around; align-items: center">
+                                <td style="display: flex; justify-content: space-around; height: 9rem; align-items: center">
                                     <a class="btn btn-edit-pencil" href="{{ route('elektronik.edit', $elektronik->id) }}">
                                         <img src="{{ asset('icon/pen2.svg') }}" alt=""
                                             style="margin: 4px 0 4px 0">
@@ -331,7 +331,6 @@
         margin: 0;
         padding: 0 4px 0 4px;
         vertical-align: middle;
-        height: 6rem;
     }
 
     .pagination {

@@ -122,7 +122,7 @@
                             <td>{{ $kendaraan->masa_pajak }}</td>
                             @can('super admin')
                                 <td
-                                    style="padding-left: 1rem; display: flex; height: 6rem; justify-content: space-around; align-items: center">
+                                    style="padding-left: 1rem; display: flex; height: 9rem; justify-content: space-around; align-items: center">
                                     <a class="btn btn-edit-pencil" href="{{ route('kendaraan.edit', $kendaraan->id) }}">
                                         <img src="{{ asset('icon/pen2.svg') }}" alt=""
                                             style="margin: 4px 0 4px 0">
@@ -337,7 +337,6 @@
         margin: 0;
         padding: 0 4px 0 4px;
         vertical-align: middle;
-        height: 6rem;
     }
 
     .pagination {
