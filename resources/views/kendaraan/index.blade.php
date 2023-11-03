@@ -29,7 +29,7 @@
     </div>
     <div class="input" style="padding-top: 2rem; margin-right: 2rem">
         <div class="d-flex justify-content-end mb-3">
-            <form action="/kwitansi" method="GET" class="me-2">
+            <form action="/kendaraan" method="GET" class="me-2">
                 <div class="input-group">
                     <input type="search" class="form-control shadow-sm bg-body-tertiary" placeholder="Search..."
                         name="search" value="{{ request('search') }}">
