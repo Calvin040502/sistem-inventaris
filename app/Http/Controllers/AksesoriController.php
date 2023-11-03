@@ -41,6 +41,8 @@ class AksesoriController extends Controller
         return view('aksesori.index', ['aksesoris' => $aksesoris]);
     }
 
+    $aksesoris = Aksesori::latest()->get();
+
     return view('aksesori.index', ['aksesoris' => $aksesoris]);
 }
 

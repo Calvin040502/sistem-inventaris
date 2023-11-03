@@ -41,6 +41,8 @@ class FurniturController extends Controller
         return view('furnitur.index', ['furniturs' => $furniturs]);
     }
 
+    $furniturs = Furnitur::latest()->get();
+
     return view('furnitur.index', ['furniturs' => $furniturs]);
 }
 

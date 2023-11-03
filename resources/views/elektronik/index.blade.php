@@ -284,13 +284,13 @@
                     const bValue = $(b).find("td").eq(sortKey).text();
 
                     if (sortKey === 1) {
-
+                        // Sorting Kode
                         return sortOrder * aValue.localeCompare(bValue);
-                    } else if (sortKey === 3) {
-
+                    } else if (sortKey === 5) {
+                        // Sorting Tahun Perolehan
                         return sortOrder * aValue.localeCompare(bValue);
                     } else {
-
+                        // Sorting other columns as numbers
                         return sortOrder * (parseFloat(aValue) - parseFloat(bValue));
                     }
                 });
@@ -321,16 +321,16 @@
                 updateTable(0, noSortOrder);
             });
 
-            // Handle click event for sorting by No. Kwitansi
+            // Handle click event for sorting by Kode
             $("#sortKode").click(function() {
                 kodeSortOrder *= -1;
                 updateTable(1, kodeSortOrder);
             });
 
-            // Handle click event for sorting by Nama Lengkap
+            // Handle click event for sorting by Tahun Perolehan
             $("#sortTahun").click(function() {
                 tahun_perolehanSortOrder *= -1;
-                updateTable(4, tahun_perolehanSortOrder);
+                updateTable(5, tahun_perolehanSortOrder);
             });
 
             // Set the initial page number

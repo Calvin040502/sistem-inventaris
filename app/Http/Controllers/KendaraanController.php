@@ -43,6 +43,8 @@ class KendaraanController extends Controller
         return view('kendaraan.index', ['kendaraans' => $kendaraans]);
     }
 
+    $kendaraans = Kendaraan::latest()->get();
+
     return view('kendaraan.index', ['kendaraans' => $kendaraans]);
 }
 

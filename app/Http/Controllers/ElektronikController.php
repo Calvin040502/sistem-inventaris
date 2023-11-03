@@ -42,6 +42,8 @@ class ElektronikController extends Controller
         return view('elektronik.index', ['elektroniks' => $elektroniks]);
     }
 
+    $elektroniks = Elektronik::latest()->get();
+
     return view('elektronik.index', ['elektroniks' => $elektroniks]);
 }
 
