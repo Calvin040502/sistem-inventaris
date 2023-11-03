@@ -22,7 +22,7 @@ class AksesoriController extends Controller
     $search = $request->input('search');
 
     // Filter Aksesori berdasarkan pencarian
-    $aksesoris = Aksesori::where(function ($query) use ($search) {
+    $aksesoris = Aksesori::latest()->where(function ($query) use ($search) {
         $query
             ->where('kode', 'LIKE', '%' . $search . '%')
             ->orWhere('jenis_aksesoris', 'LIKE', '%' . $search . '%')
@@ -40,8 +40,6 @@ class AksesoriController extends Controller
         session()->flash('error', 'Aset tidak ditemukan');
         return view('aksesori.index', ['aksesoris' => $aksesoris]);
     }
-
-    $aksesoris = Aksesori::latest()->get();
 
     return view('aksesori.index', ['aksesoris' => $aksesoris]);
 }

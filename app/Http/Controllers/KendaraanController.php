@@ -20,9 +20,9 @@ class KendaraanController extends Controller
     public function index(Request $request)
 {
     $search = $request->input('search');
-
-    // Filter Kendaraan berdasarkan pencarian
-    $kendaraans = Kendaraan::where(function ($query) use ($search) {
+    
+    // Mengambil data Kendaraan dengan urutan terbaru
+    $kendaraans = Kendaraan::latest()->where(function ($query) use ($search) {
         $query
             ->where('kode', 'LIKE', '%' . $search . '%')
             ->orWhere('plat_nomor', 'LIKE', '%' . $search . '%')
@@ -40,13 +40,11 @@ class KendaraanController extends Controller
 
     if ($kendaraans->isEmpty()) {
         session()->flash('error', 'Aset tidak ditemukan');
-        return view('kendaraan.index', ['kendaraans' => $kendaraans]);
     }
-
-    $kendaraans = Kendaraan::latest()->get();
 
     return view('kendaraan.index', ['kendaraans' => $kendaraans]);
 }
+
 
 public function create()
 {

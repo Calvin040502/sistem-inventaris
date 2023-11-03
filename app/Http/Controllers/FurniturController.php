@@ -22,7 +22,7 @@ class FurniturController extends Controller
     $search = $request->input('search');
 
     // Filter Furnitur berdasarkan pencarian
-    $furniturs = Furnitur::where(function ($query) use ($search) {
+    $furniturs = Furnitur::latest()->where(function ($query) use ($search) {
         $query
             ->where('kode', 'LIKE', '%' . $search . '%')
             ->orWhere('jenis_furniture', 'LIKE', '%' . $search . '%')
@@ -40,8 +40,6 @@ class FurniturController extends Controller
         session()->flash('error', 'Aset tidak ditemukan');
         return view('furnitur.index', ['furniturs' => $furniturs]);
     }
-
-    $furniturs = Furnitur::latest()->get();
 
     return view('furnitur.index', ['furniturs' => $furniturs]);
 }

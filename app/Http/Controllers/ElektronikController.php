@@ -22,7 +22,7 @@ class ElektronikController extends Controller
     $search = $request->input('search');
 
     // Filter Elektronik berdasarkan pencarian
-    $elektroniks = Elektronik::where(function ($query) use ($search) {
+    $elektroniks = Elektronik::latest()->where(function ($query) use ($search) {
         $query
             ->where('kode', 'LIKE', '%' . $search . '%')
             ->orWhere('tipe', 'LIKE', '%' . $search . '%')
@@ -41,8 +41,6 @@ class ElektronikController extends Controller
         session()->flash('error', 'Aset tidak ditemukan');
         return view('elektronik.index', ['elektroniks' => $elektroniks]);
     }
-
-    $elektroniks = Elektronik::latest()->get();
 
     return view('elektronik.index', ['elektroniks' => $elektroniks]);
 }
