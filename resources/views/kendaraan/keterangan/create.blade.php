@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Tambah Aset Kendaraan</title>
+    <title>Tambah Keterangan</title>
     <link rel="icon" href="{{ asset('img/logoremove.png') }}">
 </head>
 
@@ -78,6 +78,27 @@
         formatCurrency(this);
     });
 </script>
+
+<script>
+    document.getElementById('kilometer').addEventListener('input', function (e) {
+        // Mengambil nilai dari input kilometer
+        let input = e.target.value;
+
+        // Menghapus semua karakter selain angka
+        let numericValue = input.replace(/\D/g, '');
+
+        // Menggunakan fungsi Number() untuk mengonversi ke angka
+        let numericNumber = Number(numericValue);
+
+        // Menggunakan fungsi toLocaleString() untuk menambahkan titik sebagai pemisah ribuan
+        let formattedValue = numericNumber.toLocaleString();
+
+        // Mengganti nilai input dengan yang sudah diformat
+        e.target.value = formattedValue;
+    });
+</script>
+
+
 </body>
 <style>
     .spacer {
