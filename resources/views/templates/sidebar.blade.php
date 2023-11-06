@@ -83,12 +83,16 @@
     .offcanvas-body #menu li.nav-item.active img.elektronika {
         transform: scale(1.2);
         content: url('icon/elektronik-hover.svg');
+        height: 28px;
+        width: 28px;
     }
 
     .offcanvas-body #menu li.nav-item:hover img.furniture,
     .offcanvas-body #menu li.nav-item.active img.furniture {
         transform: scale(1.2);
         content: url('icon/furnitur-hover.svg');
+        height: 28px;
+        width: 28px;
     }
 
     .offcanvas-body #menu li.nav-item:hover img.aksesoris,
