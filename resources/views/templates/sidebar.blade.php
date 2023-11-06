@@ -20,12 +20,12 @@
             </li>
             <li class="nav-item {{ Request::is('elektronik') ? 'active' : '' }}">
                 <a href="{{ route('elektronik') }}" class="nav-link text-truncate">
-                    <img class="elektronik" src="{{ asset('icon/elektronik.svg') }}" alt="">
+                    <img class="elektronika" src="{{ asset('icon/elektronik.svg') }}" alt="">
                     List Aset Elektronik</a>
             </li>
             <li class="nav-item {{ Request::is('furnitur') ? 'active' : '' }}">
                 <a href="{{ route('furnitur') }}" class="nav-link text-truncate">
-                    <img class="furnitur" src="{{ asset('icon/furnitur.svg') }}" alt="">
+                    <img class="furniture" src="{{ asset('icon/furnitur.svg') }}" alt="">
                     List Aset Furniture</a>
             </li>
             <li class="nav-item {{ Request::is('aksesori') ? 'active' : '' }}">
@@ -79,20 +79,16 @@
         width: 28px;
     }
 
-    .offcanvas-body #menu li.nav-item:hover img.elektronik,
-    .offcanvas-body #menu li.nav-item.active img.elektronik {
+    .offcanvas-body #menu li.nav-item:hover img.elektronika,
+    .offcanvas-body #menu li.nav-item.active img.elektronika {
         transform: scale(1.2);
         content: url('icon/elektronik-hover.svg');
-        height: 28px;
-        width: 28px;
     }
 
-    .offcanvas-body #menu li.nav-item:hover img.furnitur,
-    .offcanvas-body #menu li.nav-item.active img.furnitur {
+    .offcanvas-body #menu li.nav-item:hover img.furniture,
+    .offcanvas-body #menu li.nav-item.active img.furniture {
         transform: scale(1.2);
         content: url('icon/furnitur-hover.svg');
-        height: 28px;
-        width: 28px;
     }
 
     .offcanvas-body #menu li.nav-item:hover img.aksesoris,
@@ -111,19 +107,21 @@
         width: 28px;
     }
 
+    .offcanvas-body #menu li.nav-item a.nav-link {
+        color: #8ba8d9;
+        width: 355px;
+        display: flex;
+        align-items: center;
+        padding-left: 8px;
+        transition: all 0.3s ease;
+        height: 55px;
+    }
+
     .offcanvas-body #menu li.nav-item a.nav-link:hover,
     .offcanvas-body #menu li.nav-item.active a.nav-link {
         background-color: #EDD9EB;
         color: #0A58CA;
         transition: all 0.3s ease;
-    }
-
-    .offcanvas-body #menu li.nav-item a.nav-link {
-        color: #8ba8d9;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        padding-left: 6px;
-        transition: all 0.3s ease;
+        width: 355px;
     }
 </style>
