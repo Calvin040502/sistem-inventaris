@@ -7,37 +7,38 @@
     <div class="offcanvas-body px-0">
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
             @can('super admin')
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
                     <a href="{{ route('dashboard') }}" class="nav-link text-truncate">
                         <img class="home" src="{{ asset('icon/home.svg') }}" alt=""> Dashboard
                     </a>
                 </li>
             @endcan
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('kendaraan') ? 'active' : '' }}">
                 <a href="{{ route('kendaraan') }}" class="nav-link text-truncate">
-                    <img class="article" src="{{ asset('icon/article.svg') }}" alt="">
+                    <img class="transportasi" src="{{ asset('icon/transportasi.svg') }}" alt="">
                     List Aset Kendaraan</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('elektronik') ? 'active' : '' }}">
                 <a href="{{ route('elektronik') }}" class="nav-link text-truncate">
-                    <img class="article" src="{{ asset('icon/article.svg') }}" alt="">
+                    <img class="elektronik" src="{{ asset('icon/elektronik.svg') }}" alt="">
                     List Aset Elektronik</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('furnitur') ? 'active' : '' }}">
                 <a href="{{ route('furnitur') }}" class="nav-link text-truncate">
-                    <img class="article" src="{{ asset('icon/article.svg') }}" alt="">
+                    <img class="furnitur" src="{{ asset('icon/furnitur.svg') }}" alt="">
                     List Aset Furniture</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('aksesori') ? 'active' : '' }}">
                 <a href="{{ route('aksesori') }}" class="nav-link text-truncate">
-                    <img class="article" src="{{ asset('icon/article.svg') }}" alt="">
+                    <img class="aksesoris" src="{{ asset('icon/aksesoris.svg') }}" alt="">
                     List Aset Aksesoris</a>
             </li>
             @can('super admin')
-                <li class="nav-item">
+                <li class="nav-item {{ request()->is('manage-users') ? 'active' : '' }}">
                     <a href="{{ route('manage.users') }}" class="nav-link text-truncate">
                         <img class="user" src="{{ asset('icon/user.svg') }}" alt="">
-                        Manage Admin</a>
+                        Manage Admin
+                    </a>
                 </li>
             @endcan
 
@@ -62,22 +63,56 @@
         transition: all 0.3s ease;
     }
 
-    .offcanvas-body #menu li.nav-item:hover img.home {
+    .offcanvas-body #menu li.nav-item:hover img.home,
+    .offcanvas-body #menu li.nav-item.active img.home {
         transform: scale(1.2);
         content: url('icon/homehover.svg');
+        height: 28px;
+        width: 28px;
     }
 
-    .offcanvas-body #menu li.nav-item:hover img.article {
+    .offcanvas-body #menu li.nav-item:hover img.transportasi,
+    .offcanvas-body #menu li.nav-item.active img.transportasi {
         transform: scale(1.2);
-        content: url('icon/articlehover.svg');
+        content: url('icon/transportasi-hover.svg');
+        height: 28px;
+        width: 28px;
     }
 
-    .offcanvas-body #menu li.nav-item:hover img.user {
+    .offcanvas-body #menu li.nav-item:hover img.elektronik,
+    .offcanvas-body #menu li.nav-item.active img.elektronik {
+        transform: scale(1.2);
+        content: url('icon/elektronik-hover.svg');
+        height: 28px;
+        width: 28px;
+    }
+
+    .offcanvas-body #menu li.nav-item:hover img.furnitur,
+    .offcanvas-body #menu li.nav-item.active img.furnitur {
+        transform: scale(1.2);
+        content: url('icon/furnitur-hover.svg');
+        height: 28px;
+        width: 28px;
+    }
+
+    .offcanvas-body #menu li.nav-item:hover img.aksesoris,
+    .offcanvas-body #menu li.nav-item.active img.aksesoris {
+        transform: scale(1.2);
+        content: url('icon/aksesoris-hover.svg');
+        height: 28px;
+        width: 28px;
+    }
+
+    .offcanvas-body #menu li.nav-item:hover img.user,
+    .offcanvas-body #menu li.nav-item.active img.user {
         transform: scale(1.2);
         content: url('icon/userhover.svg');
+        height: 28px;
+        width: 28px;
     }
 
-    .offcanvas-body #menu li.nav-item a.nav-link:hover {
+    .offcanvas-body #menu li.nav-item a.nav-link:hover,
+    .offcanvas-body #menu li.nav-item.active a.nav-link {
         background-color: #EDD9EB;
         color: #0A58CA;
         transition: all 0.3s ease;
