@@ -111,11 +111,17 @@
                                         <td>{{ $keterangan->kilometer }}</td>
                                         <td>{{ $keterangan->total_harga }}</td>
                                         <td>
-                                            <a href="{{ route('kendaraan.keterangan.edit', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}" class="btn btn-primary">Edit</a>
-                                            <form action="{{ route('kendaraan.keterangan.destroy', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}" method="POST" style="display: inline;">
+                                            <a href="{{ route('kendaraan.keterangan.edit', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}"
+                                                class="btn btn-primary">Edit</a>
+
+
+                                            <form
+                                                action="{{ route('kendaraan.keterangan.destroy', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}"
+                                                method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -166,6 +172,7 @@
     .spacer {
         margin: 20px 0;
     }
+
     .date {
         margin-right: 16px;
     }

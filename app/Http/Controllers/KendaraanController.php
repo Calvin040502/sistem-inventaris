@@ -107,7 +107,7 @@ class KendaraanController extends Controller
 
     public function detail($id)
     {
-        $kendaraan = $this->kendaraans->find($id);
+        $kendaraan = Kendaraan::find($id);
 
         if (!$kendaraan) {
             session()->flash('error', 'Aset tidak ditemukan');
@@ -122,11 +122,10 @@ class KendaraanController extends Controller
 
     public function print($id)
     {
-        $kendaraan = $this->kendaraans->find($id);
+        $kendaraan = Kendaraan::find($id);
 
         if (!$kendaraan) {
             session()->flash('error', 'Aset tidak ditemukan');
-
             return redirect('/kendaraan');
         }
 

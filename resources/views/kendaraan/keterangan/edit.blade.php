@@ -19,7 +19,7 @@
                 <a style="width: 6rem;" class="btn btn-back" href="{{ route('kendaraan') }}">Kembali</a>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('kendaraan.keterangan.update', $keterangan->id) }}">
+                    <form method="POST" action="{{ route('kendaraan.keterangan.update', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}">
                         @csrf
                         @method('PUT')
 

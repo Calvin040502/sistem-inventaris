@@ -52,10 +52,11 @@ Route::delete('/kendaraan/{kendaraan:id}', [KendaraanController::class, 'destroy
 Route::get('/kendaraan/detail/{kendaraan:id}/print', [KendaraanController::class, 'print'])->name('kendaraan.print')->middleware('can:admin');
 Route::get('/kendaraan/export/excel', [KendaraanController::class, 'export_excel'])->middleware('can:admin');
 
+Route::get('/kendaraan/{kendaraan}/keterangan/{keterangan}/edit', [KeteranganController::class, 'edit'])->name('kendaraan.keterangan.edit');
 Route::get('/kendaraan/{keterangan:id}/keterangan', [KeteranganController::class, 'index'])->name('kendaraan.keterangan.index');
 Route::get('/kendaraan/{keterangan:id}/keterangan/create', [KeteranganController::class, 'create'])->name('kendaraan.keterangan.create');
 Route::post('/kendaraan/{keterangan:id}/keterangan', [KeteranganController::class, 'store'])->name('kendaraan.keterangan.store');
-Route::get('/kendaraan/{kendaraan:id}/keterangan/{keterangan:id}/edit', [KeteranganController::class, 'edit'])->name('kendaraan.keterangan.edit');
+// Route::get('/kendaraan/{kendaraan:id}/keterangan/{keterangan:id}/edit', [KeteranganController::class, 'edit'])->name('kendaraan.keterangan.edit');
 Route::put('/kendaraan/{kendaraan:id}/keterangan/{keterangan:id}', [KeteranganController::class, 'update'])->name('kendaraan.keterangan.update');
 Route::delete('/kendaraan/{kendaraan:id}/keterangan/{keterangan:id}', [KeteranganController::class, 'destroy'])->name('kendaraan.keterangan.destroy');
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kendaraan; 
+use App\Models\Kendaraan;
 use App\Models\Keterangan;
 
 class KeteranganController extends Controller
@@ -14,14 +14,14 @@ class KeteranganController extends Controller
 
         return view('kendaraan.detail', [
             'keterangans' => $keterangans,
-            'keterangan' => $keterangan
+            'keterangan' => $keterangan,
         ]);
     }
 
     public function create($keterangan)
     {
         return view('kendaraan.keterangan.create', [
-            'keterangan' => $keterangan
+            'keterangan' => $keterangan,
         ]);
     }
 
@@ -40,10 +40,15 @@ class KeteranganController extends Controller
         return redirect()->route('kendaraan.detail', $id);
     }
 
-    public function edit($id)
+    public function edit($kendaraan, $keterangan)
     {
-        $keterangan = Keterangan::find($id);
-        return view('kendaraan.keterangan.edit', compact('keterangan'));
+        $kendaraanModel = Kendaraan::findOrFail($kendaraan);
+        $keteranganModel = Keterangan::findOrFail($keterangan);
+
+        return view('kendaraan.keterangan.edit', [
+            'kendaraan' => $kendaraanModel,
+            'keterangan' => $keteranganModel,
+        ]);
     }
 
     // Metode untuk meng-update data setelah edit
@@ -64,11 +69,13 @@ class KeteranganController extends Controller
     {
         $keterangan = Keterangan::find($id);
 
-    if ($keterangan) {
-        $keterangan->delete();
-        return redirect()->route('kendaraan.detail');
-    } else {
-        return redirect()->route('kendaraan.detail')->with('error', 'Data tidak ditemukan');
-    }
+        if ($keterangan) {
+            $keterangan->delete();
+            return redirect()->route('kendaraan.detail');
+        } else {
+            return redirect()
+                ->route('kendaraan.detail')
+                ->with('error', 'Data tidak ditemukan');
+        }
     }
 }
