@@ -37,7 +37,7 @@ class KeteranganController extends Controller
 
         $keterangan->save();
 
-        return redirect()->route('kendaraan.detail', $id);
+        return redirect()->route('kendaraan.detail', ['kendaraan' => $id]);
     }
 
     public function edit($kendaraan, $keterangan)
@@ -55,13 +55,20 @@ class KeteranganController extends Controller
     public function update(Request $request, $id)
     {
         $keterangan = Keterangan::find($id);
+
+        if (!$keterangan) {
+            return redirect()
+                ->route('kendaraan.detail')
+                ->with('error', 'Data tidak ditemukan');
+        }
+
         $keterangan->tanggal = $request->input('tanggal');
         $keterangan->keterangan = $request->input('keterangan');
         $keterangan->kilometer = $request->input('kilometer');
         $keterangan->total_harga = $request->input('total_harga');
         $keterangan->save();
 
-        return redirect()->route('kendaraan.detail'); // Ganti dengan rute yang sesuai
+        return redirect()->route('kendaraan.detail', ['kendaraan' => $keterangan->kendaraan->id]);
     }
 
     // Metode untuk menghapus data

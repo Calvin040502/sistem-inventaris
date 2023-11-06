@@ -56,7 +56,6 @@ Route::get('/kendaraan/{kendaraan}/keterangan/{keterangan}/edit', [KeteranganCon
 Route::get('/kendaraan/{keterangan:id}/keterangan', [KeteranganController::class, 'index'])->name('kendaraan.keterangan.index');
 Route::get('/kendaraan/{keterangan:id}/keterangan/create', [KeteranganController::class, 'create'])->name('kendaraan.keterangan.create');
 Route::post('/kendaraan/{keterangan:id}/keterangan', [KeteranganController::class, 'store'])->name('kendaraan.keterangan.store');
-// Route::get('/kendaraan/{kendaraan:id}/keterangan/{keterangan:id}/edit', [KeteranganController::class, 'edit'])->name('kendaraan.keterangan.edit');
 Route::put('/kendaraan/{kendaraan:id}/keterangan/{keterangan:id}', [KeteranganController::class, 'update'])->name('kendaraan.keterangan.update');
 Route::delete('/kendaraan/{kendaraan:id}/keterangan/{keterangan:id}', [KeteranganController::class, 'destroy'])->name('kendaraan.keterangan.destroy');
 
