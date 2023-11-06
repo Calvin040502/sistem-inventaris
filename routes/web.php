@@ -55,6 +55,9 @@ Route::get('/kendaraan/export/excel', [KendaraanController::class, 'export_excel
 Route::get('/kendaraan/{keterangan:id}/keterangan', [KeteranganController::class, 'index'])->name('kendaraan.keterangan.index');
 Route::get('/kendaraan/{keterangan:id}/keterangan/create', [KeteranganController::class, 'create'])->name('kendaraan.keterangan.create');
 Route::post('/kendaraan/{keterangan:id}/keterangan', [KeteranganController::class, 'store'])->name('kendaraan.keterangan.store');
+Route::get('/kendaraan/{kendaraan:id}/keterangan/{keterangan:id}/edit', [KeteranganController::class, 'edit'])->name('kendaraan.keterangan.edit');
+Route::put('/kendaraan/{kendaraan:id}/keterangan/{keterangan:id}', [KeteranganController::class, 'update'])->name('kendaraan.keterangan.update');
+Route::delete('/kendaraan/{kendaraan:id}/keterangan/{keterangan:id}', [KeteranganController::class, 'destroy'])->name('kendaraan.keterangan.destroy');
 
 Route::get('/elektronik', [ElektronikController::class, 'index'])->name('elektronik')->middleware('can:admin');
 Route::get('/elektronik/create', [ElektronikController::class, 'create'])->name('elektronik.create')->middleware('can:admin');
@@ -105,5 +108,3 @@ Route::post('/manage-users/{userId}/assign-role', [ManageUsersController::class,
 
 Route::get('/user/{userId}/remove-role', [ManageUsersController::class, 'showRemoveRoleForm'])->name('remove.role')->middleware('can:super admin');
 Route::post('/user/{userId}/remove-role', [ManageUsersController::class, 'removeRole'])->name('remove.role')->middleware('can:super admin');
-
-Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');

@@ -89,9 +89,9 @@
                             class="btn btn-edit">Edit</button>
                     </div>
                 </div>
-
+                <div class="spacer"></div>
                 <div class="content-output-service">
-                    <h1>Riwayat Service</h1>
+                    <h1>Keterangan</h1>
                     <div class="col">
                         <table class="table">
                             <thead>
@@ -111,8 +111,12 @@
                                         <td>{{ $keterangan->kilometer }}</td>
                                         <td>{{ $keterangan->total_harga }}</td>
                                         <td>
-                                            <button>edit</button>
-                                            <button>Delete</button>
+                                            <a href="{{ route('kendaraan.keterangan.edit', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}" class="btn btn-primary">Edit</a>
+                                            <form action="{{ route('kendaraan.keterangan.destroy', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -124,9 +128,8 @@
                 </div>
             </div>
         </div>
-
     </div>
-
+    <div class="spacer"></div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -160,6 +163,9 @@
     @extends('templates.footer')
 </body>
 <style>
+    .spacer {
+        margin: 20px 0;
+    }
     .date {
         margin-right: 16px;
     }
@@ -169,6 +175,30 @@
         flex-direction: column;
         min-height: 100vh;
         margin: 0;
+    }
+
+    .btn-back {
+        background-color: #82bcde;
+        color: #404567;
+        border-radius: 0.3rem;
+    }
+
+    .btn-back:hover {
+        background-color: #5a8db6;
+        color: #ffffff;
+        border: 1px solid #82bcde;
+    }
+
+    .btn-edit {
+        background-color: #d96652;
+        color: #e9ecf1;
+        border-radius: 0.3rem
+    }
+
+    .btn-edit:hover {
+        background-color: #8e4761;
+        color: #e9ecf1;
+        border: 1px solid #f39c7d
     }
 </style>
 
