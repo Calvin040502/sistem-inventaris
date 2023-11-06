@@ -36,7 +36,7 @@
             <div class="d-flex justify-content-end mb-3">
                 <form action="/furnitur" method="GET" class="me-2">
                     <div class="input-group">
-                        <input type="search" class="form-control shadow-sm bg-body-tertiary" placeholder="Search..."
+                        <input type="search" class="form-control shadow-sm bg-body-tertiary" placeholder="Cari data aksesoris...
                             name="search" value="{{ request('search') }}">
                         <div class="input-group-append">
                             <button class="btn btn-primary shadow-sm" type="submit"
