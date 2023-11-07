@@ -11,7 +11,7 @@ class KeteranganController extends Controller
     public function index($keterangan)
     {
         $keterangans = Keterangan::all();
-
+        
         return view('kendaraan.detail', [
             'keterangans' => $keterangans,
             'keterangan' => $keterangan,

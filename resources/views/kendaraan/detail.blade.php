@@ -104,7 +104,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($keterangans as $keterangan)
+                                @foreach ($keterangans->sortByDesc('tanggal') as $keterangan)
                                     <tr>
                                         <td>{{ date('j F Y', strtotime($keterangan->tanggal)) }}</td>
                                         <td>{{ $keterangan->keterangan }}</td>

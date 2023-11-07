@@ -90,15 +90,13 @@
         // Menggunakan fungsi Number() untuk mengonversi ke angka
         let numericNumber = Number(numericValue);
 
-        // Menggunakan fungsi toLocaleString() untuk menambahkan titik sebagai pemisah ribuan
-        let formattedValue = numericNumber.toLocaleString();
+        // Menggunakan fungsi toLocaleString() dengan opsi 'id-ID' untuk mengatur pemisah ribuan sebagai titik
+        let formattedValue = numericNumber.toLocaleString('id-ID');
 
         // Mengganti nilai input dengan yang sudah diformat
         e.target.value = formattedValue;
     });
 </script>
-
-
 </body>
 <style>
     .spacer {
