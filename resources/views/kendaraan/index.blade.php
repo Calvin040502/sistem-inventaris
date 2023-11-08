@@ -79,7 +79,7 @@
             <table class="table table-hover table-striped text-center" id="kendaraan-table" style="margin-bottom: 2rem">
                 <thead>
                     <tr class="bg-info">
-                        <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 6px"
+                        <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 10px"
                             id="sortNo">No.</th>
                         <th style="width: 4.5rem; cursor: pointer;" id="sortKode">Kode</th>
                         <th style="width: 6rem;">Plat Nomor</th>
@@ -98,7 +98,7 @@
                         @endcannot">
                             Masa Pajak</th>
                         @can('super admin')
-                            <th style="width: 6.7rem; border-top-right-radius: 6px"> Action</th>
+                            <th style="width: 6.7rem; border-top-right-radius: 10px"> Action</th>
                         @endcan
                         </th>
                     </tr>

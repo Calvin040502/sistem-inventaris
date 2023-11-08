@@ -15,125 +15,130 @@
     @include('templates.navbar')
     <div class="body-wrapper">
         <div class="date">
-            <label class="date float-end" style="font-weight: 500">
+            <label class="date float-end">
                 {{ date('l, j F Y') }}
             </label>
-            <div class="content">
-                <div class="content-title">
-                    <h1>Detail Kendaraan</h1>
+        </div>
+        <div class="content">
+            <div class="content-title">
+                <h1>DETAIL KENDARAAN</h1>
+            </div>
+            <div class="row content-output-table">
+                <div class="button-ouput">
+                    <a style="width: 6rem;" class="btn btn-back" href="{{ route('kendaraan') }}"
+                        title="List Kendaraan">Kembali</a>
+                    <button style="width: 6rem;" type="button"
+                        onclick="window.location.href='{{ route('kendaraan.edit', $kendaraan->id) }}'"
+                        class="btn btn-edit" title="Edit Data Kendaraan">Edit</button>
                 </div>
-                <div class="row content-output-table">
-                    <div class="col output-column">
-                        <div class="output">
-                            <label for="">Kode</label>
-                            <label for="">:</label>
-                            <span>{{ $kendaraan->kode }}</span>
-                        </div>
-                        <div class="output">
-                            <label for="">Jenis Kendaraan</label>
-                            <label for="">:</label>
-                            <span>{{ $kendaraan->jenis_kendaraan }}</span>
-                        </div>
-                        <div class="output">
-                            <label for="">Merek Kendaraan</label>
-                            <label for="">:</label>
-                            <span>{{ $kendaraan->merek }}</span>
-                        </div>
-                        <div class="output">
-                            <label for="">Plat Nomor</label>
-                            <label for="">:</label>
-                            <span>{{ $kendaraan->plat_nomor }}</span>
-                        </div>
-                        <div class="output">
-                            <label for="">Tahun Perolehan</label>
-                            <label for="">:</label>
-                            <span>{{ $kendaraan->tahun_perolehan }}</span>
-                        </div>
-                        <div class="output">
-                            <label for="">Harga Perolehan</label>
-                            <label for="">:</label>
-                            <span>{{ $kendaraan->harga_perolehan }}</span>
-                        </div>
+                <div class="col output-column-one">
+                    <div class="output">
+                        <label class="label-title" for="">Kode</label>
+                        <label for="">:</label>
+                        <span>{{ $kendaraan->kode }}</span>
                     </div>
-                    <div class="col output-column">
-                        <div class="output">
-                            <label for="">Kondisi</label>
-                            <label for="">:</label>
-                            <span>{{ $kendaraan->kondisi }}</span>
-                        </div>
-                        <div class="output">
-                            <label for="">Masa Guna</label>
-                            <label for="">:</label>
-                            <span>{{ $kendaraan->masa_guna }}</span>
-                        </div>
-                        <div class="output">
-                            <label for="">Masa Pajak</label>
-                            <label for="">:</label>
-                            <span>{{ $kendaraan->masa_pajak }}</span>
-                        </div>
-                        <div class="output">
-                            <label for="">Lama Pakai</label>
-                            <label for="">:</label>
-                            <span>{{ $kendaraan->lama_pakai }}</span>
-                        </div>
-                        <div class="output">
-                            <label for="">Pengguna</label>
-                            <label for="">:</label>
-                            <span>{{ $kendaraan->pengguna }}</span>
-                        </div>
+                    <div class="output">
+                        <label class="label-title" for="">Jenis Kendaraan</label>
+                        <label for="">:</label>
+                        <span>{{ $kendaraan->jenis_kendaraan }}</span>
                     </div>
-                    <div class="button-ouput">
-                        <a style="width: 6rem;" class="btn btn-back" href="{{ route('kendaraan') }}">Kembali</a>
-                        <button style="width: 6rem;" type="button"
-                            onclick="window.location.href='{{ route('kendaraan.edit', $kendaraan->id) }}'"
-                            class="btn btn-edit">Edit</button>
+                    <div class="output">
+                        <label class="label-title" for="">Merek Kendaraan</label>
+                        <label for="">:</label>
+                        <span>{{ $kendaraan->merek }}</span>
+                    </div>
+                    <div class="output">
+                        <label class="label-title" for="">Plat Nomor</label>
+                        <label for="">:</label>
+                        <span>{{ $kendaraan->plat_nomor }}</span>
+                    </div>
+                    <div class="output">
+                        <label class="label-title" for="">Tahun Perolehan</label>
+                        <label for="">:</label>
+                        <span>{{ $kendaraan->tahun_perolehan }}</span>
+                    </div>
+                    <div class="output">
+                        <label class="label-title" for="">Harga Perolehan</label>
+                        <label for="">:</label>
+                        <span>{{ $kendaraan->harga_perolehan }}</span>
                     </div>
                 </div>
-                <div class="spacer"></div>
-                <div class="content-output-service">
-                    <h1>Keterangan</h1>
-                    <div class="col">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Tanggal</th>
-                                    <th>Keterangan</th>
-                                    <th>Kilometer</th>
-                                    <th>Total Harga</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($keterangans->sortByDesc('tanggal') as $keterangan)
-                                    <tr>
-                                        <td>{{ date('j F Y', strtotime($keterangan->tanggal)) }}</td>
-                                        <td>{{ $keterangan->keterangan }}</td>
-                                        <td>{{ $keterangan->kilometer }}</td>
-                                        <td>{{ $keterangan->total_harga }}</td>
-                                        <td>
-                                            <a href="{{ route('kendaraan.keterangan.edit', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}"
-                                                class="btn btn-primary">Edit</a>
-
-
-                                            <form
-                                                action="{{ route('kendaraan.keterangan.destroy', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}"
-                                                method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <a href="{{ route('kendaraan.keterangan.create', $kendaraan->id) }}"
-                            class="btn btn-primary">Tambah</a>
+                <div class="col output-column-two">
+                    <div class="output">
+                        <label class="label-title-two" for="">Kondisi</label>
+                        <label for="">:</label>
+                        <span>{{ $kendaraan->kondisi }}</span>
+                    </div>
+                    <div class="output">
+                        <label class="label-title-two" for="">Masa Guna</label>
+                        <label for="">:</label>
+                        <span>{{ $kendaraan->masa_guna }}</span>
+                    </div>
+                    <div class="output">
+                        <label class="label-title-two" for="">Masa Pajak</label>
+                        <label for="">:</label>
+                        <span>{{ $kendaraan->masa_pajak }}</span>
+                    </div>
+                    <div class="output">
+                        <label class="label-title-two" for="">Lama Pakai</label>
+                        <label for="">:</label>
+                        <span>{{ $kendaraan->lama_pakai }}</span>
+                    </div>
+                    <div class="output">
+                        <label class="label-title-two" for="">Pengguna</label>
+                        <label for="">:</label>
+                        <span>{{ $kendaraan->pengguna }}</span>
                     </div>
                 </div>
             </div>
+            <div class="content-output-service">
+                <div class="content-title-two">
+                    <h1>LIST SERVICE KENDARAAN</h1>
+                </div>
+                <div class="col">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th style="justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 10px"
+                                    id="sortNo">Tanggal</th>
+                                <th scope="col">Keterangan</th>
+                                <th scope="col">Kilometer</th>
+                                <th scope="col">Total Harga</th>
+                                <th style="justify-content: center; align-items: center; cursor: pointer; border-top-right-radius: 10px"
+                                    id="sortNo">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($keterangans->sortByDesc('tanggal') as $keterangan)
+                                <tr>
+                                    <td>{{ date('j F Y', strtotime($keterangan->tanggal)) }}</td>
+                                    <td>{{ $keterangan->keterangan }}</td>
+                                    <td>{{ $keterangan->kilometer }}</td>
+                                    <td>{{ $keterangan->total_harga }}</td>
+                                    <td>
+                                        <a href="{{ route('kendaraan.keterangan.edit', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}"
+                                            class="btn btn-primary">Edit</a>
+
+
+                                        <form
+                                            action="{{ route('kendaraan.keterangan.destroy', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}"
+                                            method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger"
+                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <a href="{{ route('kendaraan.keterangan.create', $kendaraan->id) }}"
+                        class="btn btn-primary">Tambah</a>
+                </div>
+            </div>
         </div>
+
     </div>
     <div class="spacer"></div>
 
@@ -169,12 +174,112 @@
     @extends('templates.footer')
 </body>
 <style>
-    .spacer {
-        margin: 20px 0;
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        flex-wrap: wrap
+    }
+
+    .body-wrapper {
+        margin: 0 2rem 0 2rem;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .content {
+        margin: 3rem 0rem 3rem 0rem;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .content-title {
+        margin-bottom: 2rem;
+    }
+
+    .content-title-two {
+        margin: 5rem 0 2rem 0;
+        text-align: center;
+    }
+
+    .content-output-table {
+        display: flex;
+        text-align: left;
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .content-output-service {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin: 0 auto;
+    }
+
+    .output-column-one {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .output-column-two {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+
+    .output {
+        padding-left: 30%;
+        margin: 4px 0 4px 0;
+    }
+
+    .label-title {
+        width: 8.5rem;
+        font-weight: 600;
+    }
+
+    .label-title-two {
+        width: 6rem;
+        font-weight: 600;
+    }
+
+    .table th,
+    td {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
+    }
+
+    .table th {
+        background-color: #3c6687;
+        color: white;
+        text-align: center;
+        vertical-align: middle;
+        margin: 0;
+        padding: 0 4px 0 4px;
+        height: 4rem;
+        border-bottom: 1px solid #493d3d
+    }
+
+    .table td {
+        height: 4rem;
+    }
+
+    .button-ouput {
+        margin: 0rem 0 1.5rem 0;
+        text-align: left;
+        padding-left: 15%
     }
 
     .date {
-        margin-right: 16px;
+        margin-top: 0.6rem;
+        font-weight: 600;
+        font-size: 14pt
     }
 
     body {
