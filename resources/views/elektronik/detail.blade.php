@@ -30,7 +30,7 @@
                     @can('super admin')
                         <button style="width: 6rem;" type="button"
                             onclick="window.location.href='{{ route('elektronik.edit', $elektronik->id) }}'"
-                            class="btn btn-edit" title="Edit Data Kendaraan">Edit</button>
+                            class="btn btn-edit" title="Edit Data Elektronik">Edit</button>
                     @endcan
                 </div>
                 <div class="col output-column-one">
