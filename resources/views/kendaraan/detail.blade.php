@@ -27,9 +27,11 @@
                 <div class="button-ouput">
                     <a style="width: 6rem;" class="btn btn-back" href="{{ route('kendaraan') }}"
                         title="List Kendaraan">Kembali</a>
-                    <button style="width: 6rem;" type="button"
-                        onclick="window.location.href='{{ route('kendaraan.edit', $kendaraan->id) }}'"
-                        class="btn btn-edit" title="Edit Data Kendaraan">Edit</button>
+                    @can('super admin')
+                        <button style="width: 6rem;" type="button"
+                            onclick="window.location.href='{{ route('kendaraan.edit', $kendaraan->id) }}'"
+                            class="btn btn-edit" title="Edit Data Kendaraan">Edit</button>
+                    @endcan
                 </div>
                 <div class="col output-column-one">
                     <div class="output">
@@ -96,6 +98,10 @@
                     <h1>LIST SERVICE KENDARAAN</h1>
                 </div>
                 <div class="col">
+                    <div class="button-output">
+                        <a href="{{ route('kendaraan.keterangan.create', $kendaraan->id) }}"
+                            class="btn btn-primary">Tambah</a>
+                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -133,8 +139,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <a href="{{ route('kendaraan.keterangan.create', $kendaraan->id) }}"
-                        class="btn btn-primary">Tambah</a>
                 </div>
             </div>
         </div>
@@ -178,7 +182,8 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-        flex-wrap: wrap
+        flex-wrap: wrap;
+        margin: 0;
     }
 
     .body-wrapper {
@@ -213,9 +218,12 @@
 
     .content-output-service {
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column;
         text-align: left;
         margin: 0 auto;
+        align-items: center;
+        justify-content: center;
     }
 
     .output-column-one {
@@ -263,11 +271,17 @@
         margin: 0;
         padding: 0 4px 0 4px;
         height: 4rem;
+        width: 11rem;
         border-bottom: 1px solid #493d3d
     }
 
     .table td {
         height: 4rem;
+    }
+
+    .table-striped {
+        margin: 2rem 0 0 0;
+        width: 100%
     }
 
     .button-ouput {
@@ -280,13 +294,6 @@
         margin-top: 0.6rem;
         font-weight: 600;
         font-size: 14pt
-    }
-
-    body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        margin: 0;
     }
 
     .btn-back {
