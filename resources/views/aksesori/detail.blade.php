@@ -5,111 +5,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detail Aset Aksesoris</title>
+    <title>Detail Aksesoris {{ $aksesori->jenis_aksesoris }} {{ $aksesori->merek }}</title>
     <link rel="icon" href="{{ asset('img/logoremove.png') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
 
 <body>
     @include('templates.navbar')
-    <div class="container">
+    <div class="body-wrapper">
+        <div class="date">
+            <label class="date float-end">
+                {{ date('l, j F Y') }}
+            </label>
+        </div>
         <div class="content">
-            <h1 class="text-center">DETAIL AKSESORIS</h1>
-            <div class="output-columns">
-                <div class="column-left">
-                    <div class="kode">
-                        <label class="no">Kode:</label>
+            <div class="content-title">
+                <h1>Detail {{ $aksesori->jenis_aksesoris }} {{ $aksesori->merek }}</h1>
+            </div>
+            <div class="row content-output-table">
+                <div class="button-ouput">
+                    <a style="width: 6rem;" class="btn btn-back" href="{{ route('aksesori') }}"
+                        title="List Aksesoris">Kembali</a>
+                    @can('super admin')
+                        <button style="width: 6rem;" type="button"
+                            onclick="window.location.href='{{ route('aksesori.edit', $aksesori->id) }}'"
+                            class="btn btn-edit" title="Edit Data Aksesoris">Edit</button>
+                    @endcan
+                </div>
+                <div class="col output-column-one">
+                    <div class="output">
+                        <label class="label-title" for="">Kode</label>
+                        <label for="">:</label>
                         <span>{{ $aksesori->kode }}</span>
                     </div>
-                    <div class="spacer"></div>
                     <div class="output">
-                        <label>Jenis Aksesoris:</label>
+                        <label class="label-title" for="">Jenis Aksesoris</label>
+                        <label for="">:</label>
                         <span>{{ $aksesori->jenis_aksesoris }}</span>
                     </div>
-                    <div class="spacer"></div>
                     <div class="output">
-                        <label>Merek:</label>
+                        <label class="label-title" for="">Merek</label>
+                        <label for="">:</label>
                         <span>{{ $aksesori->merek }}</span>
                     </div>
-                    <div class="spacer"></div>
                     <div class="output">
-                        <label>Tahun Perolehan:</label>
+                        <label class="label-title" for="">Tahun Perolehan</label>
+                        <label for="">:</label>
                         <span>{{ $aksesori->tahun_perolehan }}</span>
                     </div>
-                    <div class="spacer"></div>
                     <div class="output">
-                        <label>Harga Perolehan:</label>
+                        <label class="label-title" for="">Harga Perolehan</label>
+                        <label for="">:</label>
                         <span>{{ $aksesori->harga_perolehan }}</span>
                     </div>
-                    <div class="spacer"></div>
-                    <div class="output">
-                        <label>Masa Guna:</label>
-                        <span>{{ $aksesori->masa_guna }}</span>
-                    </div>
                 </div>
-                <div class="column-right">
+                <div class="col output-column-two">
                     <div class="output">
-                        <label>Lama Pakai:</label>
-                        <span>{{ $aksesori->lama_pakai }}</span>
-                    </div>
-                    <div class="spacer"></div>
-                    <div class="output">
-                        <label>Kondisi:</label>
-                        <span>{{ $aksesori->kondisi }}</span>
-                    </div>
-                    <div class="spacer"></div>
-                    <div class="output">
-                        <label>Lokasi:</label>
+                        <label class="label-title-two" for="">Lokasi</label>
+                        <label for="">:</label>
                         <span>{{ $aksesori->lokasi }}</span>
                     </div>
-                    <div class="spacer"></div>
                     <div class="output">
-                        <label>Pengguna:</label>
+                        <label class="label-title-two" for="">Kondisi</label>
+                        <label for="">:</label>
+                        <span>{{ $aksesori->kondisi }}</span>
+                    </div>
+                    <div class="output">
+                        <label class="label-title-two" for="">Masa Guna</label>
+                        <label for="">:</label>
+                        <span>{{ $aksesori->masa_guna }}</span>
+                    </div>
+                    <div class="output">
+                        <label class="label-title-two" for="">Lama Pakai</label>
+                        <label for="">:</label>
+                        <span>{{ $aksesori->lama_pakai }}</span>
+                    </div>
+                    <div class="output">
+                        <label class="label-title-two" for="">Pengguna</label>
+                        <label for="">:</label>
                         <span>{{ $aksesori->pengguna }}</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="button-wrapper" style="padding: 32px; display: flex; justify-content: space-between; align-items: center;">
-            <div style="flex: 6;">
-                <a style="width: 6rem;" class="btn btn-back" href="{{ route('aksesori') }}">Kembali</a>
-            </div>
-            @can('super admin')
-            <div style="flex: 1;">
-                <button style="width: 6rem;" type="button" onclick="window.location.href='{{ route('aksesori.edit', $aksesori->id) }}'" class="btn btn-edit">Edit</button>
-            </div>
-            @endcan
-        </div>
+
     </div>
-       
-    
-    <div class="footer">
-    @include('templates.footer')
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <div class="spacer"></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
+    @extends('templates.footer')
 </body>
-
-</html>
-<style>
-
-    .spacer {
-        margin: 20px 0;
-    }
-    .container {
+<style>       
+    body {
         display: flex;
         flex-direction: column;
+        min-height: 100vh;
+        flex-wrap: ;
+        margin: 0;
     }
-    
-    .output-columns {
+
+    .body-wrapper {
+        margin: 0 2rem 0 2rem;
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        flex-wrap: wrap;
     }
-    
-    .column-left {
-        flex: 0.6;
+
+    .content {
+        margin: 3rem 0rem 3rem 0rem;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
-    
-    .column-right {
-        flex: 0.2;
+
+    .content-title {
+        margin-bottom: 2rem;
+    }
+
+    .content-title-two {
+        margin: 5rem 0 2rem 0;
+        text-align: center;
+    }
+
+    .content-output-table {
+        display: flex;
+        text-align: left;
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .content-output-service {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        text-align: left;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .output-column-one {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .output-column-two {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .output {
+        padding-left: 30%;
+        margin: 4px 0 4px 0;
+    }
+
+    .label-title {
+        width: 8.5rem;
+        font-weight: 600;
+    }
+
+    .label-title-two {
+        width: 6rem;
+        font-weight: 600;
+    }
+
+
+    .button-ouput {
+        margin: 0rem 0 1.5rem 0;
+        text-align: left;
+        padding-left: 15%
+    }
+
+    .date {
+        margin-top: 0.6rem;
+        font-weight: 600;
+        font-size: 14pt
     }
 
     .btn-back {
@@ -124,18 +202,6 @@
         border: 1px solid #82bcde;
     }
 
-    .btn-print {
-        background-color: #f9d150;
-        color: #404567;
-        border-radius: 0.3rem;
-    }
-
-    .btn-print:hover {
-        background-color: #e5eae6;
-        color: #404567;
-        border: 1px solid #8e4761
-    }
-
     .btn-edit {
         background-color: #d96652;
         color: #e9ecf1;
@@ -148,3 +214,5 @@
         border: 1px solid #f39c7d
     }
 </style>
+
+</html>
