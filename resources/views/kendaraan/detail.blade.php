@@ -21,7 +21,7 @@
         </div>
         <div class="content">
             <div class="content-title">
-                <h1>DETAIL KENDARAAN</h1>
+                <h1>Detail {{ $kendaraan->jenis_kendaraan }} {{ $kendaraan->merek }}</h1>
             </div>
             <div class="row content-output-table">
                 <div class="button-ouput">

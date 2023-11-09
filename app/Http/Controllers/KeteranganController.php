@@ -30,7 +30,7 @@ class KeteranganController extends Controller
         $keterangan = new Keterangan();
         $keterangan->tanggal = $request->input('tanggal');
         $keterangan->keterangan = $request->input('keterangan');
-        $keterangan->kilometer = $request->input('kilometer');
+        $keterangan->kilometer = $request->input('kilometer') ?: null;
         $keterangan->total_harga = $request->input('total_harga');
 
         $keterangan->kendaraan_id = $id;
@@ -64,7 +64,7 @@ class KeteranganController extends Controller
 
         $keterangan->tanggal = $request->input('tanggal');
         $keterangan->keterangan = $request->input('keterangan');
-        $keterangan->kilometer = $request->input('kilometer');
+        $keterangan->kilometer = $request->input('kilometer') ?: null;
         $keterangan->total_harga = $request->input('total_harga');
         $keterangan->save();
 

@@ -17,7 +17,7 @@ class CreateKeterangansTable extends Migration
             $table->id();
             $table->date('tanggal');
             $table->string('keterangan');
-            $table->text('kilometer');
+            $table->text('kilometer')->nullable();
             $table->text('total_harga');
             $table->unsignedBigInteger('kendaraan_id');
             $table->foreign('kendaraan_id')->references('id')->on('kendaraans');

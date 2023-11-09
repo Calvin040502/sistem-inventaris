@@ -23,22 +23,23 @@
 
                 <div class="form-group">
                     <label for="tanggal">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal">
+                    <input type="date" class="form-control" id="tanggal" name="tanggal" required>
                 </div>
                 <div class="spacer"></div>
                 <div class="form-group">
                     <label for="keterangan">Keterangan</label>
-                    <input type="text" class="form-control" id="keterangan" name="keterangan">
+                    <input type="text" class="form-control" id="keterangan" name="keterangan" required>
                 </div>
                 <div class="spacer"></div>
                 <div class="form-group">
                     <label for="kilometer">Kilometer</label>
                     <input type="text" class="form-control" id="kilometer" name="kilometer">
                 </div>
+                
                 <div class="spacer"></div>
                 <div class="form-group">
                     <label for="total_harga">Total Harga</label>
-                    <input type="text" class="form-control" id="total_harga" name="total_harga">
+                    <input type="text" class="form-control" id="total_harga" name="total_harga" required>
                 </div>
                 <div class="spacer"></div>
                 <div class="spacer"></div>
