@@ -72,17 +72,28 @@ class KeteranganController extends Controller
     }
 
     // Metode untuk menghapus data
-    public function destroy($id)
+    public function destroy($kendaraanId, $keteranganId)
     {
-        $keterangan = Keterangan::find($id);
-
-        if ($keterangan) {
+        try {
+            // Temukan kendaraan berdasarkan ID
+            $kendaraan = Kendaraan::findOrFail($kendaraanId);
+    
+            // Temukan keterangan berdasarkan ID dan kendaraan_id yang sesuai
+            $keterangan = Keterangan::where('kendaraan_id', $kendaraanId)
+                ->findOrFail($keteranganId);
+    
+            // Hapus keterangan
             $keterangan->delete();
-            return redirect()->route('kendaraan.detail');
-        } else {
-            return redirect()
-                ->route('kendaraan.detail')
-                ->with('error', 'Data tidak ditemukan');
+    
+            // Alternatif: Hapus keterangan dengan menggunakan relasi pada model Kendaraan
+            // $kendaraan->keterangans()->where('id', $keteranganId)->delete();
+    
+            return redirect()->route('kendaraan.detail', ['kendaraan' => $kendaraanId])
+        ->with('success', 'Data keterangan berhasil dihapus');
+        } catch (\Exception $e) {
+            // Tangani kesalahan jika terjadi
+            return redirect()->route('kendaraan.detail')
+                ->with('error', 'Gagal menghapus data keterangan');
         }
     }
 }
