@@ -34,7 +34,7 @@ class AksesoriController extends Controller
             ->orWhere('kondisi', 'LIKE', '%' . $search . '%')
             ->orWhere('lokasi', 'LIKE', '%' . $search . '%')
             ->orWhere('pengguna', 'LIKE', '%' . $search . '%');
-    })->get();
+    })->paginate(5);
 
     if ($aksesoris->isEmpty()) {
         session()->flash('error', 'Aset tidak ditemukan');

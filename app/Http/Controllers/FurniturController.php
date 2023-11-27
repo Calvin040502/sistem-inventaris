@@ -34,7 +34,7 @@ class FurniturController extends Controller
             ->orWhere('kondisi', 'LIKE', '%' . $search . '%')
             ->orWhere('lokasi', 'LIKE', '%' . $search . '%')
             ->orWhere('pengguna', 'LIKE', '%' . $search . '%');
-    })->get();
+    })->paginate(5);
 
     if ($furniturs->isEmpty()) {
         session()->flash('error', 'Aset tidak ditemukan');

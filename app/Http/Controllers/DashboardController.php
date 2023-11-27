@@ -12,10 +12,10 @@ class DashboardController extends Controller
 {
         public function index(Request $request)
     {
-        $kendaraans = Kendaraan::orderBy('created_at', 'desc')->take(5)->get();
-        $elektroniks = Elektronik::orderBy('created_at', 'desc')->take(5)->get();
-        $furniturs = Furnitur::orderBy('created_at', 'desc')->take(5)->get();
-        $aksesoris = Aksesori::orderBy('created_at', 'desc')->take(5)->get();
+        $kendaraans = Kendaraan::orderBy('created_at', 'desc')->paginate(2);
+        $elektroniks = Elektronik::orderBy('created_at', 'desc')->paginate(2);
+        $furniturs = Furnitur::orderBy('created_at', 'desc')->paginate(2);
+        $aksesoris = Aksesori::orderBy('created_at', 'desc')->paginate(2);
 
         return view('dashboard.index', compact('kendaraans', 'elektroniks', 'furniturs', 'aksesoris'));
     }

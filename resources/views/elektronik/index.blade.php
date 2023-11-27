@@ -139,8 +139,7 @@
                     @endforeach
                 </tbody>
             </table>
-
-            <div class="pagination" style="display: flex">
+            {{ $elektroniks->links() }}
             </div>
         </div>
     </section>
@@ -162,117 +161,6 @@
                 // Setelah memuat ulang data, Anda dapat mereload halaman untuk menampilkan perubahan.
                 location.reload();
             });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            // Initialize sorting order for each column
-            let noSortOrder = 1;
-            let kodeSortOrder = 1;
-            let tahun_perolehanSortOrder = 1;
-
-            // Get the table element
-            const table = $("#elektronik-table");
-
-            // Get the pagination element
-            const pagination = $(".pagination");
-
-            // Set the number of items per page
-            const itemsPerPage = 10; // Ganti dengan 10 untuk menampilkan 10 data per halaman
-
-            // Function to update the entire table with sorted data
-            function updateTable(sortKey, sortOrder) {
-                const $table = $("table tbody");
-                const $rows = $table.find("tr").get();
-
-                $rows.sort(function(a, b) {
-                    const aValue = $(a).find("td").eq(sortKey).text();
-                    const bValue = $(b).find("td").eq(sortKey).text();
-
-                    if (sortKey === 1) {
-                        // Sorting Kode
-                        return sortOrder * aValue.localeCompare(bValue);
-                    } else if (sortKey === 5) {
-                        // Sorting Tahun Perolehan
-                        return sortOrder * aValue.localeCompare(bValue);
-                    } else {
-                        // Sorting other columns as numbers
-                        return sortOrder * (parseFloat(aValue) - parseFloat(bValue));
-                    }
-                });
-
-                $table.empty().append($rows);
-
-                // Call the initial sorting to sort the data based on the default column
-                updateTableRows(currentPage);
-            }
-
-            // Function to hide and show rows based on the current page
-            function updateTableRows(currentPage) {
-                // Hide all rows in the table, except the header
-                table.find("tr").not("thead tr").hide();
-
-                // Show the rows for the current page
-                const startIdx = (currentPage - 1) * itemsPerPage;
-                const endIdx = startIdx + itemsPerPage;
-                table.find("tr").slice(startIdx, endIdx).show();
-            }
-
-            // **Add the header to the table**
-            table.append(table.find("thead"));
-
-            // Handle click event for sorting by No
-            $("#sortNo").click(function() {
-                noSortOrder *= -1;
-                updateTable(0, noSortOrder);
-            });
-
-            // Handle click event for sorting by Kode
-            $("#sortKode").click(function() {
-                kodeSortOrder *= -1;
-                updateTable(1, kodeSortOrder);
-            });
-
-            // Handle click event for sorting by Tahun Perolehan
-            $("#sortTahun").click(function() {
-                tahun_perolehanSortOrder *= -1;
-                updateTable(5, tahun_perolehanSortOrder);
-            });
-
-            // Set the initial page number
-            let currentPage = 1;
-
-            // Calculate the total number of pages
-            const totalData = {{ $elektroniks->count() }}; // Ganti dengan jumlah data yang sesungguhnya
-            const totalPages = Math.ceil(totalData / itemsPerPage);
-
-            // Generate initial pagination buttons
-            for (let i = 1; i <= totalPages; i++) {
-                pagination.append(`<a href="#" class="${i === 1 ? 'active' : ''}">${i}</a>`);
-            }
-
-            // Handle click event for pagination buttons
-            pagination.on("click", "a", function() {
-                // Get the clicked page number
-                const newPage = parseInt($(this).text());
-
-                // If the clicked page number is different from the current page number
-                if (newPage !== currentPage) {
-                    // Update the current page number
-                    currentPage = newPage;
-
-                    // Update the active pagination button
-                    pagination.find("a").removeClass("active");
-                    $(this).addClass("active");
-
-                    // Update the table rows
-                    updateTableRows(currentPage);
-                }
-            });
-
-            // Call the initial sorting to sort the data based on the default column
-            updateTable(0, 1);
-            updateTableRows(currentPage);
         });
     </script>
     @extends('templates.footer')
@@ -339,10 +227,11 @@
     .pagination {
         display: flex;
         justify-content: center;
+        align-items: center;
         margin: 1rem 0 3rem 0;
     }
 
-    .pagination a {
+    .pagination a, .pagination .active {
         margin: 0 0.5rem;
         text-decoration: none;
         padding: 0.5rem 1rem;
