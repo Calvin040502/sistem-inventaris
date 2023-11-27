@@ -38,7 +38,7 @@ class KendaraanController extends Controller
                     ->orWhere('pengguna', 'LIKE', '%' . $search . '%')
                     ->orWhere('masa_pajak', 'LIKE', '%' . $search . '%');
             })
-            ->paginate(5);
+            ->paginate(5, ['*'], 'kendaraan_page');
 
         if ($kendaraans->isEmpty()) {
             session()->flash('error', 'Aset tidak ditemukan');

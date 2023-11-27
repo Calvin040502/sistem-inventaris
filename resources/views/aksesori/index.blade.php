@@ -100,7 +100,7 @@
                     @foreach ($aksesoris as $aksesori)
                         <tr onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
                             style="cursor: pointer;">
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $aksesoris->firstItem() + $loop->index }}</td>
                             <td>{{ $aksesori->kode }}</td>
                             <td>{{ $aksesori->jenis_aksesoris }}</td>
                             <td>{{ $aksesori->merek }}</td>
@@ -132,8 +132,7 @@
                     @endforeach
                 </tbody>
             </table>
-
-            {{ $aksesoris->links() }}
+            {{ $aksesoris->appends(request()->except('aksesori_page'))->links() }}
             </div>
         </div>
     </section>

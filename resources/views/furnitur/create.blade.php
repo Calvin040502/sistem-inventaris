@@ -89,7 +89,7 @@
                                 <div class="col-sm-12">
                                     <label for="pengguna" class="col-form-label"> Pengguna </label>
                                     <input class="form-control shadow-sm bg-body-tertiary rounded" id="pengguna" name="pengguna"
-                                        placeholder="Masukkan Pengguna" required>
+                                        placeholder="Masukkan Pengguna">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-add mt-3 shadow-sm">Tambah</button>

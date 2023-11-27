@@ -25,7 +25,7 @@ class CreateAksesorisTable extends Migration
             $table->string('lama_pakai');
             $table->text('kondisi');
             $table->string('lokasi');
-            $table->text('pengguna');
+            $table->text('pengguna')->nullable();
             $table->timestamps();
         });
     }

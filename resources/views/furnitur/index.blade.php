@@ -100,7 +100,7 @@
                     @foreach ($furniturs as $furnitur)
                         <tr onclick="window.location.href='{{ route('furnitur.detail', ['furnitur' => $furnitur->id]) }}';"
                             style="cursor: pointer;">
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $furniturs->firstItem() + $loop->index }}</td>
                             <td>{{ $furnitur->kode }}</td>
                             <td>{{ $furnitur->jenis_furniture }}</td>
                             <td>{{ $furnitur->merek }}</td>
@@ -132,7 +132,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $furniturs->links() }}
+            {{ $furniturs->appends(request()->except('furnitur_page'))->links() }}
             </div>
         </div>
     </section>

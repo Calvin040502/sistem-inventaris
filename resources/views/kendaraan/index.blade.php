@@ -108,7 +108,7 @@
                     @foreach ($kendaraans as $kendaraan)
                         <tr onclick="window.location.href='{{ route('kendaraan.detail', ['kendaraan' => $kendaraan->id]) }}';"
                             style="cursor: pointer;">
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $kendaraans->firstItem() + $loop->index }}</td>
                             <td>{{ $kendaraan->kode }}</td>
                             <td>{{ $kendaraan->plat_nomor }}</td>
                             <td>{{ $kendaraan->jenis_kendaraan }}</td>
@@ -144,7 +144,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $kendaraans->links() }}
+            {{ $kendaraans->appends(request()->except('kendaraan_page'))->links() }}
             {{-- <div class="pagination" style="display: flex"> --}}
         </div>
         </div>

@@ -50,7 +50,7 @@
                             @foreach ($kendaraans as $kendaraan)
                                 <tr onclick="window.location.href='{{ route('kendaraan.detail', $kendaraan->id) }}';"
                                     style="cursor: pointer;">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $kendaraans->firstItem() + $loop->index }}</td>
                                     <td>{{ optional($kendaraan->user)->name }}</td>
                                     <td>{{ date('j F Y', strtotime($kendaraan->created_at)) }}</td>
                                     <td>{{ $kendaraan->kode }}</td>
@@ -65,7 +65,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $kendaraans->links() }}
+                    {{ $kendaraans->appends(request()->except('kendaraan_page'))->links() }}
                 </div>
                 <div class="col">
                     <table class="table table-hover table-striped text-center" id="elektronik-table"
@@ -89,7 +89,7 @@
                             @foreach ($elektroniks as $elektronik)
                                 <tr onclick="window.location.href='{{ route('elektronik.detail', $elektronik->id) }}';"
                                     style="cursor: pointer;">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $elektroniks->firstItem() + $loop->index }}</td>
                                     <td>{{ optional($elektronik->user)->name }}</td>
                                     <td>{{ date('j F Y', strtotime($elektronik->created_at)) }}</td>
                                     <td>{{ $elektronik->kode }}</td>
@@ -102,6 +102,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $elektroniks->appends(request()->except('elektronik_page'))->links() }}
                 </div>
                 <div class="col">
                     <table class="table table-hover table-striped text-center" id="furnitur-table"
@@ -125,7 +126,7 @@
                             @foreach ($furniturs as $furnitur)
                                 <tr onclick="window.location.href='{{ route('furnitur.detail', $furnitur->id) }}';"
                                     style="cursor: pointer;">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $furniturs->firstItem() + $loop->index }}</td>
                                     <td>{{ optional($furnitur->user)->name }}</td>
                                     <td>{{ date('j F Y', strtotime($furnitur->created_at)) }}</td>
                                     <td>{{ $furnitur->kode }}</td>
@@ -138,6 +139,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $furniturs->appends(request()->except('furnitur_page'))->links() }}
                     <table class="table table-hover table-striped text-center" id="aksesori-table"
                         style="margin-bottom: 2rem">
                         <h1 class="text-center" style="margin-bottom: 3rem">Aksesoris</h1>
@@ -159,7 +161,7 @@
                             @foreach ($aksesoris as $aksesori)
                                 <tr onclick="window.location.href='{{ route('aksesori.detail', $aksesori->id) }}';"
                                     style="cursor: pointer;">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $aksesoris->firstItem() + $loop->index }}</td>
                                     <td>{{ optional($aksesori->user)->name }}</td>
                                     <td>{{ date('j F Y', strtotime($aksesori->created_at)) }}</td>
                                     <td>{{ $aksesori->kode }}</td>
@@ -172,6 +174,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $aksesoris->appends(request()->except('aksesori_page'))->links() }}
                 </div>
             </div>
         </div>

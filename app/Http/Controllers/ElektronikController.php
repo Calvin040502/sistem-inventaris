@@ -35,7 +35,7 @@ class ElektronikController extends Controller
             ->orWhere('kondisi', 'LIKE', '%' . $search . '%')
             ->orWhere('lokasi', 'LIKE', '%' . $search . '%')
             ->orWhere('pengguna', 'LIKE', '%' . $search . '%');
-    })->paginate(5);
+    })->paginate(5, ['*'], 'elektronik_page');
 
     if ($elektroniks->isEmpty()) {
         session()->flash('error', 'Aset tidak ditemukan');

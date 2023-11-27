@@ -34,7 +34,7 @@ class FurniturController extends Controller
             ->orWhere('kondisi', 'LIKE', '%' . $search . '%')
             ->orWhere('lokasi', 'LIKE', '%' . $search . '%')
             ->orWhere('pengguna', 'LIKE', '%' . $search . '%');
-    })->paginate(5);
+    })->paginate(5, ['*'], 'furnitur_page');
 
     if ($furniturs->isEmpty()) {
         session()->flash('error', 'Aset tidak ditemukan');
@@ -84,7 +84,7 @@ public function store(Request $request)
             'lama_pakai' => 'required',
             'kondisi' => 'required',
             'lokasi' => 'required',
-            'pengguna' => 'required',
+            'pengguna' => 'nullable',
         ]);
 
         $validatedData['user_id'] = auth()->user()->id;
@@ -143,7 +143,7 @@ public function store(Request $request)
                 'lama_pakai' => 'required',
                 'kondisi' => 'required',
                 'lokasi' => 'required',
-                'pengguna' => 'required',
+                'pengguna' => 'nullable',
             ];
 
             
