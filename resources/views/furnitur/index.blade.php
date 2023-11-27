@@ -36,8 +36,8 @@
             <div class="d-flex justify-content-end mb-3">
                 <form action="/furnitur" method="GET" class="me-2">
                     <div class="input-group">
-                        <input type="search" class="form-control shadow-sm bg-body-tertiary" placeholder="Cari data aksesoris..."
-                            name="search" value="{{ request('search') }}">
+                        <input type="search" class="form-control shadow-sm bg-body-tertiary"
+                            placeholder="Cari data aksesoris..." name="search" value="{{ request('search') }}">
                         <div class="input-group-append">
                             <button class="btn btn-primary shadow-sm" type="submit"
                                 style="border-top-left-radius: 0; border-bottom-left-radius: 0" title="Search Data">
@@ -333,7 +333,7 @@
     .pagination {
         display: flex;
         justify-content: center;
-        margin-top: 1rem;
+        margin: 1rem 0 3rem 0;
     }
 
     .pagination a {
@@ -346,6 +346,11 @@
     }
 
     .pagination a:hover {
+        background-color: #6ac063;
+        color: white;
+    }
+
+    .pagination .active {
         background-color: #6ac063;
         color: white;
     }

@@ -43,7 +43,7 @@
                                 <th style="width: 4rem">Masa Guna</th>
                                 <th style="width: 4rem">Lama Pakai</th>
                                 <th style="width: 4rem">Lokasi</th>
-                                <th style="width: 4rem">Masa Pajak</th>
+                                <th style="width: 4rem; border-top-right-radius: 6px">Masa Pajak</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,7 +79,7 @@
                                 <th style="width: 4rem">Kondisi</th>
                                 <th style="width: 4rem">Masa Guna</th>
                                 <th style="width: 4rem">Lama Pakai</th>
-                                <th style="width: 4rem">Lokasi</th>
+                                <th style="width: 4rem; border-top-right-radius: 6px">Lokasi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,7 +113,7 @@
                                 <th style="width: 4rem">Kondisi</th>
                                 <th style="width: 4rem">Masa Guna</th>
                                 <th style="width: 4rem">Lama Pakai</th>
-                                <th style="width: 4rem">Lokasi</th>
+                                <th style="width: 4rem; border-top-right-radius: 6px">Lokasi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -147,7 +147,7 @@
                                 <th style="width: 4rem">Kondisi</th>
                                 <th style="width: 4rem">Masa Guna</th>
                                 <th style="width: 4rem">Lama Pakai</th>
-                                <th style="width: 4rem">Lokasi</th>
+                                <th style="width: 4rem; border-top-right-radius: 6px">Lokasi</th>
                             </tr>
                         </thead>
                         <tbody>

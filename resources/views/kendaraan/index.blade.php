@@ -37,8 +37,8 @@
             <div class="d-flex justify-content-end mb-3">
                 <form action="/kendaraan" method="GET" class="me-2">
                     <div class="input-group">
-                        <input type="search" class="form-control shadow-sm bg-body-tertiary" placeholder="Cari data kendaraan..."
-                            name="search" value="{{ request('search') }}">
+                        <input type="search" class="form-control shadow-sm bg-body-tertiary"
+                            placeholder="Cari data kendaraan..." name="search" value="{{ request('search') }}">
                         <div class="input-group-append">
                             <button class="btn btn-primary shadow-sm" type="submit"
                                 style="border-top-left-radius: 0; border-bottom-left-radius: 0" title="Search Data">
@@ -63,7 +63,8 @@
                             src="{{ asset('icon/printer.svg') }}" alt=""></button>
                 </div>
                 <div class="btn-group me-2">
-                    <button type="button" class="btn btn-print shadow-sm" href="{{ url('kendaraan/export/excel') }}" title="Export Data">
+                    <button type="button" class="btn btn-print shadow-sm" href="{{ url('kendaraan/export/excel') }}"
+                        title="Export Data">
                         <img src="{{ asset('icon/export_notes.svg') }}" alt="">
                     </button>
                 </div>
@@ -342,7 +343,7 @@
     .pagination {
         display: flex;
         justify-content: center;
-        margin-top: 1rem;
+        margin: 1rem 0 3rem 0;
     }
 
     .pagination a {
@@ -359,9 +360,14 @@
         color: white;
     }
 
+    .pagination .active {
+        background-color: #6ac063;
+        color: white;
+    }
+
     img {
         height: 26px;
-        width: 26px;
+        width: 26indepx;
         margin: 4px;
         padding: 0;
     }
