@@ -10,9 +10,24 @@
 </head>
 
 <script>
-    // Function to print the list of Kendaraan
     function printKendaraanList() {
-        var printContents = document.querySelector('.kendaraan').innerHTML;
+        var selectedRows = document.querySelectorAll('.select-checkbox:checked');
+        if (selectedRows.length === 0) {
+            alert('Please select at least one row to print.');
+            return;
+        }
+
+        var printContents = '<table class="table table-hover table-striped text-center">';
+        printContents += '<thead>' + document.querySelector('thead').innerHTML + '</thead>';
+        printContents += '<tbody>';
+        
+        selectedRows.forEach(function(checkbox) {
+            var row = checkbox.closest('tr');
+            printContents += '<tr>' + row.innerHTML + '</tr>';
+        });
+
+        printContents += '</tbody></table>';
+
         var originalContents = document.body.innerHTML;
         document.body.innerHTML = printContents;
         window.print();
@@ -133,6 +148,9 @@
                                         </button>
                                     </form>
                                 </td>
+                                <td>
+                                    <input type="checkbox" class="select-checkbox" value="{{ $kendaraan->id }}">
+                                </td>
                             @endcan
                         </tr>
                     @endforeach
@@ -165,6 +183,16 @@
     </script>
     @extends('templates.footer')
 </body>
+<script>
+    function toggleCheckbox() {
+        var checkboxes = document.querySelectorAll('.select-checkbox');
+        var selectAllCheckbox = document.getElementById('selectAll');
+
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = selectAllCheckbox.checked;
+        });
+    }
+</script>
 <style>
     /* CSS untuk elemen cetak */
     @media print {

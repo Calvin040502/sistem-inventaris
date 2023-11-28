@@ -10,9 +10,24 @@
 </head>
 
 <script>
-    // Function to print the list of Furniture
     function printFurniturList() {
-        var printContents = document.querySelector('.furnitur').innerHTML;
+        var selectedRows = document.querySelectorAll('.select-checkbox:checked');
+        if (selectedRows.length === 0) {
+            alert('Please select at least one row to print.');
+            return;
+        }
+
+        var printContents = '<table class="table table-hover table-striped text-center">';
+        printContents += '<thead>' + document.querySelector('thead').innerHTML + '</thead>';
+        printContents += '<tbody>';
+        
+        selectedRows.forEach(function(checkbox) {
+            var row = checkbox.closest('tr');
+            printContents += '<tr>' + row.innerHTML + '</tr>';
+        });
+
+        printContents += '</tbody></table>';
+
         var originalContents = document.body.innerHTML;
         document.body.innerHTML = printContents;
         window.print();
@@ -121,6 +136,9 @@
                                         </button>
                                     </form>
                                 </td>
+                                <td>
+                                    <input type="checkbox" class="select-checkbox" value="{{ $furnitur->id }}">
+                                </td>
                             @endcan
                         </tr>
                     @endforeach
@@ -136,22 +154,33 @@
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        //JS Refresh
-        document.addEventListener('DOMContentLoaded', function() {
-            const refreshButton = document.getElementById('refreshButton');
-
-            refreshButton.addEventListener('click', function() {
-                // Lakukan operasi atau pengiriman data ke server sesuai dengan kebutuhan Anda untuk me-refresh data.
-                // Misalnya, Anda bisa membuat permintaan AJAX ke server untuk memuat ulang data.
-
-                // Setelah memuat ulang data, Anda dapat mereload halaman untuk menampilkan perubahan.
-                location.reload();
-            });
-        });
-    </script>
     @extends('templates.footer')
 </body>
+<script>
+    //JS Refresh
+    document.addEventListener('DOMContentLoaded', function() {
+        const refreshButton = document.getElementById('refreshButton');
+
+        refreshButton.addEventListener('click', function() {
+            // Lakukan operasi atau pengiriman data ke server sesuai dengan kebutuhan Anda untuk me-refresh data.
+            // Misalnya, Anda bisa membuat permintaan AJAX ke server untuk memuat ulang data.
+
+            // Setelah memuat ulang data, Anda dapat mereload halaman untuk menampilkan perubahan.
+            location.reload();
+        });
+    });
+</script>
+    <script>
+        function toggleCheckbox() {
+            var checkboxes = document.querySelectorAll('.select-checkbox');
+            var selectAllCheckbox = document.getElementById('selectAll');
+    
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+        }
+    </script>
+    
 <style>
     /* CSS untuk elemen cetak */
     @media print {
