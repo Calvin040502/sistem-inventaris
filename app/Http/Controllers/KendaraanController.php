@@ -20,7 +20,7 @@ class KendaraanController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-
+        $perPage = $request->input('rowsPerPage', 5); // Default to 5 rows per page
         // Mengambil data Kendaraan dengan urutan terbaru
         $kendaraans = Kendaraan::latest()
             ->where(function ($query) use ($search) {
@@ -38,7 +38,7 @@ class KendaraanController extends Controller
                     ->orWhere('pengguna', 'LIKE', '%' . $search . '%')
                     ->orWhere('masa_pajak', 'LIKE', '%' . $search . '%');
             })
-            ->paginate(5, ['*'], 'kendaraan_page');
+            ->paginate($perPage, ['*'], 'kendaraan_page');
 
         if ($kendaraans->isEmpty()) {
             session()->flash('error', 'Aset tidak ditemukan');

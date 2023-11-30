@@ -20,6 +20,7 @@ class ElektronikController extends Controller
     public function index(Request $request)
 {
     $search = $request->input('search');
+    $perPage = $request->input('rowsPerPage', 5); // Default to 5 rows per page
 
     // Filter Elektronik berdasarkan pencarian
     $elektroniks = Elektronik::latest()->where(function ($query) use ($search) {
@@ -35,7 +36,7 @@ class ElektronikController extends Controller
             ->orWhere('kondisi', 'LIKE', '%' . $search . '%')
             ->orWhere('lokasi', 'LIKE', '%' . $search . '%')
             ->orWhere('pengguna', 'LIKE', '%' . $search . '%');
-    })->paginate(5, ['*'], 'elektronik_page');
+    })->paginate($perPage, ['*'], 'elektronik_page');
 
     if ($elektroniks->isEmpty()) {
         session()->flash('error', 'Aset tidak ditemukan');

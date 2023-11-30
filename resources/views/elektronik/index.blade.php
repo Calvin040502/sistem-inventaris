@@ -48,6 +48,18 @@
         <h1 class="text-center"> <a href="{{ route('elektronik') }}" class="text-decoration-none"
                 style="color: black">List Aset Elektronik</a>
         </h1>
+        <div class="btn-group me-2">
+            <label for="rowsPerPage" class="form-label me-2">Data yang Ditampilkan:</label>
+            <select id="rowsPerPage" class="form-select" onchange="changeRowsPerPage(this)">
+                <option value="5" {{ request('rowsPerPage') == 5 ? 'selected' : '' }}>5</option>
+                <option value="10" {{ request('rowsPerPage') == 10 ? 'selected' : '' }}>10</option>
+                <option value="20" {{ request('rowsPerPage') == 20 ? 'selected' : '' }}>20</option>
+                <option value="30" {{ request('rowsPerPage') == 30 ? 'selected' : '' }}>30</option>
+                <option value="40" {{ request('rowsPerPage') == 40 ? 'selected' : '' }}>40</option>
+                <option value="50" {{ request('rowsPerPage') == 50 ? 'selected' : '' }}>50</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
 
         <div class="input" style="padding-top: 2rem;">
             <div class="d-flex justify-content-end mb-3">
@@ -190,6 +202,14 @@
         checkboxes.forEach(function(checkbox) {
             checkbox.checked = selectAllCheckbox.checked;
         });
+    }
+</script>
+<script>
+    function changeRowsPerPage(selectElement) {
+        const rowsPerPage = selectElement.value;
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set('rowsPerPage', rowsPerPage);
+        window.location.href = currentUrl.toString();
     }
 </script>
 <style>

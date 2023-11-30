@@ -20,6 +20,7 @@ class FurniturController extends Controller
     public function index(Request $request)
 {
     $search = $request->input('search');
+    $perPage = $request->input('rowsPerPage', 5); // Default to 5 rows per page
 
     // Filter Furnitur berdasarkan pencarian
     $furniturs = Furnitur::latest()->where(function ($query) use ($search) {
@@ -34,7 +35,7 @@ class FurniturController extends Controller
             ->orWhere('kondisi', 'LIKE', '%' . $search . '%')
             ->orWhere('lokasi', 'LIKE', '%' . $search . '%')
             ->orWhere('pengguna', 'LIKE', '%' . $search . '%');
-    })->paginate(5, ['*'], 'furnitur_page');
+    })->paginate($perPage, ['*'], 'furnitur_page');
 
     if ($furniturs->isEmpty()) {
         session()->flash('error', 'Aset tidak ditemukan');
