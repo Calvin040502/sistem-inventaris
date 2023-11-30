@@ -78,6 +78,11 @@
                     <button class="btn btn-print shadow-sm" onclick="printElektronikList()" title="Print Data"><img
                             src="{{ asset('icon/printer.svg') }}" alt=""></button>
                 </div>
+                <div class="btn-group me-2">
+                    <a class="btn btn-print shadow-sm" href="{{ url('elektronik/export/excel') }}" title="Export Data Excel">
+                        <img src="{{ asset('icon/export_notes.svg') }}" alt="">
+                    </a>
+                </div>
             </div>
         </div>
         @if (session()->has('error'))
