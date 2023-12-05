@@ -122,10 +122,6 @@
                                     <td>{{ $keterangan->kilometer }}</td>
                                     <td>{{ $keterangan->total_harga }}</td>
                                     <td>
-                                        <a href="{{ route('kendaraan.keterangan.edit', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}"
-                                            class="btn btn-primary">Edit</a>
-
-
                                         <form
                                             action="{{ route('kendaraan.keterangan.destroy', ['kendaraan' => $kendaraan->id, 'keterangan' => $keterangan->id]) }}"
                                             method="POST" style="display: inline;">

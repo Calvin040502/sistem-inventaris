@@ -33,25 +33,16 @@
                 <td>{{ $kendaraan->pengguna }}</td>
                 <td>{{ $kendaraan->masa_pajak }}</td>
             </tr>
-        @endforeach
-    </tbody>
-</table>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Kode Kendaraan</th>
-            <th>Tanggal</th>
-            <th>Keterangan</th>
-            <th>Kilometer</th>
-            <th>Total Harga</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($kendaraans as $kendaraan)
+            <tr>
+                <th></th>
+                <th>Tanggal</th>
+                <th>Keterangan</th>
+                <th>Kilometer</th>
+                <th>Total Harga</th>
+            </tr>
             @foreach ($kendaraan->keterangans->sortByDesc('tanggal') as $keterangan)
                 <tr>
-                    <td>{{ $kendaraan->kode }}</td>
+                    <td></td>
                     <td>{{ date('j F Y', strtotime($keterangan->tanggal)) }}</td>
                     <td>{{ $keterangan->keterangan }}</td>
                     <td>{{ $keterangan->kilometer }}</td>
