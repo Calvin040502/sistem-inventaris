@@ -218,6 +218,98 @@
     }
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Store the original order of the rows
+        const originalRows = Array.from(document.querySelectorAll('#kendaraan-table tbody tr'));
+
+        // Function to handle sorting for alphanumeric columns
+        function sortAlphanumericColumn(columnIndex, isAsc) {
+            const tableBody = document.querySelector('#kendaraan-table tbody');
+            const rows = originalRows.slice(); // Create a copy of the original rows
+
+            rows.sort(function (rowA, rowB) {
+                const cellA = rowA.cells[columnIndex].textContent;
+                const cellB = rowB.cells[columnIndex].textContent;
+
+                // Use localeCompare for alphanumeric sorting
+                return isAsc ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+            });
+
+            // Remove existing rows
+            tableBody.innerHTML = '';
+
+            // Append sorted rows to the table
+            rows.forEach(row => tableBody.appendChild(row));
+        }
+
+        // Function to handle sorting for numeric columns
+        function sortNumericColumn(columnIndex, isAsc) {
+            const tableBody = document.querySelector('#kendaraan-table tbody');
+            const rows = originalRows.slice(); // Create a copy of the original rows
+
+            rows.sort(function (rowA, rowB) {
+                const cellA = parseFloat(rowA.cells[columnIndex].textContent);
+                const cellB = parseFloat(rowB.cells[columnIndex].textContent);
+
+                return isAsc ? cellA - cellB : cellB - cellA;
+            });
+
+            // Remove existing rows
+            tableBody.innerHTML = '';
+
+            // Append sorted rows to the table
+            rows.forEach(row => tableBody.appendChild(row));
+        }
+
+        // Function to handle sorting for date column
+        function sortDateColumn(columnIndex, isAsc) {
+            const tableBody = document.querySelector('#kendaraan-table tbody');
+            const rows = originalRows.slice(); // Create a copy of the original rows
+
+            rows.sort(function (rowA, rowB) {
+                const dateA = new Date(rowA.cells[columnIndex].textContent);
+                const dateB = new Date(rowB.cells[columnIndex].textContent);
+
+                return isAsc ? dateA - dateB : dateB - dateA;
+            });
+
+            // Remove existing rows
+            tableBody.innerHTML = '';
+
+            // Append sorted rows to the table
+            rows.forEach(row => tableBody.appendChild(row));
+        }
+
+        // Sorting for No. column
+        const sortNoButton = document.getElementById('sortNo');
+        let isSortNoAsc = true;
+
+        sortNoButton.addEventListener('click', function () {
+            sortNumericColumn(0, isSortNoAsc);
+            isSortNoAsc = !isSortNoAsc;
+        });
+
+        // Sorting for No. Kode column
+        const sortKodeButton = document.getElementById('sortKode');
+        let isSortKodeAsc = true;
+
+        sortKodeButton.addEventListener('click', function () {
+            sortAlphanumericColumn(1, isSortKodeAsc);
+            isSortKodeAsc = !isSortKodeAsc;
+        });
+
+        // Sorting for Tahun column
+        const sortTahunButton = document.getElementById('sortTahun');
+        let isSortTahunAsc = true;
+
+        sortTahunButton.addEventListener('click', function () {
+            sortDateColumn(5, isSortTahunAsc);
+            isSortTahunAsc = !isSortTahunAsc;
+        });
+    });
+</script>
+
 <style>
     /* CSS untuk elemen cetak */
     @media print {
