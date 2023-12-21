@@ -20,7 +20,7 @@
         var printContents = '<table class="table table-hover table-striped text-center">';
         printContents += '<thead>' + document.querySelector('thead').innerHTML + '</thead>';
         printContents += '<tbody>';
-        
+
         selectedRows.forEach(function(checkbox) {
             var row = checkbox.closest('tr');
             printContents += '<tr>' + row.innerHTML + '</tr>';
@@ -46,53 +46,55 @@
         <h1 class="text-center"> <a href="{{ route('aksesori') }}" class="text-decoration-none"
                 style="color: black">List Aset Aksesoris</a>
         </h1>
-
-        <div class="btn-group me-2">
-            <label for="rowsPerPage" class="form-label me-2">Data yang Ditampilkan:</label>
-            <select id="rowsPerPage" class="form-select" onchange="changeRowsPerPage(this)">
-                <option value="5" {{ request('rowsPerPage') == 5 ? 'selected' : '' }}>5</option>
-                <option value="10" {{ request('rowsPerPage') == 10 ? 'selected' : '' }}>10</option>
-                <option value="20" {{ request('rowsPerPage') == 20 ? 'selected' : '' }}>20</option>
-                <option value="30" {{ request('rowsPerPage') == 30 ? 'selected' : '' }}>30</option>
-                <option value="40" {{ request('rowsPerPage') == 40 ? 'selected' : '' }}>40</option>
-                <option value="50" {{ request('rowsPerPage') == 50 ? 'selected' : '' }}>50</option>
-                <!-- Add more options as needed -->
-            </select>
-        </div>
-
         <div class="input" style="padding-top: 2rem;">
-            <div class="d-flex justify-content-end mb-3">
-                <form action="/aksesori" method="GET" class="me-2">
-                    <div class="input-group">
-                        <input type="search" class="form-control shadow-sm bg-body-tertiary"
-                            placeholder="Cari data aksesoris..." name="search" value="{{ request('search') }}">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary shadow-sm" type="submit"
-                                style="border-top-left-radius: 0; border-bottom-left-radius: 0" title="Search Data">
-                                <img src="{{ asset('icon/search.svg') }}" alt="">
-                            </button>
+            <div class="d-flex mb-3">
+                <div class="sheet-data d-flex flex-grow-1" style="align-items: center;">
+                    <label for="rowsPerPage" class="form-label" style="width: 12rem;">Data per Halaman:</label>
+                    <select id="rowsPerPage" class="form-select" style="height: 3rem; width: 10rem;"
+                        onchange="changeRowsPerPage(this)">
+                        <option value="5" {{ request('rowsPerPage') == 5 ? 'selected' : '' }}>5</option>
+                        <option value="10" {{ request('rowsPerPage') == 10 ? 'selected' : '' }}>10</option>
+                        <option value="20" {{ request('rowsPerPage') == 20 ? 'selected' : '' }}>20</option>
+                        <option value="30" {{ request('rowsPerPage') == 30 ? 'selected' : '' }}>30</option>
+                        <option value="40" {{ request('rowsPerPage') == 40 ? 'selected' : '' }}>40</option>
+                        <option value="50" {{ request('rowsPerPage') == 50 ? 'selected' : '' }}>50</option>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-end mb-3 flex-grow-1">
+                    <form action="/aksesori" method="GET" class="me-2">
+                        <div class="input-group">
+                            <input type="search" class="form-control shadow-sm bg-body-tertiary"
+                                placeholder="Cari data aksesoris..." name="search" value="{{ request('search') }}">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary shadow-sm" type="submit"
+                                    style="border-top-left-radius: 0; border-bottom-left-radius: 0" title="Search Data">
+                                    <img src="{{ asset('icon/search.svg') }}" alt="">
+                                </button>
+                            </div>
                         </div>
+                    </form>
+                    <div class="btn-group me-2">
+                        <a href="{{ route('aksesori.create') }}" class="btn btn-add shadow-sm"
+                            title="Tambah Aksesoris">
+                            <img class="add" src="{{ asset('icon/add_notes.svg') }}" alt="">
+                        </a>
                     </div>
-                </form>
-                <div class="btn-group me-2">
-                    <a href="{{ route('aksesori.create') }}" class="btn btn-add shadow-sm" title="Tambah Aksesoris">
-                        <img class="add" src="{{ asset('icon/add_notes.svg') }}" alt="">
-                    </a>
-                </div>
-                <div class="btn-group me-2">
-                    <a href="#" class="btn btn-refresh shadow-sm" id="refreshButton" title="Refresh Data">
-                        <img style="width: 20px; height: 20px;" class="refresh" src="{{ asset('icon/refresh.svg') }}"
-                            alt="">
-                    </a>
-                </div>
-                <div class="btn-group me-2">
-                    <button class="btn btn-print shadow-sm" onclick="printAksesoriList()" title="Print Data"><img
-                            src="{{ asset('icon/printer.svg') }}" alt=""></button>
-                </div>
-                <div class="btn-group me-2">
-                    <a class="btn btn-print shadow-sm" href="{{ url('aksesori/export/excel') }}" title="Export Data Excel">
-                        <img src="{{ asset('icon/export_notes.svg') }}" alt="">
-                    </a>
+                    <div class="btn-group me-2">
+                        <a href="#" class="btn btn-refresh shadow-sm" id="refreshButton" title="Refresh Data">
+                            <img style="width: 20px; height: 20px;" class="refresh"
+                                src="{{ asset('icon/refresh.svg') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="btn-group me-2">
+                        <button class="btn btn-print shadow-sm" onclick="printAksesoriList()" title="Print Data"><img
+                                src="{{ asset('icon/printer.svg') }}" alt=""></button>
+                    </div>
+                    <div class="btn-group me-2">
+                        <a class="btn btn-print shadow-sm" href="{{ url('aksesori/export/excel') }}"
+                            title="Export Data Excel">
+                            <img src="{{ asset('icon/export_notes.svg') }}" alt="">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -119,31 +121,42 @@
                         <th style="width: 3rem;">Lokasi</th>
                         <th style="width: 3rem;">Pengguna</th>
                         @can('super admin')
-                            <th style="width: 6.7rem; border-top-right-radius: 6px">Action</th>
+                            <th style="width: 6.7rem;">Action</th>
                         @endcan
+                        <th style="width: 6.7rem; border-top-right-radius: 10px"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($aksesoris as $aksesori)
-                        <tr onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
-                            style="cursor: pointer;">
-                            <td>{{ $aksesoris->firstItem() + $loop->index }}</td>
-                            <td>{{ $aksesori->kode }}</td>
-                            <td>{{ $aksesori->jenis_aksesoris }}</td>
-                            <td>{{ $aksesori->merek }}</td>
-                            <td>{{ $aksesori->tahun_perolehan }}</td>
-                            <td>{{ $aksesori->harga_perolehan }}</td>
-                            <td>{{ $aksesori->masa_guna }}</td>
-                            <td>{{ $aksesori->lama_pakai }}</td>
-                            <td>{{ $aksesori->kondisi }}</td>
-                            <td>{{ $aksesori->lokasi }}</td>
-                            <td>{{ $aksesori->pengguna }}</td>
+                        <tr>
+                            <td onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
+                                style="cursor: pointer;">{{ $aksesoris->firstItem() + $loop->index }}</td>
+                            <td onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
+                                style="cursor: pointer;">{{ $aksesori->kode }}</td>
+                            <td onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
+                                style="cursor: pointer;">{{ $aksesori->jenis_aksesoris }}</td>
+                            <td onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
+                                style="cursor: pointer;">{{ $aksesori->merek }}</td>
+                            <td onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
+                                style="cursor: pointer;">{{ $aksesori->tahun_perolehan }}</td>
+                            <td onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
+                                style="cursor: pointer;">{{ $aksesori->harga_perolehan }}</td>
+                            <td onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
+                                style="cursor: pointer;">{{ $aksesori->masa_guna }}</td>
+                            <td onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
+                                style="cursor: pointer;">{{ $aksesori->lama_pakai }}</td>
+                            <td onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
+                                style="cursor: pointer;">{{ $aksesori->kondisi }}</td>
+                            <td onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
+                                style="cursor: pointer;">{{ $aksesori->lokasi }}</td>
+                            <td onclick="window.location.href='{{ route('aksesori.detail', ['aksesori' => $aksesori->id]) }}';"
+                                style="cursor: pointer;">{{ $aksesori->pengguna }}</td>
                             @can('super admin')
                                 <td style="display: flex; justify-content: space-around; align-items: center">
                                     <a class="btn btn-edit-pencil" href="{{ route('aksesori.edit', $aksesori->id) }}">
-                                        <img src="{{ asset('icon/pen2.svg') }}" alt="" style="margin: 4px 0 4px 0">
+                                        <img src="{{ asset('icon/pen2.svg') }}" alt=""
+                                            style="margin: 4px 0 4px 0">
                                     </a>
-
                                     <form action="{{ route('aksesori.destroy', $aksesori->id) }}" method="POST"
                                         class="d-inline-grid">
                                         @method('delete')
@@ -155,7 +168,8 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <input type="checkbox" class="select-checkbox" value="{{ $aksesori->id }}">
+                                    <input type="checkbox" style="height: 1.5rem; width: 1.5rem" class="select-checkbox"
+                                        value="{{ $aksesori->id }}">
                                 </td>
                             @endcan
                         </tr>
@@ -163,7 +177,7 @@
                 </tbody>
             </table>
             {{ $aksesoris->appends(request()->except('aksesori_page'))->links() }}
-            </div>
+        </div>
         </div>
     </section>
 
@@ -273,7 +287,8 @@
         margin: 1rem 0 3rem 0;
     }
 
-    .pagination a, .pagination .active {
+    .pagination a,
+    .pagination .active {
         margin: 0 0.5rem;
         text-decoration: none;
         padding: 0.5rem 1rem;

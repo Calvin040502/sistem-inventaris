@@ -22,7 +22,7 @@
         var printContents = '<table class="table table-hover table-striped text-center">';
         printContents += '<thead>' + document.querySelector('thead').innerHTML + '</thead>';
         printContents += '<tbody>';
-        
+
         selectedRows.forEach(function(checkbox) {
             var row = checkbox.closest('tr');
             printContents += '<tr>' + row.innerHTML + '</tr>';
@@ -48,52 +48,55 @@
         <h1 class="text-center"> <a href="{{ route('elektronik') }}" class="text-decoration-none"
                 style="color: black">List Aset Elektronik</a>
         </h1>
-        <div class="btn-group me-2">
-            <label for="rowsPerPage" class="form-label me-2">Data yang Ditampilkan:</label>
-            <select id="rowsPerPage" class="form-select" onchange="changeRowsPerPage(this)">
-                <option value="5" {{ request('rowsPerPage') == 5 ? 'selected' : '' }}>5</option>
-                <option value="10" {{ request('rowsPerPage') == 10 ? 'selected' : '' }}>10</option>
-                <option value="20" {{ request('rowsPerPage') == 20 ? 'selected' : '' }}>20</option>
-                <option value="30" {{ request('rowsPerPage') == 30 ? 'selected' : '' }}>30</option>
-                <option value="40" {{ request('rowsPerPage') == 40 ? 'selected' : '' }}>40</option>
-                <option value="50" {{ request('rowsPerPage') == 50 ? 'selected' : '' }}>50</option>
-                <!-- Add more options as needed -->
-            </select>
-        </div>
-
         <div class="input" style="padding-top: 2rem;">
-            <div class="d-flex justify-content-end mb-3">
-                <form action="/elektronik" method="GET" class="me-2">
-                    <div class="input-group">
-                        <input type="search" class="form-control shadow-sm bg-body-tertiary"
-                            placeholder="Cari data elektronik..." name="search" value="{{ request('search') }}">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary shadow-sm" type="submit"
-                                style="border-top-left-radius: 0; border-bottom-left-radius: 0" title="Search Data">
-                                <img src="{{ asset('icon/search.svg') }}" alt="">
-                            </button>
+            <div class="d-flex mb-3">
+                <div class="sheet-data d-flex flex-grow-1" style="align-items: center;">
+                    <label for="rowsPerPage" class="form-label" style="width: 12rem;">Data per Halaman:</label>
+                    <select id="rowsPerPage" class="form-select" style="height: 3rem; width: 10rem;"
+                        onchange="changeRowsPerPage(this)">
+                        <option value="5" {{ request('rowsPerPage') == 5 ? 'selected' : '' }}>5</option>
+                        <option value="10" {{ request('rowsPerPage') == 10 ? 'selected' : '' }}>10</option>
+                        <option value="20" {{ request('rowsPerPage') == 20 ? 'selected' : '' }}>20</option>
+                        <option value="30" {{ request('rowsPerPage') == 30 ? 'selected' : '' }}>30</option>
+                        <option value="40" {{ request('rowsPerPage') == 40 ? 'selected' : '' }}>40</option>
+                        <option value="50" {{ request('rowsPerPage') == 50 ? 'selected' : '' }}>50</option>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-end mb-3 flex-grow-1">
+                    <form action="/elektronik" method="GET" class="me-2">
+                        <div class="input-group">
+                            <input type="search" class="form-control shadow-sm bg-body-tertiary"
+                                placeholder="Cari data elektronik..." name="search" value="{{ request('search') }}">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary shadow-sm" type="submit"
+                                    style="border-top-left-radius: 0; border-bottom-left-radius: 0" title="Search Data">
+                                    <img src="{{ asset('icon/search.svg') }}" alt="">
+                                </button>
+                            </div>
                         </div>
+                    </form>
+                    <div class="btn-group me-2">
+                        <a href="{{ route('elektronik.create') }}" class="btn btn-add shadow-sm"
+                            title="Tambah Elektronik">
+                            <img class="add" src="{{ asset('icon/add_notes.svg') }}" alt="">
+                        </a>
                     </div>
-                </form>
-                <div class="btn-group me-2">
-                    <a href="{{ route('elektronik.create') }}" class="btn btn-add shadow-sm" title="Tambah Elektronik">
-                        <img class="add" src="{{ asset('icon/add_notes.svg') }}" alt="">
-                    </a>
-                </div>
-                <div class="btn-group me-2">
-                    <a href="#" class="btn btn-refresh shadow-sm" id="refreshButton" title="Refresh Data">
-                        <img style="width: 20px; height: 20px;" class="refresh" src="{{ asset('icon/refresh.svg') }}"
-                            alt="">
-                    </a>
-                </div>
-                <div class="btn-group me-2">
-                    <button class="btn btn-print shadow-sm" onclick="printElektronikList()" title="Print Data"><img
-                            src="{{ asset('icon/printer.svg') }}" alt=""></button>
-                </div>
-                <div class="btn-group me-2">
-                    <a class="btn btn-print shadow-sm" href="{{ url('elektronik/export/excel') }}" title="Export Data Excel">
-                        <img src="{{ asset('icon/export_notes.svg') }}" alt="">
-                    </a>
+                    <div class="btn-group me-2">
+                        <a href="#" class="btn btn-refresh shadow-sm" id="refreshButton" title="Refresh Data">
+                            <img style="width: 20px; height: 20px;" class="refresh"
+                                src="{{ asset('icon/refresh.svg') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="btn-group me-2">
+                        <button class="btn btn-print shadow-sm" onclick="printElektronikList()" title="Print Data"><img
+                                src="{{ asset('icon/printer.svg') }}" alt=""></button>
+                    </div>
+                    <div class="btn-group me-2">
+                        <a class="btn btn-print shadow-sm" href="{{ url('elektronik/export/excel') }}"
+                            title="Export Data Excel">
+                            <img src="{{ asset('icon/export_notes.svg') }}" alt="">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -122,28 +125,41 @@
                         <th style="width: 3rem;">Lokasi</th>
                         <th style="width: 3rem;">Pengguna</th>
                         @can('super admin')
-                            <th style="width: 6.7rem; border-top-right-radius: 6px">Action</th>
+                            <th style="width: 6.7rem;">Action</th>
                         @endcan
+                        <th style="width: 6.7rem; border-top-right-radius: 10px"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($elektroniks as $elektronik)
-                        <tr onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
-                            style="cursor: pointer;">
-                            <td>{{ $elektroniks->firstItem() + $loop->index }}</td>
-                            <td>{{ $elektronik->kode }}</td>
-                            <td>{{ $elektronik->tipe }}</td>
-                            <td>{{ $elektronik->jenis_elektronik }}</td>
-                            <td>{{ $elektronik->merek }}</td>
-                            <td>{{ $elektronik->tahun_perolehan }}</td>
-                            <td>{{ $elektronik->harga_perolehan }}</td>
-                            <td>{{ $elektronik->masa_guna }}</td>
-                            <td>{{ $elektronik->lama_pakai }}</td>
-                            <td>{{ $elektronik->kondisi }}</td>
-                            <td>{{ $elektronik->lokasi }}</td>
-                            <td>{{ $elektronik->pengguna }}</td>
+                        <tr>
+                            <td onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
+                                style="cursor: pointer;">{{ $elektroniks->firstItem() + $loop->index }}</td>
+                            <td onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
+                                style="cursor: pointer;">{{ $elektronik->kode }}</td>
+                            <td onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
+                                style="cursor: pointer;">{{ $elektronik->tipe }}</td>
+                            <td onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
+                                style="cursor: pointer;">{{ $elektronik->jenis_elektronik }}</td>
+                            <td onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
+                                style="cursor: pointer;">{{ $elektronik->merek }}</td>
+                            <td onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
+                                style="cursor: pointer;">{{ $elektronik->tahun_perolehan }}</td>
+                            <td onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
+                                style="cursor: pointer;">{{ $elektronik->harga_perolehan }}</td>
+                            <td onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
+                                style="cursor: pointer;">{{ $elektronik->masa_guna }}</td>
+                            <td onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
+                                style="cursor: pointer;">{{ $elektronik->lama_pakai }}</td>
+                            <td onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
+                                style="cursor: pointer;">{{ $elektronik->kondisi }}</td>
+                            <td onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
+                                style="cursor: pointer;">{{ $elektronik->lokasi }}</td>
+                            <td onclick="window.location.href='{{ route('elektronik.detail', ['elektronik' => $elektronik->id]) }}';"
+                                style="cursor: pointer;">{{ $elektronik->pengguna }}</td>
                             @can('super admin')
-                                <td style="display: flex; justify-content: space-around; height: 9rem; align-items: center">
+                                <td
+                                    style="display: flex; justify-content: space-around; height: 9rem; align-items: center">
                                     <a class="btn btn-edit-pencil"
                                         href="{{ route('elektronik.edit', $elektronik->id) }}">
                                         <img src="{{ asset('icon/pen2.svg') }}" alt=""
@@ -161,7 +177,8 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <input type="checkbox" class="select-checkbox" value="{{ $elektronik->id }}">
+                                    <input type="checkbox" style="height: 1.5rem; width: 1.5rem" class="select-checkbox"
+                                        value="{{ $elektronik->id }}">
                                 </td>
                             @endcan
                         </tr>
@@ -169,7 +186,7 @@
                 </tbody>
             </table>
             {{ $elektroniks->appends(request()->except('elektronik_page'))->links() }}
-            </div>
+        </div>
         </div>
     </section>
     @extends('kendaraan.pop-up.date-picker')
@@ -278,7 +295,8 @@
         margin: 1rem 0 3rem 0;
     }
 
-    .pagination a, .pagination .active {
+    .pagination a,
+    .pagination .active {
         margin: 0 0.5rem;
         text-decoration: none;
         padding: 0.5rem 1rem;
