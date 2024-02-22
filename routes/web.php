@@ -29,12 +29,13 @@ use App\Models\Aksesori;
 */
 
 Route::get('/', function () {
-    $kendaraans = Kendaraan::get();
+    // $kendaraans = Kendaraan::get();
 
-    return view('kendaraan.index', [
-    'kendaraans' => $kendaraans,
-    ]);
-})->middleware('auth');
+    // return view('kendaraan.index', [
+    // 'kendaraans' => $kendaraans,
+    // ]);
+    return view('started.index');
+    })->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
@@ -50,7 +51,7 @@ Route::get('/kendaraan/{kendaraan:id}/edit', [KendaraanController::class, 'edit'
 Route::put('/kendaraan/{kendaraan:id}', [KendaraanController::class, 'update'])->name('kendaraan.update')->middleware('can:super admin');
 Route::delete('/kendaraan/{kendaraan:id}', [KendaraanController::class, 'destroy'])->name('kendaraan.destroy')->middleware('can:super admin');
 Route::get('/kendaraan/detail/{kendaraan:id}/print', [KendaraanController::class, 'print'])->name('kendaraan.print')->middleware('can:admin');
-Route::get('/kendaraan/export/excel', [KendaraanController::class, 'export_excel'])->middleware('can:admin');
+Route::post('/kendaraan/export/excel', [KendaraanController::class, 'export_excel'])->middleware('can:admin');
 
 Route::get('/kendaraan/{kendaraan}/keterangan/{keterangan}/edit', [KeteranganController::class, 'edit'])->name('kendaraan.keterangan.edit');
 Route::get('/kendaraan/{keterangan:id}/keterangan', [KeteranganController::class, 'index'])->name('kendaraan.keterangan.index');

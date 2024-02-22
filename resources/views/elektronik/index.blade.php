@@ -111,7 +111,7 @@
                 style="margin-bottom: 2rem">
                 <thead>
                     <tr class="bg-info">
-                        <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 6px"
+                        <th style="width: 2rem; justify-content: center; align-items: center; cursor: pointer; border-top-left-radius: 10px"
                             id="sortNo">No.</th>
                         <th style="width: 4.5rem; cursor: pointer;" id="sortKode">Kode</th>
                         <th style="width: 6rem;">Tipe</th>

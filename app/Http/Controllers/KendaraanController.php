@@ -174,8 +174,9 @@ class KendaraanController extends Controller
         return redirect('/kendaraan');
     }
 
-    function export_excel()
+    function export_excel(Request $request)
     {
-        return Excel::Download(new ExportKendaraan(), 'Kendaraan.xlsx');
+        $selectedIds = $request->input('selectedCheckboxes');
+        return Excel::download(new ExportKendaraan($selectedIds), 'Kendaraan.xlsx');
     }
 }

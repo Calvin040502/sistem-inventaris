@@ -9,17 +9,25 @@ use Illuminate\Contracts\View\View;
 
 class ExportKendaraan implements FromView
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
+    protected $selectedIds;
+
+    public function __construct($selectedIds)
+    {
+        $this->selectedIds = $selectedIds;
+    }
+
     public function view(): View
     {
-        $kendaraans = Kendaraan::orderBy('kode', 'asc')->get();
+        // Get the data based on the selected checkboxes
+        $selectedKendaraans = Kendaraan::whereIn('id', explode(',', $this->selectedIds))
+            ->orderBy('kode', 'asc')->get();
+
         $keterangans = Keterangan::orderBy('tanggal', 'desc')->get();
 
         return view('kendaraan.table', [
-            'kendaraans' => $kendaraans,
+            'kendaraans' => $selectedKendaraans,
             'keterangans' => $keterangans,
         ]);
     }
 }
+

@@ -9,32 +9,6 @@
     <link rel="icon" href="{{ asset('img/logoremove.png') }}">
 </head>
 
-<script>
-    function printKendaraanList() {
-        var selectedRows = document.querySelectorAll('.select-checkbox:checked');
-        if (selectedRows.length === 0) {
-            alert('Please select at least one row to print.');
-            return;
-        }
-
-        var printContents = '<table class="table table-hover table-striped text-center">';
-        printContents += '<thead>' + document.querySelector('thead').innerHTML + '</thead>';
-        printContents += '<tbody>';
-
-        selectedRows.forEach(function(checkbox) {
-            var row = checkbox.closest('tr');
-            printContents += '<tr>' + row.innerHTML + '</tr>';
-        });
-
-        printContents += '</tbody></table>';
-
-        var originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
-        window.print();
-        document.body.innerHTML = originalContents;
-    }
-</script>
-
 <body>
     @include('templates.navbar')
     <div class="date">
@@ -86,16 +60,13 @@
                                 src="{{ asset('icon/refresh.svg') }}" alt="">
                         </a>
                     </div>
-                    <div class="btn-group me-2">
-                        <button class="btn btn-print shadow-sm" onclick="printKendaraanList()" title="Print Data"><img
-                                src="{{ asset('icon/printer.svg') }}" alt=""></button>
-                    </div>
-                    <div class="btn-group me-2">
-                        <a class="btn btn-print shadow-sm" href="{{ url('kendaraan/export/excel') }}"
-                            title="Export Data Excel">
+                    <form action="{{ url('kendaraan/export/excel') }}" method="POST" id="exportForm">
+                        @csrf
+                        <input type="hidden" name="selectedCheckboxes" id="selectedCheckboxes" value="">
+                        <button type="button" class="btn btn-print shadow-sm" onclick="exportSelected()" title="Export Data Excel">
                             <img src="{{ asset('icon/export_notes.svg') }}" alt="">
-                        </a>
-                    </div>
+                        </button>
+                    </form>                    
                 </div>
             </div>
         </div>
@@ -179,8 +150,8 @@
                             @endcan
                             <td>
                                 <input type="checkbox" style="height: 1.5rem; width: 1.5rem" class="select-checkbox"
-                                    value="{{ $kendaraan->id }}">
-                            </td>
+                                    value="{{ $kendaraan->id }}" onchange="updateSelectedCheckboxes()">
+                            </td>                            
                         </tr>
                     @endforeach
                 </tbody>
@@ -212,16 +183,6 @@
     @extends('templates.footer')
 </body>
 <script>
-    function toggleCheckbox() {
-        var checkboxes = document.querySelectorAll('.select-checkbox');
-        var selectAllCheckbox = document.getElementById('selectAll');
-
-        checkboxes.forEach(function(checkbox) {
-            checkbox.checked = selectAllCheckbox.checked;
-        });
-    }
-</script>
-<script>
     function changeRowsPerPage(selectElement) {
         const rowsPerPage = selectElement.value;
         const currentUrl = new URL(window.location.href);
@@ -229,6 +190,22 @@
         window.location.href = currentUrl.toString();
     }
 </script>
+
+<script>
+    function updateSelectedCheckboxes() {
+        var checkboxes = document.querySelectorAll('.select-checkbox:checked');
+        var selectedIds = Array.from(checkboxes).map(checkbox => checkbox.value).join(',');
+
+        document.getElementById('selectedCheckboxes').value = selectedIds;
+    }
+
+    function exportSelected() {
+        updateSelectedCheckboxes(); // Ensure checkboxes are updated before submission
+        document.getElementById('exportForm').method = 'POST';
+        document.getElementById('exportForm').submit();
+    }
+</script>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
